@@ -1,0 +1,491 @@
+// Name:       Loop Light
+// Author:     Evan Brooks — brooks.io
+
+$activetext = rgb(0, 163, 255)
+$darkbg     = #2D323A
+$redcolor   = #CA000F
+$greencolor = #88B171 
+$bg         = white
+
+.cm-mode-scss .cm-s-loop-light .CodeMirror-activeline-background {
+  // background: rgba(255, 153, 0, 0.03);
+}
+
+.cm-mode-js .cm-s-loop-light .CodeMirror-activeline-background {
+  // background: rgba(0, 163, 255, 0.03);
+}
+
+
+.cm-mode-html .cm-s-loop-light
+  color black
+  .cm-string
+    font-weight 500
+
+
+// ------------------------
+
+// B O T H  C O L O R S
+
+// ------------------------
+
+
+.cm-s-loop-light, .cm-s-loop-dark
+  &.CodeMirror 
+    font   500 14px/1.5 "Source Code Pro", "Ubuntu Mono"
+
+  .cm-keyword,
+  .cm-kw-special
+    // font-weight 600
+
+  .cm-kw-special
+    //font-style italic
+    font-weight 800
+
+  .cm-comment 
+    // font-style italic
+
+  // variables (these will be recolored)
+  .cm-def,
+  .cm-variable,
+  .cm-variable-2,
+  .cm-variable-3
+    color        brown
+    font-weight  700
+    border-radius 2px
+    display: inline-block
+    line-height 1.3em
+    vertical-align baseline
+
+  .cm-tag
+    font-weight bold
+
+  .CodeMirror-lint-message-error,
+  .CodeMirror-lint-message-warning,
+  .console-log-marker
+    background-position top left
+    background-repeat  no-repeat
+    margin-left        1ch
+    &:before
+      content     "← "
+
+  .console-log-marker
+    -webkit-animation  decaydark 0.2s;
+    color              rgb(228, 205, 114)
+    &:before
+      content "➔ "
+
+
+// ------------------------
+
+// D A R K
+
+// ------------------------
+
+
+$cssClassLight = #B33869; //#2727EB;
+$cssIDLight = #8444D6;
+
+.cm-mode-html
+  .cm-s-loop-light
+    .cm-string
+      color: #355BAD // #764FA7
+    .cm-attrval-class
+      color: $cssClassLight
+      font-weight 600
+    .cm-attrval-id
+      color $cssIDLight // #FF7A00
+      font-weight 600
+  .cm-s-loop-dark
+    .cm-string
+      color: #C08E58
+    .cm-attrval-class
+      color #CEBB56 // #88B171 
+    .cm-attrval-id
+      color #88b171 // #CAB85A
+
+
+.cm-mode-styl, .cm-mode-scss
+  .cm-s-loop-light
+    .cm-colon, .cm-brack
+      color gray
+    .cm-property
+      color: #69899E !important
+      font-weight 400
+    .cm-variable
+      color: brown
+      font-weight 600
+
+    .cm-string
+      color: brown
+      font-weight 600
+    .cm-def
+      color black
+    .cm-tag, .cm-qualifier, .cm-builtin
+      font-weight 600
+      //font-size 1.5em
+      //font-family "Nitti Grotesk"
+    .cm-qualifier
+      color $cssClassLight
+    .cm-builtin
+      color $cssIDLight
+
+    .cm-variable-2
+      color #334FBD
+    .cm-variable-3
+      font-weight 400
+
+
+    .cm-atom, .cm-number, .cm-string
+      color black
+
+
+.cm-s-loop-dark
+  $maincolordark   = #bbb
+  $commentdark = #576A72
+
+  &.CodeMirror 
+    color  $maincolordark
+    // background #333
+
+  div.CodeMirror-cursor 
+    border-left: 1px solid #ddd !important
+
+  &.CodeMirror-focused .CodeMirror-selected
+    background: rgba(255,255,255,0.1)
+  .CodeMirror-selected
+    background: rgba(255,255,255,0.05)
+
+  .cm-property
+    color  $maincolordark !important
+    box-shadow none !important
+    background transparent !important
+
+  .CodeMirror-activeline-background
+    background rgba(255,255,255,0.02)
+
+  .cm-atom,
+  .cm-number, 
+  .cm-string
+    // color #C97B62
+    // orange
+    //color $greencolor
+    color white
+    font-weight 500
+
+  .cm-comment 
+    color $commentdark
+
+  .cm-keyword,
+  .cm-kw-special
+    // color rgb(214, 214, 214)
+
+  .cm-tag
+    color #BE6464
+    &.cm-head
+      color #977575
+
+  .cm-attribute,
+  .cm-equals
+    color #977575
+
+  .CodeMirror-lint-message-error,
+  .CodeMirror-lint-message-warning,
+  .console-log-marker
+    color $commentdark
+
+  .console-log-marker
+    -webkit-animation  decaydark 0.2s;
+    color              rgb(228, 205, 114)
+
+  // .cm-attrval-href,
+  // .cm-attrval-src
+  //   border-bottom 1px solid rgba(255,255,255,0.2)
+
+  // .CodeMirror-lint-message-error,
+  // .CodeMirror-lint-message-warning
+  //   color rgb(228, 205, 114)
+
+
+// ------------------------
+
+// L I G H T S
+
+// ------------------------
+
+.cm-s-loop-light
+  
+  $maincolor   = #444
+  // gray
+  $secondcolor = #8EB5CF
+  $comment     = #aaa
+  //#8db8aa
+  // #A4C7B3
+
+  // Main
+  &.CodeMirror 
+    color  $maincolor
+
+  .cm-property
+    color  $maincolor !important
+    box-shadow none !important
+    background transparent !important
+
+  // Line highlight
+  .CodeMirror-activeline-background
+    background #f9f9f9
+
+  // Content/values
+  .cm-atom,
+  .cm-number, 
+  .cm-string
+    color navy // $redcolor
+    font-weight 500
+
+  // function and var definitions
+  .cm-keyword,
+  .cm-kw-special
+    //color       #333
+
+  .cm-tag,
+  .cm-attribute,
+  .cm-equals
+    color #54A6FF // #659DDA
+    &.cm-head
+      // color #A4B8C5
+      color #888
+
+
+  .cm-comment 
+    color $comment
+
+  .CodeMirror-lint-message-error,
+  .CodeMirror-lint-message-warning
+    color $comment
+
+  .console-log-marker
+    color $activetext
+    -webkit-animation  decaylight 0.2s;
+
+  .CodeMirror-lines pre:hover
+    // background: rgba(yellow, 0.1)
+
+  // .CodeMirror-lines pre:nth-child(even)
+  //   background: rgba(0,0,0,0.02);
+
+  .cm-attrval-href,
+  .cm-attrval-src
+    // border-bottom 1px solid rgba(0,0,0,0.2)
+
+
+@-webkit-keyframes decaydark {
+  0% {
+    color: white;
+  }
+}
+
+@-webkit-keyframes decaylight {
+  0% {
+    color: blue;
+  }
+}
+
+
+
+// ------------------------
+
+// I N D E N T   G U I D E S
+
+// ------------------------
+
+
+
+.CodeMirror
+  pre.ind-0, pre.ind-1
+    background transparent
+
+  pre.ind-2, pre.ind-3
+    background url(indents/ind1.png) repeat-y
+    background-position top left 4px
+
+  pre.ind-4, pre.ind-5
+    background-image url(indents/ind1.png), url(indents/ind1.png)
+    background-position top left 4px, top left 18px
+    background-repeat repeat-y
+
+  pre.ind-6, pre.ind-7
+    background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
+    background-position top left 4px, top left 18px, top left 32px
+    background-repeat repeat-y
+
+  pre.ind-8, pre.ind-9
+    background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
+    background-position top left 4px, top left 18px, top left 32px, top left 46px
+    background-repeat repeat-y
+
+
+// ------------------------
+
+// S L I D E R
+
+// ------------------------
+
+.slider
+  display: inline-block
+  height: 12px
+  width: 2ch
+  position: relative
+  cursor: ns-resize
+  -webkit-user-select: none
+  opacity 0.8
+  &:focus
+    opacity: 1
+    outline: none
+    .slider-rail
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(blue,0)), color-stop(50%,rgba(blue,1)), color-stop(100%,rgba(blue,0))) //$color
+    .slider-thumb
+      border-color: blue
+    & + span
+      color: blue
+  &:hover
+    opacity: 1
+    .slider-thumb
+      // background: lighten($redcolor, 55)
+      // background $activetext
+      //top: -2px
+      //height: 18px
+  &.dragging
+    opacity: 1
+    .slider-rail
+      height: 200px
+      top: -95px
+      -webkit-transition: none
+
+
+.slider-thumb
+  height: 9px
+  width: 9px
+  border: 1px solid #ccc //$redcolor
+  border-radius: 2px
+  background: #ddd // $bg
+  display: inline-block
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  margin: auto
+  margin-top 3px
+  // -webkit-transition: all 0.1s
+  &:before
+    content: ""
+    display  block
+    width    0
+    height 15px
+    z-index  -1
+    top -4px
+    position relative
+    left 3px
+    border-right: 1px solid #aaa // $redcolor
+    opacity: 0.5
+
+
+
+.cm-s-loop-dark
+  .slider-thumb
+    background $darkbg
+
+  .slider
+    .slider-thumb
+      background: darken(#666, 7)
+      border-color #666 // $greencolor
+      &:before
+        border-color #666// $greencolor
+    &:hover
+      opacity: 1
+
+
+.CodeMirror-widget
+  cursor: ns-resize
+
+.CodeMirror-widget:hover,
+.CodeMirror-widget:hover + .cm-number
+  // background: rgba($activetext, 0.1)
+  color $activetext
+  // border-bottom: 1px dotted black
+
+.CodeMirror-widget:hover
+  .slider-thumb
+    background $activetext
+    border-color $activetext
+    &:before
+      border-color $activetext
+      height: 50px
+      top -20px
+
+// .cm-s-loop-light .cm-keyword {
+//   // color: #535353;
+//   // color: black;
+//   // font-weight: bold;
+// }
+
+// .cm-s-loop-light .cm-kw-special {
+//   font-style: italic;
+//   // color: black;
+//   // font-weight: bold;
+// }
+
+
+// .cm-s-loop-light .cm-property {
+//   color: #888 !important;
+// }
+.cm-s-loop-light .cm-operator {
+  color: #535353;
+}
+/* REGEX */
+.cm-s-loop-light .cm-string-2 {
+	color: #894BCC;
+}
+
+.cm-s-loop-light .cm-meta {
+  color: #555;
+}
+.cm-s-loop-light .cm-qualifier {
+  color: rgb(73, 173, 221);
+  color: rgb(0, 124, 184);
+}
+.cm-s-loop-light .cm-builtin {
+  color: rgb(0, 122, 255);
+  color: rgb(156, 0, 206);
+}
+.cm-s-loop-light .cm-bracket {
+  color: red;
+}
+
+// .cm-s-loop-light .cm-attrval,
+// .cm-mode-html .cm-s-loop-light .cm-string {
+//   // color: rgb(117, 160, 106);
+// }
+
+// .cm-mode-html .cm-s-loop-light .cm-attrval-id {
+//   color: rgb(156, 0, 206);
+// }
+
+// .cm-mode-html .cm-s-loop-light .cm-attrval-class {
+//   color: rgb(73, 173, 221);
+//   color: rgb(0, 112, 255);
+// }
+
+
+.cm-s-loop-light .cm-header {
+  color: blue;
+}
+.cm-s-loop-light .cm-quote {
+  color: #090;
+}
+.cm-s-loop-light .cm-hr {color: #999;}
+.cm-s-loop-light .cm-link {color: #00c;}
+
+.cm-s-loop-light .cm-color {
+  // color: #ccc;
+  color: navy
+}

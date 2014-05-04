@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Loom</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0,
+                   maximum-scale=1.0,
+                   user-scalable=no"/>
+
+
+    <!-- Move window to last state before initializing anything -->
+    <!-- <script src="script/winstate.js"></script> -->
+
+    <!--
+    ____________________________________
+
+    S T Y L E
+
+    -->
+
+    <!-- Reset -->
+    <link href="style/base.css" rel="stylesheet" >
+
+    <!-- Type -->
+    <link href="http://cloud.webtype.com/css/eafcd41c-2041-441a-aa51-fcb5fd33e979.css" rel="stylesheet" type="text/css">
+
+    <!-- Design -->
+    <link href="style/app.css"   rel="stylesheet" >
+    <!-- <link href="style/color-picker.css" rel="stylesheet" > -->
+    <link href="style/theme.css" rel="stylesheet" >
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="script/cm4.0/lib/codemirror.css">
+    <link rel="stylesheet" href="script/cm4.0/addon/lint/lint.css">
+    <link rel="stylesheet" href="script/cm4.0/addon/hint/show-hint.css">
+
+
+  </head>
+
+
+  <body>
+
+    <!--
+    ____________________________________
+
+    I N T E R F A C E
+
+    -->
+
+    <!--
+    ____________________________________
+    Tab Content
+
+    -->
+    <div id="tab_panels" class="tabs">
+
+    </div>
+
+
+
+    <!--
+    ____________________________________
+    Tab Bar
+
+    -->
+    <header class="nav">
+      <!-- List of open files -->
+      <ul class="tab-bar" id="tab_flaps">
+      </ul>
+
+    </header>
+
+
+
+
+    <!--
+    ____________________________________
+    Footer
+
+    -->
+    <footer class="bottom actions">
+      
+      <span data-action="refresh">Refresh</span><br>
+      <span data-action="devtools">Dev</span><br>
+      Serving folder
+      <a href="#">testsite</a>
+      on
+      <a href="#">localhost:4000</a>
+      and publicly on
+      <a href="#">loom.ngrok.com</a>
+
+    </footer>
+
+    <!--
+    ____________________________________
+    Window
+
+    -->
+
+    <header class="dragbar topline">
+    </header>
+
+    <header class="dragbar2 leftblock">
+    </header>
+
+
+    <!-- (x) (—) (+) buttons -->
+    <nav class="win-btns">
+      <div class="win-btn win-close" data-action="window-close"> </div>
+      <div class="win-btn win-minim" data-action="window-minim"> </div>
+      <div class="win-btn win-maxim" data-action="window-maxim"> </div>
+
+      <div class="theme-btn" data-action="theme">
+        <span class="theme-icon"></span>
+      </div>
+    </nav>
+
+
+    <!--
+    ____________________________________
+
+    H I D D E N
+    These serve only as workarounds for Node's browser security restrictions
+    -->
+    <section style="display: none">
+      <input id="open" type="file" accept="text/*"/>
+      <input id="save" type="file" nwsaveas accept="text/*"/>
+    </section>
+
+
+
+
+    <!--
+    ____________________________________
+
+    S C R I P T S
+
+    -->
+    
+    <!-- libs -->
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="script/jshint.js"></script>
+    <script src='script/husl.js'></script>
+
+    <!-- CodeMirror JS -->
+    <script src="script/cm4.1/lib/codemirror.js"></script>
+    <script src="script/cm4.1/addon/search/searchcursor.js"></script>
+    <script src="script/cm4.0/mode/javascript/javascript.js"></script>
+    <script src="script/cm4.0/mode/css/css.js"></script>
+    <script src="script/cm4.0/mode/xml/xml.js"></script>
+    <script src="script/cm4.0/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="script/cm4.1/addon/mode/overlay.js"></script>
+    <script src="script/cm4.0/addon/lint/lint.js"></script>
+    <script src="script/cm4.0/addon/lint/javascript-lint.js"></script>
+    <script src="script/cm4.0/addon/hint/show-hint.js"></script>
+    <script src="script/cm4.0/addon/hint/javascript-hint.js"></script>
+    <script src="script/cm4.0/addon/hint/css-hint.js"></script>
+    <script src="script/cm4.0/addon/hint/html-hint.js"></script>
+    <script src="script/cm4.0/addon/selection/active-line.js"></script>
+    <script src="script/cm4.0/addon/comment/comment.js"></script>
+    <script src="script/cm4.0/keymap/sublime.js"></script>
+
+    <script src="script/util.js"></script>
+    <script src="script/semantic.js"></script>
+    <script src="script/widgets.js"></script>
+    <script src="script/tab.js"></script>
+    <script src="script/nav.js"></script>
+    <script src="script/app.js"></script>
+    <script src="script/main.js"></script>
+
+  <body>
+</html>

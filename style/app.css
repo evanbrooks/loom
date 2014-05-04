@@ -1,0 +1,289 @@
+.dragbar {
+  position: fixed;
+/*border: 1px solid red
+  background: rgba(red, 0.1)*/
+  z-index: 11;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 15px;
+}
+.win-btn {
+  position: fixed;
+  z-index: 12;
+  top: 11px;
+  display: block;
+  height: 11px;
+  width: 11px;
+  text-decoration: none;
+  color: transparent;
+  border-radius: 50%;
+  border: 1px solid #ebebeb;
+  background: #f2f2f2;
+  margin-right: 4px;
+  cursor: default;
+  -webkit-app-region: no-drag;
+}
+.win-close {
+  left: 11px;
+}
+.win-minim {
+  left: 33px;
+}
+.win-maxim {
+  left: 55px;
+}
+.win-close:hover {
+  background: rgba(255,0,0,0.2);
+  border-color: #a52a2a;
+}
+.win-minim:hover {
+  background: rgba(255,255,0,0.3);
+  border-color: #cc0;
+}
+.win-maxim:hover {
+  background: rgba(0,128,0,0.2);
+  border-color: #008000;
+}
+.theme-btn {
+  position: fixed;
+  bottom: 6px;
+  right: 11px;
+}
+.theme-icon {
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  background: #ddd;
+  border-radius: 50%;
+  position: relative;
+}
+.theme-icon:hover {
+  background: #bbb;
+}
+.theme-icon:after {
+  content: "";
+  background: #fff;
+  position: absolute;
+  border-radius: 50%;
+  left: 35%;
+  top: 0;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+}
+.dark-theme .theme-icon {
+  background: transparent;
+}
+.dark-theme .theme-icon:hover:after {
+  color: rgba(255,255,255,0.3);
+}
+.dark-theme .theme-icon:after {
+  content: '☀';
+  left: -4px;
+  top: -8px;
+  font-size: 130%;
+  color: rgba(255,255,255,0.1);
+  background: transparent;
+}
+.dark-theme {
+  background: #2d323a;
+  color: #aaa;
+}
+.dark-theme .nav {
+  background: #2d323a;
+  border-color: rgba(255,255,255,0.08);
+}
+.dark-theme .nav li {
+  color: #808080;
+}
+.dark-theme .nav .activetab {
+  color: #fff;
+}
+.dark-theme .win-btn {
+  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.06);
+}
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+}
+.actions {
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+  padding: 11px;
+}
+.actions a {
+  -webkit-app-region: no-drag;
+  border-bottom: 1px dotted #808080;
+}
+header.actions {
+  top: 0;
+}
+footer.actions {
+  bottom: 0;
+  opacity: 0.5;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+.nav {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  -webkit-transition: padding 0.12s;
+}
+.tab-bar {
+  display: inline-block;
+}
+.tab-bar li {
+  -webkit-app-region: no-drag;
+  display: inline-block;
+  padding: 0.4em 11px;
+  text-decoration: none;
+  color: #bbb;
+  font-weight: 200;
+  color: #bbb;
+}
+.tab-bar .activetab {
+  color: #000;
+}
+.btn {
+  display: inline-block;
+  padding: 0.8em 1em;
+  margin-bottom: 1em;
+  background: #f00;
+  color: #fff;
+  text-decoration: none;
+}
+.tabs {
+  position: absolute;
+  top: 2.8em;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-app-region: no-drag;
+}
+.tab {
+  -webkit-transition: all 0.1s;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  vertical-align: top;
+}
+.tab.active {
+  display: block;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.CodeMirror {
+/* Set height, width, borders, and global font properties here */
+  color: #535353;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: calc(100vh - 2.8em);
+  height: 98vh;
+}
+.CodeMirror .CodeMirror-code > div > pre {
+  display: inline-block;
+}
+.CodeMirror-gutter-wrapper {
+  display: inline-block;
+}
+.CodeMirror-gutter-wrapper[style] {
+  position: static !important;
+}
+.CodeMirror-gutter-elt {
+  position: static !important;
+  display: inline-block;
+}
+.dragging {
+  cursor: ns-resize;
+  opacity: 0.3;
+}
+.dragging * {
+  -webkit-user-select: none !important;
+  cursor: ns-resize !important;
+}
+.colorpicker {
+  display: inline-block;
+  width: 2ch;
+  height: 18px;
+  background: transparent;
+  position: relative;
+  vertical-align: middle;
+}
+.colorpicker-swatch {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.colorpicker-swatch:hover {
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+.imgwidget {
+  display: inline-block;
+  width: 2ch;
+  height: 12px;
+  background: #00a3ff;
+}
+@media (max-width: 700px) {
+  .nav {
+    padding-left: 70px;
+    right: 0;
+  }
+  .dragbar {
+    -webkit-app-region: drag;
+  }
+}
+@media (min-width: 700px) {
+  body {
+    padding-top: 1em;
+    -webkit-app-region: drag;
+  }
+  .nav {
+    width: 150px;
+    bottom: 0;
+    right: auto;
+    border: 0;
+    background: transparent;
+    padding-top: 30px;
+  }
+  .bottom {
+    width: 150px;
+    right: auto;
+  }
+  .tab-bar li {
+    display: block;
+  }
+  .tabs {
+    top: 0;
+    left: 150px;
+  }
+  .CodeMirror {
+    top: 2px;
+    height: 100vh;
+  }
+}

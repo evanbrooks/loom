@@ -1,0 +1,15 @@
+{
+  "name": "loom",
+  "description": "Prototype text editor",
+  "version": "0.0.1",
+  "main": "editor.html",
+  "window": {
+    "show": false,
+    "position": "center",
+    "frame": false,
+    "width": 800,
+    "height": 800,
+    "min_width": 220,
+    "min_height": 220
+  }
+}

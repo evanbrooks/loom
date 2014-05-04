@@ -1,0 +1,310 @@
+$color      = black
+$bg         = white
+$graytext   = #bbb
+$activetext = rgb(0, 163, 255)
+$redcolor   = #991616
+$darkbg     = #2D323A
+
+
+.dragbar
+  position: fixed
+  /*border: 1px solid red
+  background: rgba(red, 0.1)*/
+  z-index: 11
+  top: 0
+  left: 0
+  right: 0
+  height: 15px
+
+.win-btn
+  position fixed
+  z-index  12
+  top      11px
+  display  block
+  height   11px
+  width    11px
+  text-decoration none
+  color transparent
+  border-radius 50%
+  border 1px solid #ebebeb
+  background #f2f2f2
+  margin-right 4px
+  cursor default
+  -webkit-app-region: no-drag
+
+
+.win-close
+  left     11px
+.win-minim
+  left     33px
+.win-maxim
+  left     55px
+
+
+.win-close:hover
+  background rgba(red, 0.2)
+  border-color brown
+.win-minim:hover
+  background rgba(yellow, 0.3)
+  border-color darken(yellow, 10)
+.win-maxim:hover
+  background rgba(green, 0.2)
+  border-color green
+
+.theme-btn
+  position fixed
+  bottom 6px
+  right 11px
+
+.theme-icon
+  display inline-block
+  height  14px
+  width   14px
+  background #ddd
+  border-radius 50%
+  position relative
+  &:hover
+    background #bbb
+  &:after
+    content ""
+    background white
+    position absolute
+    border-radius 50%
+    left    35%
+    top     0
+    z-index 2
+    height  100%
+    width   100%
+  .dark-theme &
+    background transparent
+    &:hover:after
+      color rgba(white, 0.3)
+    &:after
+      content '☀'
+      left -4px
+      top -8px
+      font-size 130%
+      color rgba(white, 0.1)
+      background transparent
+
+
+.dark-theme
+  background: $darkbg
+  color: #aaa
+  .nav
+    background: $darkbg
+    border-color: rgba(white,0.08)
+    li
+      color gray
+    .activetab
+      color white
+  .win-btn
+    border 1px solid rgba(white,0.05)
+    background rgba(white,0.06)
+  ::-webkit-scrollbar-thumb
+    background: rgba(255,255,255,0.2)
+
+
+.actions
+  position: absolute
+  right    0
+  left     0
+  width    100%
+  z-index  200
+  padding: 11px
+  // padding 0 1em
+  a
+    //display: inline-block
+    //text-decoration: none
+    //padding: 0.2em 1.5em
+    // color: #00A3FF
+    -webkit-app-region: no-drag;
+    border-bottom 1px dotted gray
+
+header.actions
+  top: 0
+
+footer.actions
+  bottom: 0
+  opacity 0.5
+
+h1
+  font-size: 3rem
+
+h2
+  font-size: 2rem
+
+
+.nav
+  position: fixed
+  z-index: 10
+  top     0
+  left    0
+  border  0
+  // background: #f4f4f4
+  border-bottom: 1px solid #eee
+  -webkit-transition padding 0.12s
+
+.tab-bar
+  display inline-block
+  li
+    -webkit-app-region no-drag
+    display: inline-block
+    padding: 0.4em 11px
+    text-decoration: none
+    color: #bbb
+    font-weight: 200
+    color    $graytext
+  .activetab
+    color    black
+    // background white
+
+
+.btn
+  display: inline-block
+  padding: 0.8em 1em
+  margin-bottom: 1em
+  background: red
+  color: white
+  text-decoration: none
+
+
+.tabs
+  position: absolute
+  top: 2.8em
+  right: 0
+  left: 0
+  bottom: 0
+  white-space: nowrap
+  overflow: hidden
+  -webkit-app-region: no-drag
+
+.tab
+  // -webkit-transition: all 0.3s cubic-bezier(0.220, 1.10, 0.365, 1.000)
+  -webkit-transition: all 0.1s
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  display: none
+  vertical-align: top
+  // width: 700px
+  // border-left: 1px solid rgba(0,0,0,0.1)
+  &.active
+    display: block
+    opacity: 1
+    -webkit-transform: translate3d(0, 0, 0)
+
+
+.CodeMirror
+  /* Set height, width, borders, and global font properties here */
+  color: #535353
+  top: 0
+  left: 0
+  bottom: 0 
+  padding-left: 1em
+  padding-right: 1em
+  height: calc(100vh - 2.8em)
+  height 98vh
+
+
+// When there is a gutter element, the line (normally a pre) is
+// wrapped in an anonymous div together with its gutter.
+// ----------
+// We've moved the gutter element *after* the pre, so it can
+// be implicitly positioned right next to it instead
+// of floating mysteriously in the margin
+.CodeMirror .CodeMirror-code > div > pre
+  display: inline-block
+// ----------
+// We undo the absolute positioning mess
+// to allow the gutter elts to be in-line
+.CodeMirror-gutter-wrapper
+  display inline-block
+  &[style]
+    position static !important
+.CodeMirror-gutter-elt
+  position static !important
+  display inline-block
+
+
+.dragging
+  cursor: ns-resize
+  opacity 0.3
+  *
+    -webkit-user-select: none !important
+    cursor: ns-resize !important
+
+
+
+
+.colorpicker
+  display: inline-block
+  width: 2ch
+  height: 18px
+  background: transparent
+  position relative
+  vertical-align middle
+  // -webkit-transition: all 0.2s
+
+.colorpicker-swatch
+  cursor   pointer
+  width    14px
+  height   14px
+  border-radius: 2px
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1)
+  position absolute
+  top      0
+  left     0
+  &:hover
+    // -webkit-transform: scale(1.5)
+    box-shadow inset 0 0 0 1px rgba(0,0,0,0.3)
+    z-index    999
+
+.imgwidget
+  display    inline-block
+  width      2ch
+  height     12px
+  background $activetext
+
+
+@media (max-width: 700px)
+  .nav
+    padding-left 70px
+    right 0
+    // top 40px
+
+  .dragbar
+    -webkit-app-region drag
+
+
+@media (min-width: 700px)
+  body 
+    padding-top: 1em
+    -webkit-app-region drag
+
+  .nav
+    width       150px
+    bottom      0
+    right       auto
+    border      0
+    background  transparent
+    padding-top 30px
+    // border-right: 1px solid #ddd
+
+  .bottom
+    width   150px
+    right   auto
+
+  .tab-bar
+    li
+      display: block
+
+  .tabs
+    top  0
+    left 150px
+
+  .CodeMirror
+    top: 2px
+    height: 100vh
