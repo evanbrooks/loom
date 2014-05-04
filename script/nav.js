@@ -40,12 +40,16 @@ function Nav() {
     var index = self.list.indexOf(tab);
     if (self.current === tab ) {
       if (index > 0) {
+        // not the first tab, so set current tab to previous tab
         self.setTab(self.list[index-1]);
       }
       else if (self.list.length > 1) {
+        // first tab and more than one tab open,
+        // so set current tab to next tab
         self.setTab(self.list[index+1]);
       }
       else {
+        // that was the last tab
         self.setTab(null);
       }
     }
@@ -58,11 +62,10 @@ function Nav() {
       self.current.flap.classList.remove("activetab");
       self.current.panel.classList.remove("active");
     }
-    tab.flap.classList.add("activetab");
-    tab.panel.classList.add("active");
-
     self.current = tab;
-    if (tab) {
+    if (tab) { // We might be setting no tab for some reason
+      tab.flap.classList.add("activetab");
+      tab.panel.classList.add("active");
       self.current.cm.refresh();
       self.current.cm.focus();
     }
