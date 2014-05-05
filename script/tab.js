@@ -40,36 +40,50 @@ function Tab(nav) {
     file.save(self.path, self.cm.getValue());
   }
 
-  self.close = function() {
+  self.close = function(e) {
+    e.preventDefault();
     nav.removeTab(self);
     self.flap.parentNode.removeChild(self.flap);
     self.panel.parentNode.removeChild(self.panel);
   }
 
   var makeInterface = function() {
+    self.flap = makeFlap();
+    self.panel = makePanel();
+  }
 
+  var makeFlap = function() {
+    var f = document.createElement("li");
+    f.setAttribute("data-tabname", self.path); 
+    f.addEventListener("click",function(e){
+      e.preventDefault();
+    });
+    f.addEventListener("mousedown", clickTab, false);
 
-    // ________________________
-    // Build tab flap
-    self.flap = document.createElement("li");
-    self.flap.setAttribute("data-tabname", self.path); 
-    self.flap.innerText = self.title;
-    self.flap.addEventListener("click",function(e){e.preventDefault();});
-    self.flap.addEventListener("mousedown", clickTab, false);
-
-    // ________________________
-    // Build X
     self.ex = document.createElement("span");
-    self.ex.innerText = "— X";
+    self.ex.classList.add("tab-btn-x");
     self.ex.addEventListener("click", self.close);
-    self.flap.appendChild(self.ex);
+    self.ex.addEventListener("mousedown", function(e){
+      e.stopPropagation();// prevent mousdown on X from setting current tab
+    }); 
 
+    var tabname = document.createElement("span");
+    tabname.classList.add("tab-title");
+    tabname.innerText = self.title;
+
+    f.appendChild(self.ex);
+    f.appendChild(tabname);
+
+    return f;
+  }
+
+  var makePanel = function() {
     // ________________________
     // Build tab body
-    self.panel = document.createElement("div");
-    self.panel.className = "cm-mode-" + self.ext +" tab";
-    self.panel.setAttribute("data-tabpanel", self.path); 
-
+    var p = document.createElement("div");
+    p.className = "cm-mode-" + self.ext +" tab";
+    p.setAttribute("data-tabpanel", self.path); 
+    return p;
   }
 
   var makeMirror = function(content) {

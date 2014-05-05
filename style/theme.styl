@@ -22,16 +22,20 @@ $bg         = white
     font-weight 500
 
 
+.cm-string
+  font-family: "CentSchbook Mono BT"
+
 // ------------------------
 
 // B O T H  C O L O R S
 
 // ------------------------
 
+// "CentSchbook Mono BT"
 
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
-    font   500 14px/1.5 "Source Code Pro", "Ubuntu Mono"
+    font   500 14px/20px "Source Code Pro", "Ubuntu Mono"
 
   .cm-keyword,
   .cm-kw-special
@@ -75,11 +79,6 @@ $bg         = white
       content "➔ "
 
 
-// ------------------------
-
-// D A R K
-
-// ------------------------
 
 
 $cssClassLight = #B33869; //#2727EB;
@@ -133,11 +132,16 @@ $cssIDLight = #8444D6;
       color #334FBD
     .cm-variable-3
       font-weight 400
-
+      color blue
 
     .cm-atom, .cm-number, .cm-string
       color black
 
+// ------------------------
+
+// D A R K
+
+// ------------------------
 
 .cm-s-loop-dark
   $maincolordark   = #bbb
@@ -238,7 +242,7 @@ $cssIDLight = #8444D6;
   .cm-atom,
   .cm-number, 
   .cm-string
-    color navy // $redcolor
+    color black // $redcolor
     font-weight 500
 
   // function and var definitions
@@ -487,5 +491,5 @@ $cssIDLight = #8444D6;
 
 .cm-s-loop-light .cm-color {
   // color: #ccc;
-  color: navy
+  color: black
 }

@@ -1,16 +1,9 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-user-select: none;
-}
-body {
-  background: #fff;
-}
 .c-picker {
+  -webkit-app-region: no-drag;
   position: fixed;
-  top: 50px;
-  left: 50px;
+  bottom: 50px;
+  right: 50px;
+  z-index: 120;
   line-height: 0;
   border-radius: 2px;
   box-shadow: 0 1px 1px 1px rgba(0,0,0,0.1), 0 8px 30px rgba(0,0,0,0.05);

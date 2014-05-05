@@ -1,9 +1,3 @@
-*
-  box-sizing border-box
-  margin 0
-  padding 0
-  -webkit-user-select none
-
 $size = 220px
 $thumb = 20px
 $bg = white
@@ -15,17 +9,15 @@ $transparencygrid =
                     linear-gradient(45deg, rgba(120,120,120,0.3) 25%, transparent 25%, transparent 75%, rgba(120,120,120,0.3) 75%, rgba(100,100,100,0.2));
 
 
-
 .c-picker *
   // outline red 1px solid
 
-body
-  background white
-
 .c-picker
+  -webkit-app-region: no-drag
   position fixed
-  top 50px
-  left 50px
+  bottom 50px
+  right 50px
+  z-index 120
   line-height 0
   border-radius 2px
   // border 2px solid #444

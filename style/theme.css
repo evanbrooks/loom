@@ -4,9 +4,12 @@
 .cm-mode-html .cm-s-loop-light .cm-string {
   font-weight: 500;
 }
+.cm-string {
+  font-family: "CentSchbook Mono BT";
+}
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
-  font: 500 14px/1.5 "Source Code Pro", "Ubuntu Mono";
+  font: 500 14px/20px "Source Code Pro", "Ubuntu Mono";
 }
 .cm-s-loop-light .cm-kw-special,
 .cm-s-loop-dark .cm-kw-special {
@@ -126,6 +129,7 @@
 .cm-mode-styl .cm-s-loop-light .cm-variable-3,
 .cm-mode-scss .cm-s-loop-light .cm-variable-3 {
   font-weight: 400;
+  color: #00f;
 }
 .cm-mode-styl .cm-s-loop-light .cm-atom,
 .cm-mode-scss .cm-s-loop-light .cm-atom,
@@ -197,7 +201,7 @@
 .cm-s-loop-light .cm-atom,
 .cm-s-loop-light .cm-number,
 .cm-s-loop-light .cm-string {
-  color: #000080;
+  color: #000;
   font-weight: 500;
 }
 .cm-s-loop-light .cm-tag,
@@ -381,5 +385,5 @@
   color: #00c;
 }
 .cm-s-loop-light .cm-color {
-  color: #000080;
+  color: #000;
 }
