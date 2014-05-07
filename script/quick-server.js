@@ -4,9 +4,12 @@
 
 (function(){
 
-  var express      = require('express')
-    , http         = require('http')
-    , ngrok        = require('ngrok');
+  var express   = require('express')
+    , http      = require('http')
+    , ngrok     = require('ngrok')
+    , cheerio   = require('cheerio')
+    , fs        = require('fs')
+    ;
 
 
   function Server() {
@@ -18,7 +21,15 @@
       , socketServer = http.createServer(app)
       , io           = require('socket.io').listen(socketServer)
 
-    app.use(express.static('/Users/evan/Developer/loom/'));
+
+    var PUBLIC = '/Users/evan/Developer/loom/';
+    
+    app.use(require('connect-inject')({
+      snippet: "<script>alert('hello world');</script>",
+      ignore: ['.js', '.svg']
+    }));
+    app.use(express.static(PUBLIC));
+
 
     var server = socketServer.listen(process.env.PORT || 3000, function() {
       var port = server.address().port;
