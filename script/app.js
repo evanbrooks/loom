@@ -14,8 +14,6 @@ var gui   = require('nw.gui')
 
 
 
-
-
 var file_arr = [
   "/Users/evan/Developer/htmloutput/public/sketch/style.styl",
   "/Users/evan/Developer/htmloutput/public/sketch/index.html",
@@ -42,20 +40,6 @@ async.map(file_arr, file.open, function(err, files) {
   });
 });
 
-
-
-// function makeTab(path, cb) {
-//   file.open(path, function(err, content){
-//     if (err) {
-//       return(err);
-//     }
-
-//   });
-// }
-
-// nav.addTab(path, content)
-
-// nav.setActive(0);
 
 // ______________________________________
 

@@ -37,7 +37,7 @@ function widgetize(cm, start, end) {
           var w = get_slider();
         }
         else if (curr == "color") {
-          var w = get_colorpicker(token.string);
+          var w = get_colorpicker(token.string, line);
         }
         else if (curr == "src") {
           var w = get_img();
@@ -174,7 +174,7 @@ function Slider(el) {
 
 // ==========
 
-function Picker(el, color) {
+function Picker(el, color, line) {
   var self = this
     , $el = el;
 
@@ -184,33 +184,56 @@ function Picker(el, color) {
   $sw.style.backgroundColor = color;
 
   self.setWidget = function(widget){
+    console.log(widget);
     self.widget = widget;
   }
 
+  var strt_text = color;
+
+
+
   $sw.addEventListener('mousedown', function(e){
 
-    var self = this;
-    // pos = self.widget.find();
-
+    var swatch = this;
     var scr = nav.current.panel.querySelector(".CodeMirror-scroll");
+    var colorPicker = new ColorPicker();
 
-    colorPicker.el.classList.remove("active");
+    var textPos = self.widget.find();
 
-    var color = window.getComputedStyle(self).backgroundColor;
+    var color = window.getComputedStyle(swatch).backgroundColor;
+    var currColor = color;
 
     setTimeout(function(){
-      $(scr).append(colorPicker.el);
 
-      var pos = $(self).offset();
+      var pos = $(swatch).offset();
       var scrPos = $(scr).offset();
 
       var x = pos.left - scrPos.left;
       var y = pos.top + $(scr).scrollTop() - 3;// + 15;
 
       colorPicker.setColor(color);
-      colorPicker.position(x, y);
+
+      colorPicker.onChange(function(newColor){
+          nav.current.cm.replaceRange(
+          newColor,
+          textPos,
+          {
+            line: textPos.line,
+            ch: (textPos.ch + currColor.length)
+          }
+        );
+        currColor = newColor;
+      });
+
+      nav.current.cm.addLineWidget(
+        line,
+        colorPicker.el,
+        {coverGutter: false, noHScroll: true}
+      );
+      // $(scr).append(colorPicker.el);
+      // colorPicker.position(x, y);
       colorPicker.el.classList.add("active");
-    }, 0);
+    }, 100);
 
   });
 }
@@ -232,10 +255,10 @@ function get_slider() {
 }
 
 
-function get_colorpicker(color) {
+function get_colorpicker(color, line) {
   var el = document.createElement('span');
   el.className = 'colorpicker';
-  var picker = new Picker(el, color);
+  var picker = new Picker(el, color, line);
   return {obj: picker, el: el};
 }
 

@@ -136,7 +136,6 @@
       else {
       	self.pos = contrainpos;
       }
-
     }
 
 
@@ -191,7 +190,7 @@
     var snapdown = function(e) {
       halt(e);
 
-      var off = $(colorPicker.el).offset();
+      var off = $(opts.picker.el).offset();
 
       self.pos(
         e.clientX - dad.offsetLeft - off.left,
@@ -235,7 +234,7 @@
     self.init();
   }
 
-  function Slider(container) {
+  function Slider(picker, container) {
   	var self = this;
     var el = document.createElement("div");
     el.className = "c-thumb";
@@ -264,12 +263,13 @@
     var looper = new Thumb(el, {
       scrollx: false,
       scrolly: true,
-      cb: update
+      cb: update,
+      picker: picker
   	});
   }
 
 
-  function DetailWheel(container, diff) {
+  function DetailWheel(picker, container, diff) {
   	var self = this;
     var el = document.createElement("div");
     el.className = "c-looper";
@@ -299,11 +299,12 @@
   		scrollx: false,
   		scrolly: true,
   		overflow: true,
-  		cb: update
+  		cb: update,
+      picker: picker
   	});
   }
 
-  function OpacSlider(container) {
+  function OpacSlider(picker, container) {
   	var self = this;
     var el = document.createElement("div");
     el.className = "c-thumb";
@@ -326,18 +327,20 @@
     var looper = new Thumb(el, {
   		scrollx: false,
   		scrolly: true,
-  		cb: update
+  		cb: update,
+      picker: picker
   	});
   }
 
 
-  function Grid(el) {
+  function Grid(picker, el) {
   	var self = this;
   	
   	var thumb = new Thumb(el.querySelector(".c-thumb"), {
   		scrollx: true,
   		scrolly: true,
-  		cb: update
+  		cb: update,
+      picker: picker
   	});
 
     self.change = function(){console.log("hi")};
@@ -391,9 +394,26 @@
   }
 
 
-  function Picker(el) {
+  function Picker() {
 
+    var el = document.querySelector(".c-picker").cloneNode(true);
     var self = this;
+    var hue   = 30;
+    var sat   = 0.5;
+    var black = 0.5;
+    var alpha = 1;
+    var bgel = el.querySelector(".c-bg");
+    var previewel = el.querySelector(".c-preview");
+    var diff = 30;
+
+    var valGrid       = new Grid(self, el.querySelector(".c-grid"));
+    var spectrumWheel = new Slider(self, el.querySelector(".c-spectrum"));
+    var detailWheel   = new DetailWheel(self, el.querySelector(".c-precise"), diff);
+    var opacSlider    = new OpacSlider(self, el.querySelector(".c-alpha"));
+
+    var gridThumb = el.querySelector(".c-grid .c-thumb");
+    var opacThumb = el.querySelector(".c-opacity .c-thumb");
+    var hueThumb = el.querySelector(".c-hue .c-thumb");
 
     self.pos = {
       x: 0,
@@ -420,40 +440,33 @@
       sat   = hsv[1];
       black = 1 - hsv[2];
 
+      opacSlider.setColor(rgb);
       valGrid.setHue(hue);
       valGrid.setPos(sat, black);
       spectrumWheel.setHue(hue);
       update();
     }
 
-    var bgel = el.querySelector(".c-bg");
-    var previewel = el.querySelector(".c-preview");
+    self.change = function(){};
+    self.onChange = function(cb) {
+      self.change = cb;
+    }
 
-    var hue   = 30;
-    var sat   = 0.5;
-    var black = 0.5;
-    var alpha = 1;
+
 
     function update() {
 
       var c = hsvToRgb(hue/360, black, sat);
+      var rgba = "rgba(" + c.r + "," + c.g + "," + c.b + "," + alpha +")";
       opacSlider.setColor(c);
-      previewel.style.background  = "rgba(" + c.r + "," + c.g + "," + c.b + "," + alpha +")";
+      previewel.style.background  = rgba;
       gridThumb.style.background  = "rgb(" + c.r + "," + c.g + "," + c.b + ")";
+
+      self.change(rgba);
       // hueThumb.style.background   = "hsl(" + parseInt(hue) + ", 100%, 50%)";
       // opacThumb.style.borderColor = "rgba(" + c.r + "," + c.g + "," + c.b + "," + (alpha+0.4) +")";
     }
 
-    var diff = 30;
-
-    var valGrid = new Grid(el.querySelector(".c-grid"));
-    var spectrumWheel = new Slider(el.querySelector(".c-spectrum"));
-    var detailWheel = new DetailWheel(el.querySelector(".c-precise"), diff);
-    var opacSlider = new OpacSlider(el.querySelector(".c-alpha"));
-
-    var gridThumb = el.querySelector(".c-grid .c-thumb");
-    var opacThumb = el.querySelector(".c-opacity .c-thumb");
-    var hueThumb = el.querySelector(".c-hue .c-thumb");
 
     valGrid.setHue(hue);
     valGrid.setPos(sat, black);
@@ -490,6 +503,6 @@
     });
   }
 
-  window.colorPicker = new Picker(document.querySelector(".c-picker"));
+  window.ColorPicker = Picker;
 
 })();

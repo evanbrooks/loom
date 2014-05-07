@@ -1,4 +1,4 @@
-$size = 200px
+$size = 150px
 $thumb = 10px
 $bg = white
 
@@ -16,31 +16,36 @@ $transparencygrid =
 
 .c-picker
   -webkit-app-region: no-drag
-  position absolute
+  display inline-block
+  //position absolute
   top  0
   left 0
-  margin -7px 0 0 -7px
+  // margin -7px 0 0 -7px
   z-index 120
   line-height 0
+  margin 6px
   border-radius 2px
   // border 2px solid #444
   // box-shadow 0 1px 1px 1px rgba(0,0,0,0.1), 0 8px 30px rgba(0,0,0,0.05)
-  -webkit-transform-origin: 15px 15px
-  -webkit-transform: scale(0.6)
-  -webkit-transition opacity 100ms, -webkit-transform 150ms cubic-bezier(0.530, 1.450, 0.000, 1.000); 
+  -webkit-transform-origin: top left //15px 15px
+  -webkit-transform: scale(1, 0.4)
+  -webkit-transition opacity 170ms, height 150ms, -webkit-transform 180ms;// cubic-bezier(0.530, 1.450, 0.000, 1.000); 
   opacity 0
-  border-radius 5px
+  height 0
+  // overflow hidden
+  margin-left 100px
 
 .c-picker.active
   -webkit-transform: scale(1)
   opacity 1
+  height $size + 20px
 
 .c-preview
-  height 30px
-  width 30px
+  //height 30px
+  //width 30px
   //margin-bottom 10px
   position relative
-  border-bottom: 1px solid white
+  // border-bottom: 1px solid white
   &:before
     content ""
     position absolute
@@ -93,7 +98,7 @@ $transparencygrid =
 
 
 .c-precise
-  display none
+  //display none
 
 .c-wheel
   &:after
@@ -113,7 +118,7 @@ $transparencygrid =
     //border-right-color #444
 
 .c-spectrum
-  border-right 1px solid white
+  margin-right: 5px
   .c-thumb
     z-index 999
     margin auto
@@ -125,7 +130,7 @@ $transparencygrid =
 
 .c-grid
   height $size
-  width $size
+  width $size * 2
   display inline-block
   background green
   position relative
@@ -176,8 +181,7 @@ $transparencygrid =
 
 
 .c-opacity
-  // margin 0 10px
-  border-left 1px solid white
+  margin-left 5px
   {$transparencygrid}
 
 .c-thumb:hover
