@@ -1,7 +1,7 @@
 (function() {
   function halt(e) {
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
   }
 
 
@@ -166,6 +166,7 @@
 
 
     self.drag = function(x, y) {
+      console.log(ppos.x + " " + x);
       self.pos(
         ppos.x + x - mdown.x, 
         ppos.y + y - mdown.y
@@ -192,10 +193,12 @@
 
       var off = $(opts.picker.el).offset();
 
+
       self.pos(
         e.clientX - dad.offsetLeft - off.left,
         e.clientY - dad.offsetTop - off.top
       );
+
       down(e);
     }
 
@@ -204,6 +207,7 @@
       halt(e);
       self.dragging = true;
       mdown = {x: e.clientX, y: e.clientY};
+
       ppos.x = pos.x;
       ppos.y = pos.y;
     }
@@ -224,6 +228,7 @@
 
     var signal = function() {
     	 if (opts.cb) {
+        console.log(xlimit);
     	 	opts.cb({
     	 		x: pos.x / xlimit,
     	 		y: pos.y / ylimit
@@ -252,6 +257,7 @@
 
     self.setHue = function(hue){
     	var amount = (hue / 360);
+      console.log(amount);
     	looper.setPos(amount);
     }
 
@@ -394,36 +400,33 @@
   }
 
 
-  function Picker() {
+  function Picker(el) {
 
-    var el = document.querySelector(".c-picker").cloneNode(true);
     var self = this;
+
+    self.el = el;
+
     var hue   = 30;
     var sat   = 0.5;
     var black = 0.5;
     var alpha = 1;
+
     var bgel = el.querySelector(".c-bg");
     var previewel = el.querySelector(".c-preview");
-    var diff = 30;
-
-    var valGrid       = new Grid(self, el.querySelector(".c-grid"));
-    var spectrumWheel = new Slider(self, el.querySelector(".c-spectrum"));
-    var detailWheel   = new DetailWheel(self, el.querySelector(".c-precise"), diff);
-    var opacSlider    = new OpacSlider(self, el.querySelector(".c-alpha"));
-
     var gridThumb = el.querySelector(".c-grid .c-thumb");
     var opacThumb = el.querySelector(".c-opacity .c-thumb");
     var hueThumb = el.querySelector(".c-hue .c-thumb");
+    var diff = 30;
 
-    self.pos = {
-      x: 0,
-      y: 0
-    };
+    var valGrid       = new Grid(self, el.querySelector(".c-grid"));
+    var spectrumSlider= new Slider(self, el.querySelector(".c-spectrum"));
+    var detailWheel   = new DetailWheel(self, el.querySelector(".c-precise"), diff);
+    var opacSlider    = new OpacSlider(self, el.querySelector(".c-alpha"));
 
-    self.el = el;
 
-    self.position = function(x, y) {
+    self.pos = { x: 0, y: 0 };
 
+    self.moveTo = function(x, y) {
       self.pos = {
         x: x,
         y: y
@@ -436,14 +439,15 @@
       var rgb = d3.rgb(str);
       var hsv = rgb2hsv(rgb.r, rgb.g, rgb.b);
 
-      hue   = parseInt(360 - hsv[0]);
+      hue   = parseInt(hsv[0]);
       sat   = hsv[1];
       black = 1 - hsv[2];
 
       opacSlider.setColor(rgb);
       valGrid.setHue(hue);
       valGrid.setPos(sat, black);
-      spectrumWheel.setHue(hue);
+      spectrumSlider.setHue(hue);
+      detailWheel.setHue(hue);
       update();
     }
 
@@ -468,12 +472,7 @@
     }
 
 
-    valGrid.setHue(hue);
-    valGrid.setPos(sat, black);
-    spectrumWheel.setHue(hue);
-    detailWheel.setHue(hue);
-
-    spectrumWheel.onChange(function(h){
+    spectrumSlider.onChange(function(h){
       hue = h;
       
       valGrid.setHue(hue);
@@ -483,7 +482,7 @@
     });
 
     opacSlider.onChange(function(o){
-      alpha = 1 - o.y;
+      alpha = parseInt(100*(1 - o.y))/100;
       update();
     });
 
@@ -491,7 +490,7 @@
       hue += delta * diff;
 
       valGrid.setHue(hue);
-      spectrumWheel.setHue(hue);
+      spectrumSlider.setHue(hue);
 
       update();
     });

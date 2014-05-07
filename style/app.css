@@ -1,8 +1,7 @@
 .dragbar {
   position: fixed;
-/*border: 1px solid red
-  background: rgba(red, 0.1)*/
-  z-index: 11;
+  background: -webkit-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
+  z-index: 10;
   top: 0;
   left: 0;
   right: 0;
@@ -19,7 +18,6 @@
   color: transparent;
   border-radius: 50%;
   border: 1px solid #ebebeb;
-  background: #f2f2f2;
   margin-right: 4px;
   cursor: default;
   -webkit-app-region: no-drag;
@@ -89,6 +87,9 @@
 .dark-theme {
   background: #2d323a;
   color: #aaa;
+}
+.dark-theme .dragbar {
+  background: -webkit-linear-gradient(top, #2d323a 0%, rgba(255,255,255,0) 100%);
 }
 .dark-theme .nav {
   background: #2d323a;
@@ -212,7 +213,6 @@ h2 {
   bottom: 0;
   white-space: nowrap;
   overflow: hidden;
-  -webkit-app-region: no-drag;
 }
 .tab {
   -webkit-transition: all 0.1s;
@@ -261,28 +261,6 @@ h2 {
   -webkit-user-select: none !important;
   cursor: ns-resize !important;
 }
-.colorpicker {
-  display: inline-block;
-  width: 2ch;
-  height: 18px;
-  background: transparent;
-  position: relative;
-  vertical-align: middle;
-}
-.colorpicker-swatch {
-  cursor: pointer;
-  width: 14px;
-  height: 14px;
-  border-radius: 1px;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.colorpicker-swatch:hover {
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
-  z-index: 999;
-}
 .imgwidget {
   display: inline-block;
   width: 2ch;
@@ -302,7 +280,6 @@ h2 {
 @media (min-width: 700px) {
   body {
     padding-top: 1em;
-    -webkit-app-region: drag;
   }
   .nav {
     width: 150px;
@@ -310,6 +287,9 @@ h2 {
     right: auto;
     border: 0;
     padding-top: 30px;
+  }
+  .dragbar {
+    -webkit-app-region: drag;
   }
   .bottom {
     width: 150px;
@@ -319,7 +299,7 @@ h2 {
     display: block;
   }
   .tabs {
-    top: 0;
+    top: 0px;
     left: 150px;
   }
   .CodeMirror {

@@ -25,9 +25,10 @@ function widgetize(cm, start, end) {
       pos = {line: line_num, ch: ch}
       token = cm.getTokenAt(pos);
       type = token.type;
-      if      (type && type.contains("number"))       curr = "number";
-      else if (type && type.contains("color"))        curr = "color";
-      //else if (type && type.contains("attrval-src"))  curr = "src";
+      if      (type && type.contains("number")) curr = "number";
+      else if (type && type.contains("color"))  curr = "color";
+      // else if (type && type.contains("string")) curr = "string";
+      // else if (type && type.contains("attrval-src"))  curr = "src";
       else    curr = false;
 
       if (curr && (curr !== prev)) {
@@ -184,7 +185,6 @@ function Picker(el, color, line) {
   $sw.style.backgroundColor = color;
 
   self.setWidget = function(widget){
-    console.log(widget);
     self.widget = widget;
   }
 
@@ -196,44 +196,53 @@ function Picker(el, color, line) {
 
     var swatch = this;
     var scr = nav.current.panel.querySelector(".CodeMirror-scroll");
-    var colorPicker = new ColorPicker();
+
 
     var textPos = self.widget.find();
+
+    var widgs = nav.current.cm.lineInfo(textPos.line).widgets;
+    if (widgs && widgs.length) {
+      widgs.forEach(function(widg){
+        widg.node.classList.remove("active");
+        setTimeout(function(){widg.clear();}, 500);
+      });
+      return;
+    }
 
     var color = window.getComputedStyle(swatch).backgroundColor;
     var currColor = color;
 
-    setTimeout(function(){
 
-      var pos = $(swatch).offset();
-      var scrPos = $(scr).offset();
+    var pos = $(swatch).offset();
+    var scrPos = $(scr).offset();
 
-      var x = pos.left - scrPos.left;
-      var y = pos.top + $(scr).scrollTop() - 3;// + 15;
+    var x = pos.left - scrPos.left;
+    var y = pos.top + $(scr).scrollTop() - 3;// + 15;
 
-      colorPicker.setColor(color);
+    var el = document.querySelector("#templates .c-picker").cloneNode(true);
+    nav.current.cm.addLineWidget(
+      line,
+      el,
+      {
+        coverGutter: false,
+        noHScroll: true,
+      }
+    );
 
-      colorPicker.onChange(function(newColor){
-          nav.current.cm.replaceRange(
-          newColor,
-          textPos,
-          {
-            line: textPos.line,
-            ch: (textPos.ch + currColor.length)
-          }
-        );
-        currColor = newColor;
-      });
-
-      nav.current.cm.addLineWidget(
-        line,
-        colorPicker.el,
-        {coverGutter: false, noHScroll: true}
+    var colorPicker = new ColorPicker(el);
+    colorPicker.onChange(function(newColor){
+      nav.current.cm.replaceRange(
+        newColor,
+        textPos,
+        {
+          line: textPos.line,
+          ch: (textPos.ch + currColor.length + 1)
+        }
       );
-      // $(scr).append(colorPicker.el);
-      // colorPicker.position(x, y);
-      colorPicker.el.classList.add("active");
-    }, 100);
+      currColor = newColor;
+    });
+    colorPicker.setColor(color);
+    colorPicker.el.classList.add("active");
 
   });
 }

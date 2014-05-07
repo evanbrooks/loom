@@ -35,7 +35,7 @@ $bg         = white
 
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
-    font   500 14px/20px "Source Code Pro", "Ubuntu Mono"
+    font   500 14px/20px "Nitti", "Source Code Pro", "Ubuntu Mono"
 
   .cm-keyword,
   .cm-kw-special
@@ -81,19 +81,18 @@ $bg         = white
 
 
 
-$cssClassLight = #B33869; //#2727EB;
-$cssIDLight = #8444D6;
+$cssClassLight = #8444D6;
+$cssIDLight    = #355BAD;
+$cssStrLight   = #8A0048;
 
 .cm-mode-html
   .cm-s-loop-light
     .cm-string
-      color: #355BAD // #764FA7
+      color: $cssStrLight
     .cm-attrval-class
       color: $cssClassLight
-      font-weight 600
     .cm-attrval-id
-      color $cssIDLight // #FF7A00
-      font-weight 600
+      color $cssIDLight
   .cm-s-loop-dark
     .cm-string
       color: #C08E58
@@ -110,12 +109,11 @@ $cssIDLight = #8444D6;
     .cm-property
       color: #69899E !important
       font-weight 400
-    .cm-variable
-      color: brown
+    .cm-variable, .cm-variable-2
+      color: black
       font-weight 600
-
     .cm-string
-      color: brown
+      color: navy
       font-weight 600
     .cm-def
       color black
@@ -127,14 +125,10 @@ $cssIDLight = #8444D6;
       color $cssClassLight
     .cm-builtin
       color $cssIDLight
-
-    .cm-variable-2
-      color #334FBD
     .cm-variable-3
       font-weight 400
       color blue
-
-    .cm-atom, .cm-number, .cm-string
+    .cm-atom, .cm-number
       color black
 
 // ------------------------
@@ -254,6 +248,7 @@ $cssIDLight = #8444D6;
   .cm-attribute,
   .cm-equals
     color #54A6FF // #659DDA
+    color #D17373
     &.cm-head
       // color #A4B8C5
       color #888
@@ -369,8 +364,8 @@ $cssIDLight = #8444D6;
   height: 9px
   width: 9px
   border: 1px solid #ccc //$redcolor
-  border-radius: 2px
-  background: #ddd // $bg
+  border-radius: 50%
+  //background: #ddd // $bg
   display: inline-block
   position: absolute
   top: 0
@@ -491,5 +486,30 @@ $cssIDLight = #8444D6;
 
 .cm-s-loop-light .cm-color {
   // color: #ccc;
-  color: black
+  color black
 }
+
+
+
+.colorpicker
+  display: inline-block
+  width: 2ch
+  height: 18px
+  background: transparent
+  position relative
+  vertical-align middle
+  // -webkit-transition: all 0.2s
+
+.colorpicker-swatch
+  cursor   pointer
+  width    15px
+  height   10px
+  border-radius: 2px
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1)
+  position absolute
+  top      0
+  left     0
+  &:hover
+    // -webkit-transform: scale(1.5)
+    box-shadow inset 0 0 0 1px rgba(0,0,0,0.3)
+    z-index    999

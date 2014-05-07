@@ -13,15 +13,16 @@
   border-radius: 2px;
   -webkit-transform-origin: top left;
   -webkit-transform: scale(1, 0.4);
-  -webkit-transition: opacity 170ms, height 150ms, -webkit-transform 180ms;
+  -webkit-transition: opacity 80ms, height 80ms;
   opacity: 0;
   height: 0;
+  overflow: hidden;
   margin-left: 100px;
 }
 .c-picker.active {
   -webkit-transform: scale(1);
   opacity: 1;
-  height: 170px;
+  height: 150px;
 }
 .c-preview {
   position: relative;
