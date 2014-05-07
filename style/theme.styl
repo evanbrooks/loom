@@ -22,9 +22,9 @@ $bg         = white
     font-weight 500
 
 
-// .cm-string
-//   font-family: "CentSchbook Mono BT"
-
+.cm-string
+  font-family: "CentSchbook Mono BT"
+  font-weight: normal !important
 // ------------------------
 
 // B O T H  C O L O R S
@@ -35,18 +35,18 @@ $bg         = white
 
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
-    font   500 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono"
+    font   500 14px/19px "Andale", "Source Code Pro", "Ubuntu Mono"
 
   .cm-keyword,
   .cm-kw-special
     // font-weight 600
 
   .cm-kw-special
-    font-style italic
+    // font-style italic
     // font-weight 800
 
   .cm-comment 
-    font-style italic
+    // font-style italic
 
   // variables (these will be recolored)
   .cm-def,
@@ -119,6 +119,7 @@ $cssStrLight   = #8A0048;
       color black
     .cm-tag, .cm-qualifier, .cm-builtin
       font-weight 600
+      border-bottom: 1px solid
       //font-size 1.5em
       //font-family "Nitti Grotesk"
     .cm-qualifier

@@ -11,5 +11,8 @@
     "height": 800,
     "min_width": 220,
     "min_height": 220
+  },
+  "devDependencies": {
+    "connect-inject": "~0.3.2"
   }
 }

@@ -4,17 +4,13 @@
 .cm-mode-html .cm-s-loop-light .cm-string {
   font-weight: 500;
 }
+.cm-string {
+  font-family: "CentSchbook Mono BT";
+  font-weight: normal !important;
+}
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
-  font: 500 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono";
-}
-.cm-s-loop-light .cm-kw-special,
-.cm-s-loop-dark .cm-kw-special {
-  font-style: italic;
-}
-.cm-s-loop-light .cm-comment,
-.cm-s-loop-dark .cm-comment {
-  font-style: italic;
+  font: 500 14px/19px "Andale", "Source Code Pro", "Ubuntu Mono";
 }
 .cm-s-loop-light .cm-def,
 .cm-s-loop-dark .cm-def,
@@ -114,6 +110,7 @@
 .cm-mode-styl .cm-s-loop-light .cm-builtin,
 .cm-mode-scss .cm-s-loop-light .cm-builtin {
   font-weight: 600;
+  border-bottom: 1px solid;
 }
 .cm-mode-styl .cm-s-loop-light .cm-qualifier,
 .cm-mode-scss .cm-s-loop-light .cm-qualifier {
