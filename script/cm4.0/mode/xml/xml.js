@@ -149,7 +149,7 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
       // If in HTML head -EB
       if (state.inHead) return "equals head";
       // -----------
-      return "equals";
+      return "equals eq-" + last_attr_key;
 
     } else if (ch == "<") {
       state.tokenize = inText;
@@ -332,10 +332,15 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
     },
 
     token: function(stream, state) {
-      if (!state.tagName && stream.sol())
-        state.indented = stream.indentation();
 
-      if (stream.eatSpace()) return null;
+      var ind = ""; // add indentedness line class - EB
+
+      if (!state.tagName && stream.sol()) {
+        state.indented = stream.indentation();
+        ind = "line-ind-" + state.indented + " ";
+      }
+
+      if (stream.eatSpace()) return ind;
       tagName = type = null;
       var style = state.tokenize(stream, state);
       if ((style || type) && style != "comment") {
@@ -344,7 +349,7 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
         if (setStyle)
           style = setStyle == "error" ? style + " error" : setStyle;
       }
-      return style;
+      return ind + style;
     },
 
     indent: function(state, textAfter, fullLine) {
@@ -371,6 +376,10 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
       if (context) return context.indent + indentUnit;
       else return 0;
     },
+
+    blankLine: function(state) {
+      return "line-ind-" + state.indented;
+    }, // - EB
 
     electricChars: "/",
     blockCommentStart: "<!--",

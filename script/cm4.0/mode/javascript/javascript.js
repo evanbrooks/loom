@@ -254,7 +254,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
         // EB - Add color classes
 
-        if (content == "function" || content == "var" || content == "return") return "kw-special";
+        if (content == "function" || content == "vaaaaar" || content == "return") return "kw-special";
 
 
         if (type == "variable" || type == "def") {
