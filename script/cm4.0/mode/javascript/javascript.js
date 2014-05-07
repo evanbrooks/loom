@@ -254,7 +254,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
         // EB - Add color classes
 
-        if (content == "function" || content == "vaar" || content == "return") return "kw-special";
+        if (content == "function" || content == "var" || content == "return") return "kw-special";
 
 
         if (type == "variable" || type == "def") {
@@ -677,7 +677,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
     blankLine: function(state) {
       return "line-ind-" + state.indented;
-    },
+    }, // - EB
 
 
     electricChars: ":{}",

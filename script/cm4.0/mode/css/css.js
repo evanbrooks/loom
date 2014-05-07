@@ -338,7 +338,15 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     },
 
     token: function(stream, state) {
-      if (!state.tokenize && stream.eatSpace()) return null;
+
+      var ind = ""; // add indentedness line class
+      if (stream.sol()) {
+        state.indented = stream.indentation();
+        ind = "line-ind-" + state.indented + " ";
+      } // - EB
+
+
+      if (!state.tokenize && stream.eatSpace()) return ind; // - EB (null--> ind)
       var style = (state.tokenize || tokenBase)(stream, state);
       if (style && typeof style == "object") {
         type = style[1];
@@ -346,7 +354,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       }
       override = style;
       state.state = states[state.state](type, stream, state);
-      return override;
+      return ind + override; // - EB (added ind)
     },
 
     indent: function(state, textAfter) {
@@ -362,6 +370,10 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       }
       return indent;
     },
+
+    blankLine: function(state) {
+      return "line-ind-" + state.indented;
+    }, // - EB
 
     electricChars: "}",
     blockCommentStart: "/*",
