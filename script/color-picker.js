@@ -4,6 +4,105 @@
     e.stopPropagation();
   }
 
+
+  // ___________________________________________________________
+
+  // C O L O R   P I C K E R
+
+  function hsvToRgb(h, s, v){
+    var r, g, b;
+
+    var i = Math.floor(h * 6);
+    var f = h * 6 - i;
+    var p = v * (1 - s);
+    var q = v * (1 - f * s);
+    var t = v * (1 - (1 - f) * s);
+
+    switch(i % 6){
+        case 0: r = v, g = t, b = p; break;
+        case 1: r = q, g = v, b = p; break;
+        case 2: r = p, g = v, b = t; break;
+        case 3: r = p, g = q, b = v; break;
+        case 4: r = t, g = p, b = v; break;
+        case 5: r = v, g = p, b = q; break;
+    }
+
+    // return [r * 255, g * 255, b * 255];
+    return {
+      r: parseInt(r * 255),
+      g: parseInt(g * 255),
+      b: parseInt(b * 255)
+    };
+  }
+
+  function rgbToHsl(r, g, b){
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if(max == min){
+        h = s = 0; // achromatic
+    }else{
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+
+    return [h, s, l];
+  }
+
+  function rgb2hsv (r,g,b) {
+     var computedH = 0;
+     var computedS = 0;
+     var computedV = 0;
+
+     //remove spaces from input RGB values, convert to int
+     var r = parseInt( (''+r).replace(/\s/g,''),10 ); 
+     var g = parseInt( (''+g).replace(/\s/g,''),10 ); 
+     var b = parseInt( (''+b).replace(/\s/g,''),10 ); 
+
+     if ( r==null || g==null || b==null ||
+         isNaN(r) || isNaN(g)|| isNaN(b) ) {
+       alert ('Please enter numeric RGB values!');
+       return;
+     }
+     if (r<0 || g<0 || b<0 || r>255 || g>255 || b>255) {
+       alert ('RGB values must be in the range 0 to 255.');
+       return;
+     }
+     r=r/255; g=g/255; b=b/255;
+     var minRGB = Math.min(r,Math.min(g,b));
+     var maxRGB = Math.max(r,Math.max(g,b));
+
+     // Black-gray-white
+     if (minRGB==maxRGB) {
+      computedV = minRGB;
+      return [0,0,computedV];
+     }
+
+     // Colors other than black-gray-white:
+     var d = (r==minRGB) ? g-b : ((b==minRGB) ? r-g : b-r);
+     var h = (r==minRGB) ? 3 : ((b==minRGB) ? 1 : 5);
+     computedH = 60*(h - d/(maxRGB - minRGB));
+     computedS = (maxRGB - minRGB)/maxRGB;
+     computedV = maxRGB;
+     return [computedH,computedS,computedV];
+  }
+
+
+  // ___________________________________________________________
+
+
+
+
+
+
+
   function Thumb(el, opts) {
     var self = this;
     var el = el;
@@ -91,9 +190,12 @@
 
     var snapdown = function(e) {
       halt(e);
+
+      var off = $(colorPicker.el).offset();
+
       self.pos(
-        e.clientX - dad.offsetLeft - colorPicker.pos.x,
-        e.clientY - dad.offsetTop - colorPicker.pos.y
+        e.clientX - dad.offsetLeft - off.left,
+        e.clientY - dad.offsetTop - off.top
       );
       down(e);
     }
@@ -150,7 +252,7 @@
     }
 
     self.setHue = function(hue){
-    	var amount = (hue / 360) - 0.5;
+    	var amount = (hue / 360);
     	looper.setPos(amount);
     }
 
@@ -252,7 +354,7 @@
     }
 
     self.setPos = function(x, y){
-      thumb.setPos(x, y);
+      thumb.setAllPos(x, y);
     }
 
   	self.setHue = function(h) {
@@ -289,57 +391,6 @@
   }
 
 
-  // ---------------
-
-
-  function hsvToRgb(h, s, v){
-      var r, g, b;
-
-      var i = Math.floor(h * 6);
-      var f = h * 6 - i;
-      var p = v * (1 - s);
-      var q = v * (1 - f * s);
-      var t = v * (1 - (1 - f) * s);
-
-      switch(i % 6){
-          case 0: r = v, g = t, b = p; break;
-          case 1: r = q, g = v, b = p; break;
-          case 2: r = p, g = v, b = t; break;
-          case 3: r = p, g = q, b = v; break;
-          case 4: r = t, g = p, b = v; break;
-          case 5: r = v, g = p, b = q; break;
-      }
-
-      // return [r * 255, g * 255, b * 255];
-      return {
-        r: parseInt(r * 255),
-        g: parseInt(g * 255),
-        b: parseInt(b * 255)
-      };
-
-  }
-
-  function rgbToHsl(r, g, b){
-      r /= 255, g /= 255, b /= 255;
-      var max = Math.max(r, g, b), min = Math.min(r, g, b);
-      var h, s, l = (max + min) / 2;
-
-      if(max == min){
-          h = s = 0; // achromatic
-      }else{
-          var d = max - min;
-          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-          switch(max){
-              case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-              case g: h = (b - r) / d + 2; break;
-              case b: h = (r - g) / d + 4; break;
-          }
-          h /= 6;
-      }
-
-      return [h, s, l];
-  }
-
   function Picker(el) {
 
     var self = this;
@@ -349,13 +400,30 @@
       y: 0
     };
 
+    self.el = el;
+
     self.position = function(x, y) {
+
       self.pos = {
         x: x,
         y: y
       };
       el.style.left = x + "px";
       el.style.top  = y + "px";
+    }
+
+    self.setColor = function(str) {
+      var rgb = d3.rgb(str);
+      var hsv = rgb2hsv(rgb.r, rgb.g, rgb.b);
+
+      hue   = parseInt(360 - hsv[0]);
+      sat   = hsv[1];
+      black = 1 - hsv[2];
+
+      valGrid.setHue(hue);
+      valGrid.setPos(sat, black);
+      spectrumWheel.setHue(hue);
+      update();
     }
 
     var bgel = el.querySelector(".c-bg");
@@ -372,8 +440,8 @@
       opacSlider.setColor(c);
       previewel.style.background  = "rgba(" + c.r + "," + c.g + "," + c.b + "," + alpha +")";
       gridThumb.style.background  = "rgb(" + c.r + "," + c.g + "," + c.b + ")";
-      hueThumb.style.background   = "hsl(" + parseInt(hue) + ", 100%, 50%)";
-      opacThumb.style.borderColor = "rgba(" + c.r + "," + c.g + "," + c.b + "," + (alpha+0.4) +")";
+      // hueThumb.style.background   = "hsl(" + parseInt(hue) + ", 100%, 50%)";
+      // opacThumb.style.borderColor = "rgba(" + c.r + "," + c.g + "," + c.b + "," + (alpha+0.4) +")";
     }
 
     var diff = 30;

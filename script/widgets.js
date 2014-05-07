@@ -187,9 +187,30 @@ function Picker(el, color) {
     self.widget = widget;
   }
 
-  $el.addEventListener('mousedown', function(e){
-    console.log("color picker clicked");
-    pos = self.widget.find();
+  $sw.addEventListener('mousedown', function(e){
+
+    var self = this;
+    // pos = self.widget.find();
+
+    var scr = nav.current.panel.querySelector(".CodeMirror-scroll");
+
+    colorPicker.el.classList.remove("active");
+
+    var color = window.getComputedStyle(self).backgroundColor;
+
+    setTimeout(function(){
+      $(scr).append(colorPicker.el);
+
+      var pos = $(self).offset();
+      var scrPos = $(scr).offset();
+
+      var x = pos.left - scrPos.left;
+      var y = pos.top + $(scr).scrollTop() - 3;// + 15;
+
+      colorPicker.setColor(color);
+      colorPicker.position(x, y);
+      colorPicker.el.classList.add("active");
+    }, 0);
 
   });
 }
