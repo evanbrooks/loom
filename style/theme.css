@@ -4,9 +4,6 @@
 .cm-mode-html .cm-s-loop-light .cm-string {
   font-weight: 500;
 }
-.cm-string {
-  font-family: "CentSchbook Mono BT";
-}
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
   font: 500 14px/20px "Source Code Pro", "Ubuntu Mono";

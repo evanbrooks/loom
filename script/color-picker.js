@@ -91,7 +91,10 @@
 
     var snapdown = function(e) {
       halt(e);
-      self.pos(e.clientX - dad.offsetLeft - 50, e.clientY - dad.offsetTop - 50);
+      self.pos(
+        e.clientX - dad.offsetLeft - colorPicker.pos.x,
+        e.clientY - dad.offsetTop - colorPicker.pos.y
+      );
       down(e);
     }
 
@@ -130,13 +133,13 @@
     self.init();
   }
 
-  function Wheel(container) {
+  function Slider(container) {
   	var self = this;
     var el = document.createElement("div");
-    el.className = "c-looper";
-    el.style.width      = container.offsetWidth  + "px";
-    el.style.height     = container.offsetHeight + "px";
-    el.style.background = rainbowGradV;
+    el.className = "c-thumb";
+    //el.style.width      = container.offsetWidth  + "px";
+    //el.style.height     = container.offsetHeight + "px";
+    container.style.background = rainbowGradV;
 
     container.appendChild(el);
 
@@ -152,15 +155,14 @@
     }
 
     function update(data) {
-    	var hue = (data.y + 0.5) * 360; // from center
+    	var hue = (1 - data.y) * 360; // from center
     	self.change(hue);
     }
 
     var looper = new Thumb(el, {
-  		scrollx: false,
-  		scrolly: true,
-  		wraparound: true,
-  		cb: update
+      scrollx: false,
+      scrolly: true,
+      cb: update
   	});
   }
 
@@ -342,6 +344,20 @@
 
     var self = this;
 
+    self.pos = {
+      x: 0,
+      y: 0
+    };
+
+    self.position = function(x, y) {
+      self.pos = {
+        x: x,
+        y: y
+      };
+      el.style.left = x + "px";
+      el.style.top  = y + "px";
+    }
+
     var bgel = el.querySelector(".c-bg");
     var previewel = el.querySelector(".c-preview");
 
@@ -354,20 +370,22 @@
 
       var c = hsvToRgb(hue/360, black, sat);
       opacSlider.setColor(c);
-      previewel.style.background = "rgba(" + c.r + "," + c.g + "," + c.b + "," + alpha +")";
-      gridThumb.style.background = "rgb(" + c.r + "," + c.g + "," + c.b + ")";
+      previewel.style.background  = "rgba(" + c.r + "," + c.g + "," + c.b + "," + alpha +")";
+      gridThumb.style.background  = "rgb(" + c.r + "," + c.g + "," + c.b + ")";
+      hueThumb.style.background   = "hsl(" + parseInt(hue) + ", 100%, 50%)";
       opacThumb.style.borderColor = "rgba(" + c.r + "," + c.g + "," + c.b + "," + (alpha+0.4) +")";
     }
 
     var diff = 30;
 
     var valGrid = new Grid(el.querySelector(".c-grid"));
-    var spectrumWheel = new Wheel(el.querySelector(".c-spectrum"));
+    var spectrumWheel = new Slider(el.querySelector(".c-spectrum"));
     var detailWheel = new DetailWheel(el.querySelector(".c-precise"), diff);
     var opacSlider = new OpacSlider(el.querySelector(".c-alpha"));
 
     var gridThumb = el.querySelector(".c-grid .c-thumb");
     var opacThumb = el.querySelector(".c-opacity .c-thumb");
+    var hueThumb = el.querySelector(".c-hue .c-thumb");
 
     valGrid.setHue(hue);
     valGrid.setPos(sat, black);
@@ -404,6 +422,6 @@
     });
   }
 
-  window.picker = new Picker(document.querySelector(".c-picker"));
+  window.colorPicker = new Picker(document.querySelector(".c-picker"));
 
 })();

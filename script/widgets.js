@@ -64,7 +64,6 @@ function widgetize(cm, start, end) {
 var mousedowns = 0;
 
 function Slider(el) {
-  // console.log("built slider");
   var self = this;
   var $el = $(el);
 
@@ -83,10 +82,6 @@ function Slider(el) {
   var curr_text = "";
   var strt_text = "";
   var pos;
-
-  // $el.attr("contenteditable", false);
-  // $rail.attr("contenteditable", false);
-  // $thumb.attr("contenteditable", false);
 
   self.setWidget = function(widget) {
     self.widget = widget;
@@ -116,18 +111,6 @@ function Slider(el) {
     pos = self.widget.find();
 
     var offset = $thumb.offset();
-    // $rail = $("<div class='slider-thumb'></div>");
-    // $("body").append($rail);
-    // $rail.css({
-    //   "position": "fixed",
-    //   // "padding": "20px",
-    //   "z-index": 999,
-    //   "top": offset.top,
-    //   "left": offset.left,
-    // });
-
-    // $rail.css("background", "rgb(" + parseInt(Math.random()*255) + ",255,0)");
-
   });
 
   $("html").mousemove(function(e){
@@ -149,19 +132,11 @@ function Slider(el) {
       );
       curr_text = val + ext;
 
-      // $rail.css({
-      //   "-webkit-transform": "translate3d(0, " + delt.y + "px, 0)",
-      //   // "height": delt.y
-      // });
     }
   });
   $("html").mouseup(function(){
     dragging = false;
     $(".dragging").removeClass("dragging");
-    // $rail.remove();
-    // $rail.css({
-    //   "-webkit-transform": ""
-    // });
   });
 
   $el.keydown(function(e){
@@ -207,16 +182,9 @@ function Picker(el, color) {
   var $sw = $($el).find(".colorpicker-swatch")[0];
 
   $sw.style.backgroundColor = color;
-  console.log(color);
 
   self.setWidget = function(widget){
     self.widget = widget;
-
-    // Find color value
-    // setTimeout(function() {
-    //   var next = $($el).parent().next().html();
-    //   $sw.style.backgroundColor = next;
-    // }, 0);
   }
 
   $el.addEventListener('mousedown', function(e){
