@@ -5,12 +5,15 @@
   font-weight: 500;
 }
 .cm-string {
-  font-family: "CentSchbook Mono BT";
   font-weight: normal !important;
 }
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
-  font: 500 14px/19px "Andale", "Source Code Pro", "Ubuntu Mono";
+  font: 500 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono";
+}
+.cm-s-loop-light .cm-kw-special,
+.cm-s-loop-dark .cm-kw-special {
+  border-bottom: 1px solid;
 }
 .cm-s-loop-light .cm-def,
 .cm-s-loop-dark .cm-def,
@@ -58,13 +61,21 @@
 .cm-s-loop-dark .console-log-marker:before {
   content: "➔ ";
 }
+.cm-mode-html .cm-attrval-id,
+.cm-mode-html .cm-attrval-class {
+  font-weight: bold !important;
+}
 .cm-mode-html .cm-s-loop-light .cm-string {
   color: #8a0048;
 }
-.cm-mode-html .cm-s-loop-light .cm-attrval-class {
-  color: #8444d6;
+.cm-mode-html .cm-s-loop-light .cm-attrval-class,
+.cm-mode-html .cm-s-loop-light .cm-attrkey-class,
+.cm-mode-html .cm-s-loop-light .cm-eq-class {
+  color: #bb5dc7;
 }
-.cm-mode-html .cm-s-loop-light .cm-attrval-id {
+.cm-mode-html .cm-s-loop-light .cm-attrval-id,
+.cm-mode-html .cm-s-loop-light .cm-attrkey-id,
+.cm-mode-html .cm-s-loop-light .cm-eq-id {
   color: #355bad;
 }
 .cm-mode-html .cm-s-loop-dark .cm-string {
@@ -114,7 +125,7 @@
 }
 .cm-mode-styl .cm-s-loop-light .cm-qualifier,
 .cm-mode-scss .cm-s-loop-light .cm-qualifier {
-  color: #8444d6;
+  color: #bb5dc7;
 }
 .cm-mode-styl .cm-s-loop-light .cm-builtin,
 .cm-mode-scss .cm-s-loop-light .cm-builtin {

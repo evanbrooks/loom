@@ -23,7 +23,7 @@ $bg         = white
 
 
 .cm-string
-  font-family: "CentSchbook Mono BT"
+  //font-family: "CentSchbook Mono BT"
   font-weight: normal !important
 // ------------------------
 
@@ -35,7 +35,7 @@ $bg         = white
 
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
-    font   500 14px/19px "Andale", "Source Code Pro", "Ubuntu Mono"
+    font   500 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono"
 
   .cm-keyword,
   .cm-kw-special
@@ -44,6 +44,7 @@ $bg         = white
   .cm-kw-special
     // font-style italic
     // font-weight 800
+    border-bottom 1px solid
 
   .cm-comment 
     // font-style italic
@@ -81,17 +82,20 @@ $bg         = white
 
 
 
-$cssClassLight = #8444D6;
+$cssClassLight = #BB5DC7;
+//#8444D6;
 $cssIDLight    = #355BAD;
 $cssStrLight   = #8A0048;
 
 .cm-mode-html
+  .cm-attrval-id, .cm-attrval-class
+    font-weight bold !important
   .cm-s-loop-light
     .cm-string
       color: $cssStrLight
-    .cm-attrval-class
+    .cm-attrval-class, .cm-attrkey-class, .cm-eq-class
       color: $cssClassLight
-    .cm-attrval-id
+    .cm-attrval-id, .cm-attrkey-id, .cm-eq-id
       color $cssIDLight
   .cm-s-loop-dark
     .cm-string
