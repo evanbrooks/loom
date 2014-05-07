@@ -72,8 +72,8 @@ function Nav() {
   }
 
   self.setTheme = function(newtheme) {
-    for (file in self.tabs) {
-      self.tabs[file].cm.setOption("theme", newtheme);
+    for (var filepath in self.tabs) {
+      self.tabs[filepath].cm.setOption("theme", newtheme);
     }
   }
 
