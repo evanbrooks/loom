@@ -6,7 +6,7 @@
 // Declarations
 
 var gui   = require('nw.gui')
-  , file  = require('file.js')
+  , filer = require('file.js')
   , nav   = new Nav
   , async = require('async')
   , win   = gui.Window.get();
@@ -33,7 +33,7 @@ nav.setDocument(document);
 //   makeTab(path);
 // }
 
-async.map(file_arr, file.open, function(err, files) {
+async.map(file_arr, filer.open, function(err, files) {
   files.forEach(function(f) {
     if (f.error) return;
     nav.addTab(f.path, f.content);
@@ -162,11 +162,11 @@ function clickInput(id) {
  
 
 document.getElementById('open').addEventListener('change', function (e) {
-    file.open(this.value, document);
+    filer.open(this.value, document);
 });
  
 document.getElementById('save').addEventListener('change', function (e) {
-    file.save(this.value, document);
+    filer.save(this.value, document);
 });
 
 

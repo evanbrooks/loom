@@ -37,7 +37,7 @@ function Tab(nav) {
   }
 
   self.save = function() {
-    file.save(self.path, self.cm.getValue());
+    filer.save(self.path, self.cm.getValue());
   }
 
   self.close = function(e) {
