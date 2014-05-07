@@ -12,7 +12,7 @@
     var dark = 55;
     if (i % 2 == 0) dark = 65;
 
-    var col = $.husl.p.toHex(((i / variations) * 180 + 50), 90, dark);
+    var col = $.husl.p.toHex(((i / variations) * 190 + 110), 80, dark);
     // var bcol = $.husl.p.toHex(((i / variations) * 360), 50, 99);
     // var bordcol = $.husl.p.toHex(((i / variations) * 360), 50, 92);
     var className = ".cm-s-loop-light .cm-semantic-" + i;
@@ -24,7 +24,7 @@
     var dark = 62;
     if (i % 2 == 0) dark = 72;
 
-    var col = $.husl.p.toHex(((i / variations) * 180 + 50), 75, dark);
+    var col = $.husl.p.toHex(((i / variations) * 190 + 110), 75, dark);
     // var bcol = $.husl.p.toHex(((i / variations) * 360), 10, 23);
     // var bordcol = $.husl.p.toHex(((i / variations) * 360), 50, 30);
     var className = ".cm-s-loop-dark .cm-semantic-" + i;
