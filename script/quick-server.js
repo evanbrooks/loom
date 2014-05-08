@@ -1,3 +1,5 @@
+/*jshint laxcomma: true */
+
 // ______________________________________
 
 // Q U I C K   S E R V E R
@@ -20,6 +22,7 @@
     var app          = express()
       , socketServer = http.createServer(app)
       , io           = require('socket.io').listen(socketServer)
+      ;
 
 
     var PUBLIC = '/Users/evan/Developer/loom/';
@@ -50,7 +53,7 @@
         if (err) console.log(err);
         console.log('Ngrok running online at ' + url);
       });
-    }
+    };
 
     // ________________________________
 

@@ -1,3 +1,5 @@
+/*jshint laxcomma: true */
+
 function widgetize(cm, start, end) {
   var start_line = start;
   var end_line = end;
@@ -22,7 +24,7 @@ function widgetize(cm, start, end) {
     // Scan through this line and insert widget marks
     var prev, curr, pos, type;
     for (var ch = 0; ch < line.text.length; ch++) {
-      pos = {line: line_num, ch: ch}
+      pos = {line: line_num, ch: ch};
       token = cm.getTokenAt(pos);
       type = token.type;
       if      (type && type.contains("number")) curr = "number";
@@ -35,10 +37,10 @@ function widgetize(cm, start, end) {
         var insert_pos = {line: line_num, ch: ch - 1};
         var w;
         if (curr == "number") {
-          var w = get_slider();
+          w = get_slider();
         }
         else if (curr == "color") {
-          var w = get_colorpicker(token.string, line);
+          w = get_colorpicker(token.string, line);
         }
         else if (curr == "src") {
           var w = get_img();
@@ -101,11 +103,11 @@ function Slider(el) {
     delt.y = 0;
     strt_text = $val.html();
     val = parseFloat(strt_text);
-    ext = strt_text.replace(/([-0-9.]*)/ , "");
+    ext = strt_text.replace(/([\-0-9.]*)/ , "");
     strtval = val;
 
     if (ext == "em") step = 0.05;
-    else if (ext == "" && val < 3) step = 0.1; 
+    else if (ext === "" && val < 3) step = 0.1; 
     else step = 1;
 
     curr_text = strt_text;
@@ -186,7 +188,7 @@ function Picker(el, color, line) {
 
   self.setWidget = function(widget){
     self.widget = widget;
-  }
+  };
 
   var strt_text = color;
 
