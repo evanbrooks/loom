@@ -628,6 +628,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
+
     return ["comment", "comment"];
   }
 
@@ -675,7 +676,15 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       "/": function(stream, state) {
         if (stream.eat("/")) {
           stream.skipToEnd();
-          return ["comment", "comment"];
+
+          var cmnt = stream.current();
+          var hasCurly = /[\{\}]/.test(cmnt);
+          var hasSemi = /\w*;/.test(cmnt);
+
+          if (hasCurly || hasSemi){
+            return ["comment", "comment"];
+          }
+          return ["comment literate", "comment literate"];
         } else if (stream.eat("*")) {
           state.tokenize = tokenCComment;
           return tokenCComment(stream, state);

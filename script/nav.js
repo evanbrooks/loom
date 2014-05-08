@@ -21,6 +21,11 @@ function Nav() {
     panels = doc.getElementById("tab_panels");
   }
 
+  self.addTabAndFocus = function(path, content) {
+    var tab = self.addTab(path, content);
+    self.setTab(tab);
+  }
+
   self.addTab = function(path, content) {
 
     var newTab = new Tab(self);
@@ -33,7 +38,10 @@ function Nav() {
     self.tabs[path] = newTab; // Add to dict
     self.list.push(newTab);   // Add to ordered list
 
+    // If nothing is focused, focus this.
     if (!self.current) self.setTab(newTab);
+
+    return newTab;
   }
 
   self.removeTab = function(tab) {

@@ -119,13 +119,23 @@
 .actions a {
   border-bottom: 1px dotted #808080;
 }
+.server {
+  padding: 20px 0;
+  color: #aaa;
+}
 header.actions {
   top: 0;
 }
 footer.actions {
   bottom: 0;
+}
+footer.actions span {
+  opacity: 1;
+  font-size: 2em;
+  color: #808080;
+}
+footer.actions span:hover {
   opacity: 0.2;
-  color: #00f;
 }
 h1 {
   font-size: 3rem;
@@ -170,6 +180,7 @@ h2 {
   height: 10px;
   width: 10px;
   position: relative;
+  margin-right: 5px;
 }
 .tab-btn-x:hover:before {
   opacity: 1 !important;

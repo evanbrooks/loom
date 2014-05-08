@@ -1,7 +1,7 @@
-.cm-mode-html .cm-s-loop-light {
+.cm-mode-html .cm-s-loop-light.CodeMirror {
   color: #000;
 }
-.cm-mode-html .cm-s-loop-light .cm-string {
+.cm-mode-html .cm-s-loop-light.CodeMirror .cm-string {
   font-weight: 500;
 }
 .cm-string {
@@ -9,11 +9,24 @@
 }
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
-  font: 500 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono";
+  font: 300 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono";
 }
 .cm-s-loop-light .cm-kw-special,
 .cm-s-loop-dark .cm-kw-special {
   border-bottom: 1px solid;
+}
+.cm-s-loop-light .cm-literate,
+.cm-s-loop-dark .cm-literate {
+  font-family: Nitti Grotesk Medium;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #56c77a;
+}
+.cm-s-loop-light .cm-codement,
+.cm-s-loop-dark .cm-codement {
+  font: inherit;
 }
 .cm-s-loop-light .cm-def,
 .cm-s-loop-dark .cm-def,
@@ -64,6 +77,13 @@
 .cm-mode-html .cm-attrval-id,
 .cm-mode-html .cm-attrval-class {
   font-weight: bold !important;
+}
+.cm-mode-html .cm-null {
+  font-family: Nitti Grotesk;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
 }
 .cm-mode-html .cm-s-loop-light .cm-string {
   color: #8a0048;
@@ -224,6 +244,9 @@
 }
 .cm-s-loop-light .cm-comment {
   color: #aaa;
+}
+.cm-s-loop-light .cm-literate {
+  color: #000;
 }
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-light .CodeMirror-lint-message-warning {

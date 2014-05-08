@@ -116,7 +116,15 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         return tokenComment(stream, state);
       } else if (stream.eat("/")) {
         stream.skipToEnd();
-        return ret("comment", "comment");
+
+        var cmnt = stream.current();
+        var hasDots = /\w\.\w/.test(cmnt);
+        var hasSemi = /\w*;/.test(cmnt);
+
+        if (hasDots || hasSemi){
+          return ret("comment", "comment");
+        }
+        return ret("comment literate", "comment literate");
       } else if (state.lastType == "operator" || state.lastType == "keyword c" ||
                state.lastType == "sof" || /^[\[{}\(,;:]$/.test(state.lastType)) {
         readRegexp(stream);

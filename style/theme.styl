@@ -16,7 +16,7 @@ $bg         = white
 }
 
 
-.cm-mode-html .cm-s-loop-light
+.cm-mode-html .cm-s-loop-light.CodeMirror
   color black
   .cm-string
     font-weight 500
@@ -35,7 +35,7 @@ $bg         = white
 
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
-    font   500 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono"
+    font   300 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono"
 
   .cm-keyword,
   .cm-kw-special
@@ -46,8 +46,16 @@ $bg         = white
     // font-weight 800
     border-bottom 1px solid
 
-  .cm-comment 
-    // font-style italic
+  .cm-literate
+    font-family: Nitti Grotesk Medium;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+    color: rgb(86, 199, 122)
+
+  .cm-codement
+    font: inherit
 
   // variables (these will be recolored)
   .cm-def,
@@ -90,6 +98,13 @@ $cssStrLight   = #8A0048;
 .cm-mode-html
   .cm-attrval-id, .cm-attrval-class
     font-weight bold !important
+  .cm-null
+    font-family: Nitti Grotesk;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+
   .cm-s-loop-light
     .cm-string
       color: $cssStrLight
@@ -221,8 +236,8 @@ $cssStrLight   = #8A0048;
   // gray
   $secondcolor = #8EB5CF
   $comment     = #aaa
-  //#8db8aa
-  // #A4C7B3
+  $litcomment  = black
+  //#56c77a
 
   // Main
   &.CodeMirror 
@@ -261,6 +276,9 @@ $cssStrLight   = #8A0048;
 
   .cm-comment 
     color $comment
+
+  .cm-literate
+    color $litcomment
 
   .CodeMirror-lint-message-error,
   .CodeMirror-lint-message-warning

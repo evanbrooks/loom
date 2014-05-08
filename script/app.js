@@ -162,7 +162,11 @@ function clickInput(id) {
  
 
 document.getElementById('open').addEventListener('change', function (e) {
-    filer.open(this.value, document);
+  console.log(this.value);
+  filer.open(this.value, function(err, file) {
+    if (file.error) return;
+    nav.addTabAndFocus(file.path, file.content);
+  });
 });
  
 document.getElementById('save').addEventListener('change', function (e) {
