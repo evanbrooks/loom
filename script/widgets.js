@@ -43,7 +43,7 @@ function widgetize(cm, start, end) {
           w = get_colorpicker(token.string, line);
         }
         else if (curr == "src") {
-          var w = get_img();
+          w = get_img();
         }
         // console.log(w);
         var widg = cm.setBookmark(
@@ -88,7 +88,7 @@ function Slider(el) {
 
   self.setWidget = function(widget) {
     self.widget = widget;
-  }
+  };
 
 
   $el.mousedown(function(e){
@@ -227,7 +227,7 @@ function Picker(el, color, line) {
       el,
       {
         coverGutter: false,
-        noHScroll: true,
+        noHScroll: true
       }
     );
 

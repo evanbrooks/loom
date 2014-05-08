@@ -416,6 +416,15 @@
 .cm-s-loop-light .cm-color {
   color: #000;
 }
+.cm-s-loop-light .CodeMirror-lint-message-error,
+.cm-s-loop-light .CodeMirror-lint-message-warning {
+  color: #f00;
+  font-family: Nitti Grotesk Medium;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+}
 .colorpicker {
   display: inline-block;
   width: 2ch;
