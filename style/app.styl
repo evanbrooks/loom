@@ -293,9 +293,13 @@ h2
 
 .imgwidget
   display    inline-block
-  width      2ch
-  height     12px
-  background $activetext
+  width      4ch
+  height     16px
+  vertical-align middle
+  -webkit-transform scale(1)
+  -webkit-transition all 0.1s
+  &:hover
+    -webkit-transform scale(4)
 
 
 @media (max-width: 700px)

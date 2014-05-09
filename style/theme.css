@@ -25,7 +25,7 @@
 }
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
-  font: 300 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono";
+  font: 400 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono";
 }
 .cm-s-loop-light .cm-kw-special,
 .cm-s-loop-dark .cm-kw-special {
@@ -149,7 +149,8 @@
 .cm-s-loop-light .cm-equals.cm-head {
   color: #888;
 }
-.cm-s-loop-light .cm-comment {
+.cm-s-loop-light .cm-comment,
+.cm-s-loop-light .cm-comment-marker {
   color: #aaa;
 }
 .cm-s-loop-light .cm-literate {

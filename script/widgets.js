@@ -30,29 +30,35 @@ function widgetize(cm, start, end) {
       if      (type && type.contains("number")) curr = "number";
       else if (type && type.contains("color"))  curr = "color";
       // else if (type && type.contains("string")) curr = "string";
-      // else if (type && type.contains("attrval-src"))  curr = "src";
+      else if (type && type.contains("attrval-src"))  curr = "src";
       else    curr = false;
 
       if (curr && (curr !== prev)) {
         var insert_pos = {line: line_num, ch: ch - 1};
-        var w;
+        var w, widg;
         if (curr == "number") {
           w = get_slider();
+          widg = cm.setBookmark(insert_pos, {
+            widget: w.el,
+            insertLeft: true
+          });
         }
         else if (curr == "color") {
           w = get_colorpicker(token.string, line);
-        }
-        else if (curr == "src") {
-          w = get_img();
-        }
-        // console.log(w);
-        var widg = cm.setBookmark(
-          insert_pos,
-          {
+          widg = cm.setBookmark(insert_pos, {
             widget: w.el,
             insertLeft: true
-          }
-        );
+          });
+        }
+        else if (curr == "src") {
+          var src = token.string.replace(/["']/g,"");
+          w = get_img(src);
+          var end_pos = {line: line_num, ch: ch - 1 + token.string.length};
+          widg = cm.markText(insert_pos, end_pos, {
+            replacedWith: w.el,
+            //atomic: true,
+          });
+        }
         if (w.obj.setWidget) w.obj.setWidget(widg);
       }
       prev = curr;
@@ -273,9 +279,22 @@ function get_colorpicker(color, line) {
   return {obj: picker, el: el};
 }
 
-function get_img() {
+function get_img(path) {
   var el = document.createElement('span');
-  el.className = 'imgwidget';
+
+
+  var img = new Image();
+  img.onerror = function() {
+  };
+  img.onload = function() {
+    el.style.backgroundImage = "url(" + path + ")";
+    el.style.backgroundSize = "cover";
+    el.style.backgroundPosition = "center center";
+    el.className = 'imgwidget';
+  }
+  img.src = path;
+  console.log(img);
+
   return {obj: {}, el: el};
 }
 
