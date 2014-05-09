@@ -75,10 +75,10 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   var codeDepth = 0;
 
   var header   = 'header'
-  ,   code     = 'comment'
+  ,   code     = 'code'
   ,   quote    = 'quote'
-  ,   list1    = 'variable-2'
-  ,   list2    = 'variable-3'
+  ,   list1    = 'list1'
+  ,   list2    = 'list2'
   ,   list3    = 'keyword'
   ,   hr       = 'hr'
   ,   image    = 'tag'
@@ -86,7 +86,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   ,   linkinline = 'link'
   ,   linkemail = 'link'
   ,   linktext = 'link'
-  ,   linkhref = 'string'
+  ,   linkhref = 'href' // - EB switched from 'string'
   ,   em       = 'em'
   ,   strong   = 'strong';
 

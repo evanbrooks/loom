@@ -120,8 +120,9 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         var cmnt = stream.current();
         var hasDots = /\w\.\w/.test(cmnt);
         var hasSemi = /\w*;/.test(cmnt);
+        var hasCurl = /[\{\}]/.test(cmnt);
 
-        if (hasDots || hasSemi){
+        if (hasDots || hasSemi || hasCurl){
           return ret("comment", "comment");
         }
         return ret("comment literate", "comment literate");

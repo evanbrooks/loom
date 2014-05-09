@@ -19,12 +19,12 @@ function Nav() {
     doc = document;
     flaps = doc.getElementById("tab_flaps");
     panels = doc.getElementById("tab_panels");
-  }
+  };
 
   self.addTabAndFocus = function(path, content) {
     var tab = self.addTab(path, content);
     self.setTab(tab);
-  }
+  };
 
   self.addTab = function(path, content) {
 
@@ -42,7 +42,7 @@ function Nav() {
     if (!self.current) self.setTab(newTab);
 
     return newTab;
-  }
+  };
 
   self.removeTab = function(tab) {
     var index = self.list.indexOf(tab);
@@ -63,7 +63,7 @@ function Nav() {
     }
     self.list.splice(index, 1);
     delete self.tabs[tab.path];
-  }
+  };
 
   self.setTab = function(tab) {
     if (self.current) {
@@ -77,19 +77,19 @@ function Nav() {
       self.current.cm.refresh();
       self.current.cm.focus();
     }
-  }
+  };
 
   self.setTheme = function(newtheme) {
     for (var filepath in self.tabs) {
       self.tabs[filepath].cm.setOption("theme", newtheme);
     }
-  }
+  };
 
   self.saveCurrent = function() {
     if (self.current.save) self.current.save();
-  }
+  };
 
 
-};
+}
 
 // module.exports = new Nav;

@@ -19,6 +19,7 @@ var file_arr = [
   "/Users/evan/Developer/htmloutput/public/sketch/index.html",
   "/Users/evan/Developer/htmloutput/public/sketch/script.js",
   "/Users/evan/Developer/htmloutput/public/sketch/style.scss",
+  "/Users/evan/Developer/_sharedaccount/htmloutput/README.md",
 ];
 
 
@@ -180,28 +181,28 @@ document.getElementById('save').addEventListener('change', function (e) {
 
 // Top Menu - TODO
 
-var menu = new gui.Menu({ type: 'menubar' });
-menu.append(new gui.MenuItem({
-    label: 'File',
-    submenu: new gui.Menu()
-}));
-menu.items[0].submenu.append(new gui.MenuItem({
-    label: 'New',
-    click: function () {
-        gui.Window.open('index.html');
-    }
-}));
-menu.items[0].submenu.append(new gui.MenuItem({
-    type: 'separator'
-}));
-menu.items[0].submenu.append(new gui.MenuItem({
-    label: 'Close',
-    click: function () {
-        gui.Window.get().close();
-    }
-}));
+// var menu = new gui.Menu({ type: 'menubar' });
+// menu.append(new gui.MenuItem({
+//     label: 'File',
+//     submenu: new gui.Menu()
+// }));
+// menu.items[0].submenu.append(new gui.MenuItem({
+//     label: 'New',
+//     click: function () {
+//         gui.Window.open('index.html');
+//     }
+// }));
+// menu.items[0].submenu.append(new gui.MenuItem({
+//     type: 'separator'
+// }));
+// menu.items[0].submenu.append(new gui.MenuItem({
+//     label: 'Close',
+//     click: function () {
+//         gui.Window.get().close();
+//     }
+// }));
 
-gui.Window.get().menu = menu;
+// gui.Window.get().menu = menu;
 
 
 

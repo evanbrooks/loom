@@ -9,7 +9,6 @@
   var express   = require('express')
     , http      = require('http')
     , ngrok     = require('ngrok')
-    , cheerio   = require('cheerio')
     , fs        = require('fs')
     ;
 

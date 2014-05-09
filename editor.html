@@ -90,6 +90,9 @@
 
       <span data-action="refresh">↻</span>
       <span data-action="devtools">⚛</span>
+      <div class="theme-btn" data-action="theme">
+        <span class="theme-icon"></span>
+      </div>
 
       <div class="server">
         <a href="#">/testsite</a> --><br>
@@ -154,9 +157,6 @@
       <div class="win-btn win-minim" data-action="window-minim"> </div>
       <div class="win-btn win-maxim" data-action="window-maxim"> </div>
 
-      <div class="theme-btn" data-action="theme">
-        <span class="theme-icon"></span>
-      </div>
     </nav>
 
 
@@ -167,8 +167,8 @@
     These serve only as workarounds for Node's browser security restrictions
     -->
     <section style="display: none">
-      <input id="open" type="file" accept="text/*"/>
-      <input id="save" type="file" nwsaveas accept="text/*"/>
+      <input id="open" type="file" accept="*"/>
+      <input id="save" type="file" nwsaveas accept="*"/>
     </section>
 
 
@@ -190,10 +190,14 @@
     <!-- CodeMirror JS -->
     <script src="script/cm4.1/lib/codemirror.js"></script>
     <script src="script/cm4.1/addon/search/searchcursor.js"></script>
+
     <script src="script/cm4.0/mode/javascript/javascript.js"></script>
     <script src="script/cm4.0/mode/css/css.js"></script>
+    <script src="script/cm4.1/mode/sass/sass.js"></script>
+    <script src="script/cm4.1/mode/markdown/markdown.js"></script>
     <script src="script/cm4.0/mode/xml/xml.js"></script>
     <script src="script/cm4.0/mode/htmlmixed/htmlmixed.js"></script>
+
     <script src="script/cm4.1/addon/mode/overlay.js"></script>
     <script src="script/cm4.0/addon/lint/lint.js"></script>
     <script src="script/cm4.0/addon/lint/javascript-lint.js"></script>
@@ -203,6 +207,7 @@
     <script src="script/cm4.0/addon/hint/html-hint.js"></script>
     <script src="script/cm4.0/addon/selection/active-line.js"></script>
     <script src="script/cm4.0/addon/comment/comment.js"></script>
+
     <script src="script/cm4.0/keymap/sublime.js"></script>
 
     <script src="script/util.js"></script>

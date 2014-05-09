@@ -11,8 +11,8 @@ $bg         = white
   // background: rgba(255, 153, 0, 0.03);
 }
 
-.cm-mode-js .cm-s-loop-light .CodeMirror-activeline-background {
-  // background: rgba(0, 163, 255, 0.03);
+.cm-s-loop-light .CodeMirror-activeline-background {
+  background-color: rgba(0, 0, 255, 0.03);
 }
 
 
@@ -25,6 +25,21 @@ $bg         = white
 .cm-string
   //font-family: "CentSchbook Mono BT"
   font-weight: normal !important
+
+
+
+// ------------------------
+
+// Vars
+
+$cssClassLight = #BB5DC7;
+$cssIDLight    = #355BAD;
+$cssStrLight   = #8A0048;
+
+// ------------------------
+
+
+
 // ------------------------
 
 // B O T H  C O L O R S
@@ -32,6 +47,25 @@ $bg         = white
 // ------------------------
 
 // "CentSchbook Mono BT"
+
+
+.cm-mode-js
+  // variables (these will be recolored)
+  .cm-def,
+  .cm-variable,
+  .cm-variable-2,
+  .cm-variable-3
+    color        brown
+    font-weight  700
+
+  // Content/values
+  .cm-atom,
+  .cm-number, 
+  .cm-string
+    color black // $redcolor
+    font-weight 500
+
+
 
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
@@ -57,17 +91,6 @@ $bg         = white
   .cm-codement
     font: inherit
 
-  // variables (these will be recolored)
-  .cm-def,
-  .cm-variable,
-  .cm-variable-2,
-  .cm-variable-3
-    color        brown
-    font-weight  700
-    border-radius 2px
-    display: inline-block
-    line-height 1.3em
-    vertical-align baseline
 
   .cm-tag
     font-weight bold
@@ -90,66 +113,10 @@ $bg         = white
 
 
 
-$cssClassLight = #BB5DC7;
-//#8444D6;
-$cssIDLight    = #355BAD;
-$cssStrLight   = #8A0048;
-
-.cm-mode-html
-  .cm-attrval-id, .cm-attrval-class
-    font-weight bold !important
-  .cm-null
-    font-family: Nitti Grotesk;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 14px;
-    letter-spacing: 0.02em;
-
-  .cm-s-loop-light
-    .cm-string
-      color: $cssStrLight
-    .cm-attrval-class, .cm-attrkey-class, .cm-eq-class
-      color: $cssClassLight
-    .cm-attrval-id, .cm-attrkey-id, .cm-eq-id
-      color $cssIDLight
-  .cm-s-loop-dark
-    .cm-string
-      color: #C08E58
-    .cm-attrval-class
-      color #CEBB56 // #88B171 
-    .cm-attrval-id
-      color #88b171 // #CAB85A
 
 
-.cm-mode-styl, .cm-mode-scss
-  .cm-s-loop-light
-    .cm-colon, .cm-brack
-      color gray
-    .cm-property
-      color: #69899E !important
-      font-weight 400
-    .cm-variable, .cm-variable-2
-      color: black
-      font-weight normal
-    .cm-string
-      color: navy
-      font-weight 600
-    .cm-def
-      color black
-    .cm-tag, .cm-qualifier, .cm-builtin
-      font-weight 600
-      border-bottom: 1px solid
-      //font-size 1.5em
-      //font-family "Nitti Grotesk"
-    .cm-qualifier
-      color $cssClassLight
-    .cm-builtin
-      color $cssIDLight
-    .cm-variable-3
-      font-weight 400
-      color $cssStrLight
-    .cm-atom, .cm-number
-      color black
+
+
 
 // ------------------------
 
@@ -215,14 +182,6 @@ $cssStrLight   = #8A0048;
     -webkit-animation  decaydark 0.2s;
     color              rgb(228, 205, 114)
 
-  // .cm-attrval-href,
-  // .cm-attrval-src
-  //   border-bottom 1px solid rgba(255,255,255,0.2)
-
-  // .CodeMirror-lint-message-error,
-  // .CodeMirror-lint-message-warning
-  //   color rgb(228, 205, 114)
-
 
 // ------------------------
 
@@ -252,13 +211,6 @@ $cssStrLight   = #8A0048;
   .CodeMirror-activeline-background
     background #f9f9f9
 
-  // Content/values
-  .cm-atom,
-  .cm-number, 
-  .cm-string
-    color black // $redcolor
-    font-weight 500
-
   // function and var definitions
   .cm-keyword,
   .cm-kw-special
@@ -272,7 +224,6 @@ $cssStrLight   = #8A0048;
     &.cm-head
       // color #A4B8C5
       color #888
-
 
   .cm-comment 
     color $comment
@@ -289,27 +240,171 @@ $cssStrLight   = #8A0048;
     -webkit-animation  decaylight 0.2s;
 
   .CodeMirror-lines pre:hover
-    // background: rgba(yellow, 0.1)
+    // background-color: rgba(yellow, 0.1)
 
-  // .CodeMirror-lines pre:nth-child(even)
-  //   background: rgba(0,0,0,0.02);
+  .CodeMirror-lines pre:nth-child(even)
+    //background-color: rgba(0,0,255,0.018);
 
   .cm-attrval-href,
   .cm-attrval-src
     // border-bottom 1px solid rgba(0,0,0,0.2)
 
 
-@-webkit-keyframes decaydark {
-  0% {
-    color: white;
-  }
+// _____________________________________________________________
+
+// M O D E - S P E C I F I C
+
+// _____________________________________________________________
+
+
+// ------------------------
+
+// H T M L
+
+
+.cm-mode-html
+  .cm-null
+    font-family: Nitti Grotesk Medium;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+  // D A R K
+  .cm-s-loop-dark
+    .cm-string
+      color: #C08E58
+    .cm-attrval-class
+      color #CEBB56 // #88B171 
+    .cm-attrval-id
+      color #88b171 // #CAB85A
+
+
+.cm-attrval-id, .cm-attrval-class
+  font-weight bold !important
+
+// L I G H T
+.cm-s-loop-light
+  .cm-attrval
+    color: $cssStrLight
+  .cm-attrval-class, .cm-attrkey-class, .cm-eq-class
+    color: $cssClassLight
+  .cm-attrval-id, .cm-attrkey-id, .cm-eq-id
+    color $cssIDLight
+
+
+
+// ------------------------
+
+// C S S
+
+
+.cm-mode-styl, .cm-mode-scss, .cm-mode-sass
+  // L I G H T
+  .cm-s-loop-light
+    .cm-colon, .cm-brack
+      color gray
+    .cm-property
+      color: #69899E !important
+      font-weight 400
+    .cm-variable, .cm-variable-2
+      color: black
+      font-weight normal
+    .cm-string
+      color: navy
+      font-weight 600
+    .cm-def
+      color black
+    .cm-tag, .cm-qualifier, .cm-builtin
+      font-weight 600
+      border-bottom: 1px solid
+    .cm-qualifier
+      color $cssClassLight
+    .cm-builtin
+      color $cssIDLight
+    .cm-variable-3
+      font-weight 400
+      color $cssStrLight
+    .cm-atom, .cm-number
+      color black
+
+
+
+// ------------------------
+
+// M I S C
+
+// ------------------------
+
+.cm-s-loop-light .cm-operator {
+  color: #535353;
+}
+/* REGEX */
+.cm-s-loop-light .cm-string-2 {
+  color: #894BCC;
 }
 
-@-webkit-keyframes decaylight {
-  0% {
-    color: blue;
-  }
+.cm-s-loop-light .cm-meta {
+  color: #555;
 }
+.cm-s-loop-light .cm-qualifier {
+  color: rgb(73, 173, 221);
+  color: rgb(0, 124, 184);
+}
+.cm-s-loop-light .cm-builtin {
+  color: rgb(0, 122, 255);
+  color: rgb(156, 0, 206);
+}
+.cm-s-loop-light .cm-bracket {
+  color: red;
+}
+
+.cm-s-loop-light .cm-quote {
+  color: #090;
+}
+
+
+// ------------------------
+
+// M A R K D O W N
+
+// ------------------------
+
+.cm-mode-md
+  .CodeMirror 
+    font   400 20px/24px "Nitti Grotesk Medium"
+
+  .cm-code
+    font   400 16px/24px "Nitti"
+    color purple
+
+  .cm-header
+    color black
+    font-family "Nitti Grotesk Medium"
+    font-weight normal
+
+  .cm-header-1
+    font-family "Nitti Grotesk Black"
+    font-weight normal
+    color: brown
+
+  .cm-header-2
+    font-family "Nitti Grotesk"
+    font-weight bold
+
+  .cm-link
+    color: #288DFC
+    text-decoration none
+
+  .cm-href
+    color: #aaa
+    font-family "Nitti Grotesk Semilight"
+    border-bottom 1px dotted
+
+.cm-s-loop-light .cm-hr
+  color: #eee
+  width: 80%
+  border-top: 1px solid #ddd
+  display: inline-block
 
 
 
@@ -342,6 +437,11 @@ $cssStrLight   = #8A0048;
   pre.ind-8, pre.ind-9
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
     background-position top left 4px, top left 18px, top left 32px, top left 46px
+    background-repeat repeat-y
+
+  pre.ind-10, pre.ind-11
+    background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
+    background-position top left 4px, top left 18px, top left 32px, top left 46px, top left 60px
     background-repeat repeat-y
 
 
@@ -444,73 +544,12 @@ $cssStrLight   = #8A0048;
       height: 50px
       top -20px
 
-// .cm-s-loop-light .cm-keyword {
-//   // color: #535353;
-//   // color: black;
-//   // font-weight: bold;
-// }
 
-// .cm-s-loop-light .cm-kw-special {
-//   font-style: italic;
-//   // color: black;
-//   // font-weight: bold;
-// }
+// ------------------------
 
+// M E S S A G E
 
-// .cm-s-loop-light .cm-property {
-//   color: #888 !important;
-// }
-.cm-s-loop-light .cm-operator {
-  color: #535353;
-}
-/* REGEX */
-.cm-s-loop-light .cm-string-2 {
-	color: #894BCC;
-}
-
-.cm-s-loop-light .cm-meta {
-  color: #555;
-}
-.cm-s-loop-light .cm-qualifier {
-  color: rgb(73, 173, 221);
-  color: rgb(0, 124, 184);
-}
-.cm-s-loop-light .cm-builtin {
-  color: rgb(0, 122, 255);
-  color: rgb(156, 0, 206);
-}
-.cm-s-loop-light .cm-bracket {
-  color: red;
-}
-
-// .cm-s-loop-light .cm-attrval,
-// .cm-mode-html .cm-s-loop-light .cm-string {
-//   // color: rgb(117, 160, 106);
-// }
-
-// .cm-mode-html .cm-s-loop-light .cm-attrval-id {
-//   color: rgb(156, 0, 206);
-// }
-
-// .cm-mode-html .cm-s-loop-light .cm-attrval-class {
-//   color: rgb(73, 173, 221);
-//   color: rgb(0, 112, 255);
-// }
-
-
-.cm-s-loop-light .cm-header {
-  color: blue;
-}
-.cm-s-loop-light .cm-quote {
-  color: #090;
-}
-.cm-s-loop-light .cm-hr {color: #999;}
-.cm-s-loop-light .cm-link {color: #00c;}
-
-.cm-s-loop-light .cm-color {
-  // color: #ccc;
-  color black
-}
+// ------------------------
 
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-light .CodeMirror-lint-message-warning {
@@ -520,6 +559,17 @@ $cssStrLight   = #8A0048;
   font-size: 16px
   line-height: 14px
   letter-spacing: 0.02em
+}
+
+// ------------------------
+
+// S W A T C H
+
+// ------------------------
+
+.cm-s-loop-light .cm-color {
+  // color: #ccc;
+  color black
 }
 
 .colorpicker

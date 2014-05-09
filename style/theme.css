@@ -1,3 +1,6 @@
+.cm-s-loop-light .CodeMirror-activeline-background {
+  background-color: rgba(0,0,255,0.03);
+}
 .cm-mode-html .cm-s-loop-light.CodeMirror {
   color: #000;
 }
@@ -6,6 +9,19 @@
 }
 .cm-string {
   font-weight: normal !important;
+}
+.cm-mode-js .cm-def,
+.cm-mode-js .cm-variable,
+.cm-mode-js .cm-variable-2,
+.cm-mode-js .cm-variable-3 {
+  color: #a52a2a;
+  font-weight: 700;
+}
+.cm-mode-js .cm-atom,
+.cm-mode-js .cm-number,
+.cm-mode-js .cm-string {
+  color: #000;
+  font-weight: 500;
 }
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
@@ -27,21 +43,6 @@
 .cm-s-loop-light .cm-codement,
 .cm-s-loop-dark .cm-codement {
   font: inherit;
-}
-.cm-s-loop-light .cm-def,
-.cm-s-loop-dark .cm-def,
-.cm-s-loop-light .cm-variable,
-.cm-s-loop-dark .cm-variable,
-.cm-s-loop-light .cm-variable-2,
-.cm-s-loop-dark .cm-variable-2,
-.cm-s-loop-light .cm-variable-3,
-.cm-s-loop-dark .cm-variable-3 {
-  color: #a52a2a;
-  font-weight: 700;
-  border-radius: 2px;
-  display: inline-block;
-  line-height: 1.3em;
-  vertical-align: baseline;
 }
 .cm-s-loop-light .cm-tag,
 .cm-s-loop-dark .cm-tag {
@@ -73,94 +74,6 @@
 .cm-s-loop-light .console-log-marker:before,
 .cm-s-loop-dark .console-log-marker:before {
   content: "➔ ";
-}
-.cm-mode-html .cm-attrval-id,
-.cm-mode-html .cm-attrval-class {
-  font-weight: bold !important;
-}
-.cm-mode-html .cm-null {
-  font-family: Nitti Grotesk;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 14px;
-  letter-spacing: 0.02em;
-}
-.cm-mode-html .cm-s-loop-light .cm-string {
-  color: #8a0048;
-}
-.cm-mode-html .cm-s-loop-light .cm-attrval-class,
-.cm-mode-html .cm-s-loop-light .cm-attrkey-class,
-.cm-mode-html .cm-s-loop-light .cm-eq-class {
-  color: #bb5dc7;
-}
-.cm-mode-html .cm-s-loop-light .cm-attrval-id,
-.cm-mode-html .cm-s-loop-light .cm-attrkey-id,
-.cm-mode-html .cm-s-loop-light .cm-eq-id {
-  color: #355bad;
-}
-.cm-mode-html .cm-s-loop-dark .cm-string {
-  color: #c08e58;
-}
-.cm-mode-html .cm-s-loop-dark .cm-attrval-class {
-  color: #cebb56;
-}
-.cm-mode-html .cm-s-loop-dark .cm-attrval-id {
-  color: #88b171;
-}
-.cm-mode-styl .cm-s-loop-light .cm-colon,
-.cm-mode-scss .cm-s-loop-light .cm-colon,
-.cm-mode-styl .cm-s-loop-light .cm-brack,
-.cm-mode-scss .cm-s-loop-light .cm-brack {
-  color: #808080;
-}
-.cm-mode-styl .cm-s-loop-light .cm-property,
-.cm-mode-scss .cm-s-loop-light .cm-property {
-  color: #69899e !important;
-  font-weight: 400;
-}
-.cm-mode-styl .cm-s-loop-light .cm-variable,
-.cm-mode-scss .cm-s-loop-light .cm-variable,
-.cm-mode-styl .cm-s-loop-light .cm-variable-2,
-.cm-mode-scss .cm-s-loop-light .cm-variable-2 {
-  color: #000;
-  font-weight: normal;
-}
-.cm-mode-styl .cm-s-loop-light .cm-string,
-.cm-mode-scss .cm-s-loop-light .cm-string {
-  color: #000080;
-  font-weight: 600;
-}
-.cm-mode-styl .cm-s-loop-light .cm-def,
-.cm-mode-scss .cm-s-loop-light .cm-def {
-  color: #000;
-}
-.cm-mode-styl .cm-s-loop-light .cm-tag,
-.cm-mode-scss .cm-s-loop-light .cm-tag,
-.cm-mode-styl .cm-s-loop-light .cm-qualifier,
-.cm-mode-scss .cm-s-loop-light .cm-qualifier,
-.cm-mode-styl .cm-s-loop-light .cm-builtin,
-.cm-mode-scss .cm-s-loop-light .cm-builtin {
-  font-weight: 600;
-  border-bottom: 1px solid;
-}
-.cm-mode-styl .cm-s-loop-light .cm-qualifier,
-.cm-mode-scss .cm-s-loop-light .cm-qualifier {
-  color: #bb5dc7;
-}
-.cm-mode-styl .cm-s-loop-light .cm-builtin,
-.cm-mode-scss .cm-s-loop-light .cm-builtin {
-  color: #355bad;
-}
-.cm-mode-styl .cm-s-loop-light .cm-variable-3,
-.cm-mode-scss .cm-s-loop-light .cm-variable-3 {
-  font-weight: 400;
-  color: #8a0048;
-}
-.cm-mode-styl .cm-s-loop-light .cm-atom,
-.cm-mode-scss .cm-s-loop-light .cm-atom,
-.cm-mode-styl .cm-s-loop-light .cm-number,
-.cm-mode-scss .cm-s-loop-light .cm-number {
-  color: #000;
 }
 .cm-s-loop-dark.CodeMirror {
   color: #bbb;
@@ -221,12 +134,6 @@
 .cm-s-loop-light .CodeMirror-activeline-background {
   background: #f9f9f9;
 }
-.cm-s-loop-light .cm-atom,
-.cm-s-loop-light .cm-number,
-.cm-s-loop-light .cm-string {
-  color: #000;
-  font-weight: 500;
-}
 .cm-s-loop-light .cm-keyword,
 .cm-s-loop-light .cm-kw-special {
   color: #c24888;
@@ -256,15 +163,168 @@
   color: #00a3ff;
   -webkit-animation: decaylight 0.2s;
 }
-@-webkit-keyframes decaydark {
-  0% {
-    color: #fff;
-  }
+.cm-mode-html .cm-null {
+  font-family: Nitti Grotesk Medium;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
 }
-@-webkit-keyframes decaylight {
-  0% {
-    color: #00f;
-  }
+.cm-mode-html .cm-s-loop-dark .cm-string {
+  color: #c08e58;
+}
+.cm-mode-html .cm-s-loop-dark .cm-attrval-class {
+  color: #cebb56;
+}
+.cm-mode-html .cm-s-loop-dark .cm-attrval-id {
+  color: #88b171;
+}
+.cm-attrval-id,
+.cm-attrval-class {
+  font-weight: bold !important;
+}
+.cm-s-loop-light .cm-attrval {
+  color: #8a0048;
+}
+.cm-s-loop-light .cm-attrval-class,
+.cm-s-loop-light .cm-attrkey-class,
+.cm-s-loop-light .cm-eq-class {
+  color: #bb5dc7;
+}
+.cm-s-loop-light .cm-attrval-id,
+.cm-s-loop-light .cm-attrkey-id,
+.cm-s-loop-light .cm-eq-id {
+  color: #355bad;
+}
+.cm-mode-styl .cm-s-loop-light .cm-colon,
+.cm-mode-scss .cm-s-loop-light .cm-colon,
+.cm-mode-sass .cm-s-loop-light .cm-colon,
+.cm-mode-styl .cm-s-loop-light .cm-brack,
+.cm-mode-scss .cm-s-loop-light .cm-brack,
+.cm-mode-sass .cm-s-loop-light .cm-brack {
+  color: #808080;
+}
+.cm-mode-styl .cm-s-loop-light .cm-property,
+.cm-mode-scss .cm-s-loop-light .cm-property,
+.cm-mode-sass .cm-s-loop-light .cm-property {
+  color: #69899e !important;
+  font-weight: 400;
+}
+.cm-mode-styl .cm-s-loop-light .cm-variable,
+.cm-mode-scss .cm-s-loop-light .cm-variable,
+.cm-mode-sass .cm-s-loop-light .cm-variable,
+.cm-mode-styl .cm-s-loop-light .cm-variable-2,
+.cm-mode-scss .cm-s-loop-light .cm-variable-2,
+.cm-mode-sass .cm-s-loop-light .cm-variable-2 {
+  color: #000;
+  font-weight: normal;
+}
+.cm-mode-styl .cm-s-loop-light .cm-string,
+.cm-mode-scss .cm-s-loop-light .cm-string,
+.cm-mode-sass .cm-s-loop-light .cm-string {
+  color: #000080;
+  font-weight: 600;
+}
+.cm-mode-styl .cm-s-loop-light .cm-def,
+.cm-mode-scss .cm-s-loop-light .cm-def,
+.cm-mode-sass .cm-s-loop-light .cm-def {
+  color: #000;
+}
+.cm-mode-styl .cm-s-loop-light .cm-tag,
+.cm-mode-scss .cm-s-loop-light .cm-tag,
+.cm-mode-sass .cm-s-loop-light .cm-tag,
+.cm-mode-styl .cm-s-loop-light .cm-qualifier,
+.cm-mode-scss .cm-s-loop-light .cm-qualifier,
+.cm-mode-sass .cm-s-loop-light .cm-qualifier,
+.cm-mode-styl .cm-s-loop-light .cm-builtin,
+.cm-mode-scss .cm-s-loop-light .cm-builtin,
+.cm-mode-sass .cm-s-loop-light .cm-builtin {
+  font-weight: 600;
+  border-bottom: 1px solid;
+}
+.cm-mode-styl .cm-s-loop-light .cm-qualifier,
+.cm-mode-scss .cm-s-loop-light .cm-qualifier,
+.cm-mode-sass .cm-s-loop-light .cm-qualifier {
+  color: #bb5dc7;
+}
+.cm-mode-styl .cm-s-loop-light .cm-builtin,
+.cm-mode-scss .cm-s-loop-light .cm-builtin,
+.cm-mode-sass .cm-s-loop-light .cm-builtin {
+  color: #355bad;
+}
+.cm-mode-styl .cm-s-loop-light .cm-variable-3,
+.cm-mode-scss .cm-s-loop-light .cm-variable-3,
+.cm-mode-sass .cm-s-loop-light .cm-variable-3 {
+  font-weight: 400;
+  color: #8a0048;
+}
+.cm-mode-styl .cm-s-loop-light .cm-atom,
+.cm-mode-scss .cm-s-loop-light .cm-atom,
+.cm-mode-sass .cm-s-loop-light .cm-atom,
+.cm-mode-styl .cm-s-loop-light .cm-number,
+.cm-mode-scss .cm-s-loop-light .cm-number,
+.cm-mode-sass .cm-s-loop-light .cm-number {
+  color: #000;
+}
+.cm-s-loop-light .cm-operator {
+  color: #535353;
+}
+/* REGEX */
+.cm-s-loop-light .cm-string-2 {
+  color: #894bcc;
+}
+.cm-s-loop-light .cm-meta {
+  color: #555;
+}
+.cm-s-loop-light .cm-qualifier {
+  color: #49addd;
+  color: #007cb8;
+}
+.cm-s-loop-light .cm-builtin {
+  color: #007aff;
+  color: #9c00ce;
+}
+.cm-s-loop-light .cm-bracket {
+  color: #f00;
+}
+.cm-s-loop-light .cm-quote {
+  color: #090;
+}
+.cm-mode-md .CodeMirror {
+  font: 400 20px/24px "Nitti Grotesk Medium";
+}
+.cm-mode-md .cm-code {
+  font: 400 16px/24px "Nitti";
+  color: #800080;
+}
+.cm-mode-md .cm-header {
+  color: #000;
+  font-family: "Nitti Grotesk Medium";
+  font-weight: normal;
+}
+.cm-mode-md .cm-header-1 {
+  font-family: "Nitti Grotesk Black";
+  font-weight: normal;
+  color: #a52a2a;
+}
+.cm-mode-md .cm-header-2 {
+  font-family: "Nitti Grotesk";
+  font-weight: bold;
+}
+.cm-mode-md .cm-link {
+  color: #288dfc;
+  text-decoration: none;
+}
+.cm-mode-md .cm-href {
+  color: #aaa;
+  font-family: "Nitti Grotesk Semilight";
+  border-bottom: 1px dotted;
+}
+.cm-s-loop-light .cm-hr {
+  color: #eee;
+  width: 80%;
+  border-top: 1px solid #ddd;
+  display: inline-block;
 }
 .CodeMirror pre.ind-0,
 .CodeMirror pre.ind-1 {
@@ -291,6 +351,12 @@
 .CodeMirror pre.ind-9 {
   background-image: url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png");
   background-position: top left 4px, top left 18px, top left 32px, top left 46px;
+  background-repeat: repeat-y;
+}
+.CodeMirror pre.ind-10,
+.CodeMirror pre.ind-11 {
+  background-image: url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png");
+  background-position: top left 4px, top left 18px, top left 32px, top left 46px, top left 60px;
   background-repeat: repeat-y;
 }
 .slider {
@@ -380,42 +446,6 @@
   height: 50px;
   top: -20px;
 }
-.cm-s-loop-light .cm-operator {
-  color: #535353;
-}
-/* REGEX */
-.cm-s-loop-light .cm-string-2 {
-  color: #894bcc;
-}
-.cm-s-loop-light .cm-meta {
-  color: #555;
-}
-.cm-s-loop-light .cm-qualifier {
-  color: #49addd;
-  color: #007cb8;
-}
-.cm-s-loop-light .cm-builtin {
-  color: #007aff;
-  color: #9c00ce;
-}
-.cm-s-loop-light .cm-bracket {
-  color: #f00;
-}
-.cm-s-loop-light .cm-header {
-  color: #00f;
-}
-.cm-s-loop-light .cm-quote {
-  color: #090;
-}
-.cm-s-loop-light .cm-hr {
-  color: #999;
-}
-.cm-s-loop-light .cm-link {
-  color: #00c;
-}
-.cm-s-loop-light .cm-color {
-  color: #000;
-}
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-light .CodeMirror-lint-message-warning {
   color: #f00;
@@ -424,6 +454,9 @@
   font-size: 16px;
   line-height: 14px;
   letter-spacing: 0.02em;
+}
+.cm-s-loop-light .cm-color {
+  color: #000;
 }
 .colorpicker {
   display: inline-block;

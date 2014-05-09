@@ -19,38 +19,35 @@ function Tab(nav) {
   self.ex        = null; // Close/status button
 
 
-  var init = function() {
-  }
 
   self.initWithFile = function(path, content) {
-    init();
     setFile(path);
     makeInterface();
     self.cm = makeMirror(content);
-  }
+  };
 
   var setFile = function(path) {
     self.path  = path;
     self.title = path.replace(/^.*[\\\/]/, '');
     self.ext = self.title.split(".")[1];
     self.mode = modeFromExtension(self.ext);
-  }
+  };
 
   self.save = function() {
     filer.save(self.path, self.cm.getValue());
-  }
+  };
 
   self.close = function(e) {
     e.preventDefault();
     nav.removeTab(self);
     self.flap.parentNode.removeChild(self.flap);
     self.panel.parentNode.removeChild(self.panel);
-  }
+  };
 
   var makeInterface = function() {
     self.flap = makeFlap();
     self.panel = makePanel();
-  }
+  };
 
   var makeFlap = function() {
     var f = document.createElement("li");
@@ -75,7 +72,7 @@ function Tab(nav) {
     f.appendChild(tabname);
 
     return f;
-  }
+  };
 
   var makePanel = function() {
     // ________________________
@@ -84,7 +81,7 @@ function Tab(nav) {
     p.className = "cm-mode-" + self.ext +" tab";
     p.setAttribute("data-tabpanel", self.path); 
     return p;
-  }
+  };
 
   var makeMirror = function(content) {
 
@@ -105,7 +102,7 @@ function Tab(nav) {
           var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
           cm.replaceSelection(spaces);
         }
-      },
+      }
     });
 
 
@@ -119,20 +116,21 @@ function Tab(nav) {
     }, 100);
 
     return editor;
-  }
+  };
 
   var modeFromExtension = function(ext) {
     if (ext == "html") return "text/html";
     else if (ext == "css") return ext;
     else if (ext == "scss") return "text/x-scss";
     else if (ext == "styl") return "text/x-scss";
+    else if (ext == "md") return "text/x-markdown";
     else if (ext == "js") return "javascript";
-  }
+  };
 
 
   var clickTab = function(e) {
     nav.setTab(self);
-  }
+  };
 
 
   // var timeout;
