@@ -9,10 +9,10 @@
 
   for (var i = 0; i < variations; i++) {
 
-    var dark = 55;
-    if (i % 2 == 0) dark = 65;
+    var dark = 58;
+    if (i % 2 == 0) dark = 48;
 
-    var col = $.husl.p.toHex(((i / variations) * 210 + 90), 80, dark);
+    var col = $.husl.p.toHex(((i / variations) * 210 + 90), 50, dark);
     // var bcol = $.husl.p.toHex(((i / variations) * 360), 50, 99);
     // var bordcol = $.husl.p.toHex(((i / variations) * 360), 50, 92);
     var className = ".cm-s-loop-light .cm-semantic-" + i;

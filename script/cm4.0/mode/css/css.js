@@ -113,7 +113,10 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
         escaped = !escaped && ch == "\\";
       }
       if (ch == quote || !escaped && quote != ")") state.tokenize = null;
-      return ret("string", "string");
+
+      var stringval = stream.current().replace(/[\"\']/g,'');
+
+      return ret("string str-" + stringval, "string str-" + stringval);
     };
   }
 

@@ -1,9 +1,6 @@
 .cm-s-loop-light .CodeMirror-activeline-background {
   background-color: rgba(0,0,255,0.03);
 }
-.cm-mode-html .cm-s-loop-light.CodeMirror {
-  color: #000;
-}
 .cm-mode-html .cm-s-loop-light.CodeMirror .cm-string {
   font-weight: 500;
 }
@@ -25,7 +22,7 @@
 }
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
-  font: 400 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono";
+  font: 400 16px/24px "Consolas", "Source Code Pro", "Ubuntu Mono";
 }
 .cm-s-loop-light .cm-literate,
 .cm-s-loop-dark .cm-literate {
@@ -163,9 +160,10 @@
 .cm-mode-html .cm-null {
   font-family: Nitti Grotesk Medium;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 14px;
   letter-spacing: 0.02em;
+  color: #000;
 }
 .cm-mode-html .cm-s-loop-dark .cm-string {
   color: #c08e58;
@@ -317,6 +315,12 @@
   font-family: "Nitti Grotesk Semilight";
   border-bottom: 1px dotted;
 }
+.cm-mode-md .cm-list1:first-child {
+  display: inline-block;
+}
+.cm-mode-md .cm-list1:first-child:first-letter {
+  color: #800000;
+}
 .cm-s-loop-light .cm-hr {
   color: #eee;
   width: 80%;
@@ -448,23 +452,38 @@
 }
 .colorpicker {
   display: inline-block;
-  width: 2ch;
-  height: 18px;
+  width: 3ch;
+  height: 16px;
   background: transparent;
   position: relative;
   vertical-align: middle;
 }
 .colorpicker-swatch {
   cursor: pointer;
-  width: 10px;
-  height: 10px;
-  border-radius: 1px;
+  width: 24px;
+  height: 13px;
+  border-radius: 10px;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
   position: absolute;
-  top: 2px;
-  left: 0;
+  left: -1px;
 }
 .colorpicker-swatch:hover {
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
   z-index: 999;
+}
+.cm-str-Arial {
+  font-family: Arial;
+  line-height: 80%;
+}
+.cm-str-Times {
+  font-family: Times;
+  line-height: 80%;
+}
+.cm-str-Verdana {
+  font-family: Verdana;
+  line-height: 80%;
+}
+.cm-str-Nitti {
+  font-family: "Nitti Grotesk";
+  line-height: 80%;
 }

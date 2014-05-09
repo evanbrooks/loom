@@ -17,7 +17,6 @@ $bg         = white
 
 
 .cm-mode-html .cm-s-loop-light.CodeMirror
-  color black
   .cm-string
     font-weight 500
 
@@ -69,7 +68,8 @@ $cssStrLight   = #8A0048;
 
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
-    font   400 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono"
+    //font   400 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono"
+    font   400 16px/24px "Consolas", "Source Code Pro", "Ubuntu Mono"
 
   .cm-keyword,
   .cm-kw-special
@@ -266,9 +266,10 @@ $cssStrLight   = #8A0048;
   .cm-null
     font-family: Nitti Grotesk Medium;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 14px;
     letter-spacing: 0.02em;
+    color black
   // D A R K
   .cm-s-loop-dark
     .cm-string
@@ -399,6 +400,13 @@ $cssStrLight   = #8A0048;
     color: #aaa
     font-family "Nitti Grotesk Semilight"
     border-bottom 1px dotted
+
+  .cm-list1:first-child
+    display: inline-block
+
+  .cm-list1:first-child:first-letter
+    color maroon
+
 
 .cm-s-loop-light .cm-hr
   color: #eee
@@ -563,8 +571,8 @@ $cssStrLight   = #8A0048;
 
 .colorpicker
   display: inline-block
-  width: 2ch
-  height: 18px
+  width: 3ch
+  height: 16px
   background: transparent
   position relative
   vertical-align middle
@@ -572,14 +580,41 @@ $cssStrLight   = #8A0048;
 
 .colorpicker-swatch
   cursor   pointer
-  width    10px
-  height   10px
-  border-radius: 1px
+  width    24px
+  height   13px
+  border-radius: 10px
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1)
   position absolute
-  top      2px
-  left     0
+  left     -1px
   &:hover
     // -webkit-transform: scale(1.5)
     box-shadow inset 0 0 0 1px rgba(0,0,0,0.3)
     z-index    999
+
+// ------------------------
+
+// T Y P E
+
+// ------------------------
+
+.cm-str-Arial
+  font-family Arial
+  line-height 80%
+
+.cm-str-Times
+  font-family Times
+  line-height 80%
+
+.cm-str-Verdana
+  font-family Verdana
+  line-height 80%
+
+.cm-str-Nitti
+  font-family "Nitti Grotesk"
+  line-height 80%
+
+
+
+
+
+
