@@ -78,7 +78,7 @@ $cssStrLight   = #8A0048;
   .cm-kw-special
     // font-style italic
     // font-weight 800
-    border-bottom 1px solid
+    // border-bottom 1px solid
 
   .cm-literate
     font-family: Nitti Grotesk Medium;
@@ -462,25 +462,14 @@ $cssStrLight   = #8A0048;
   &:focus
     opacity: 1
     outline: none
-    .slider-rail
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(blue,0)), color-stop(50%,rgba(blue,1)), color-stop(100%,rgba(blue,0))) //$color
     .slider-thumb
       border-color: blue
     & + span
       color: blue
   &:hover
     opacity: 1
-    .slider-thumb
-      // background: lighten($redcolor, 55)
-      // background $activetext
-      //top: -2px
-      //height: 18px
   &.dragging
     opacity: 1
-    .slider-rail
-      height: 200px
-      top: -95px
-      -webkit-transition: none
 
 
 .slider-thumb
@@ -488,7 +477,7 @@ $cssStrLight   = #8A0048;
   width:  10px
   border: 1px solid #ccc //$redcolor
   border-radius: 50%
-  //background: #ddd // $bg
+  background: #ddd // $bg
   display: inline-block
   position: absolute
   top: 0
@@ -501,13 +490,13 @@ $cssStrLight   = #8A0048;
   &:before
     // content: ""
     display  block
-    width    0
-    height 15px
+    width    30px
+    height   1px
     z-index  -1
-    top -4px
+    top 4px
     position relative
-    left 3px
-    border-right: 1px solid #aaa // $redcolor
+    left -15px
+    background #aaa // $redcolor
     opacity: 0.5
 
 
@@ -541,8 +530,8 @@ $cssStrLight   = #8A0048;
     border-color $activetext
     &:before
       border-color $activetext
-      height: 50px
-      top -20px
+      //height: 50px
+      //top -20px
 
 
 // ------------------------

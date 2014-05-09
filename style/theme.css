@@ -27,10 +27,6 @@
 .cm-s-loop-dark.CodeMirror {
   font: 400 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono";
 }
-.cm-s-loop-light .cm-kw-special,
-.cm-s-loop-dark .cm-kw-special {
-  border-bottom: 1px solid;
-}
 .cm-s-loop-light .cm-literate,
 .cm-s-loop-dark .cm-literate {
   font-family: Nitti Grotesk Medium;
@@ -373,9 +369,6 @@
   opacity: 1;
   outline: none;
 }
-.slider:focus .slider-rail {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,255,0)), color-stop(50%, #00f), color-stop(100%, rgba(0,0,255,0)));
-}
 .slider:focus .slider-thumb {
   border-color: #00f;
 }
@@ -388,16 +381,12 @@
 .slider.dragging {
   opacity: 1;
 }
-.slider.dragging .slider-rail {
-  height: 200px;
-  top: -95px;
-  -webkit-transition: none;
-}
 .slider-thumb {
   height: 10px;
   width: 10px;
   border: 1px solid #ccc;
   border-radius: 50%;
+  background: #ddd;
   display: inline-block;
   position: absolute;
   top: 0;
@@ -409,13 +398,13 @@
 }
 .slider-thumb:before {
   display: block;
-  width: 0;
-  height: 15px;
+  width: 30px;
+  height: 1px;
   z-index: -1;
-  top: -4px;
+  top: 4px;
   position: relative;
-  left: 3px;
-  border-right: 1px solid #aaa;
+  left: -15px;
+  background: #aaa;
   opacity: 0.5;
 }
 .cm-s-loop-dark .slider-thumb {
@@ -444,8 +433,6 @@
 }
 .CodeMirror-widget:hover .slider-thumb:before {
   border-color: #00a3ff;
-  height: 50px;
-  top: -20px;
 }
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-light .CodeMirror-lint-message-warning {

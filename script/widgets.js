@@ -44,10 +44,14 @@ function widgetize(cm, start, end) {
           });
         }
         else if (curr == "color") {
-          w = get_colorpicker(token.string, line);
-          widg = cm.setBookmark(insert_pos, {
-            widget: w.el,
-            insertLeft: true
+          w = get_colorpicker(token.string, line, insert_pos);
+          // widg = cm.setBookmark(insert_pos, {
+          //   widget: w.el,
+          //   insertLeft: true
+          // });
+          var end_pos = {line: line_num, ch: ch - 1 + token.string.length};
+          widg = cm.markText(insert_pos, end_pos, {
+            replacedWith: w.el,
           });
         }
         else if (curr == "src") {
@@ -183,7 +187,7 @@ function Slider(el) {
 
 // ==========
 
-function Picker(el, color, line) {
+function Picker(el, color, line, marker) {
   var self = this
     , $el = el;
 
@@ -206,9 +210,11 @@ function Picker(el, color, line) {
     var scr = nav.current.panel.querySelector(".CodeMirror-scroll");
 
 
-    var textPos = self.widget.find();
+    // var textPos = self.widget.find();
+    var textPos = marker;
 
-    var widgs = nav.current.cm.lineInfo(textPos.line).widgets;
+    //var widgs = nav.current.cm.lineInfo(textPos.line).widgets;
+    var widgs = nav.current.cm.lineInfo(line).widgets;
     if (widgs && widgs.length) {
       widgs.forEach(function(widg){
         widg.node.classList.remove("active");
@@ -272,10 +278,10 @@ function get_slider() {
 }
 
 
-function get_colorpicker(color, line) {
+function get_colorpicker(color, line, marker) {
   var el = document.createElement('span');
   el.className = 'colorpicker';
-  var picker = new Picker(el, color, line);
+  var picker = new Picker(el, color, line, marker);
   return {obj: picker, el: el};
 }
 
