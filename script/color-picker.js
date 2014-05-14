@@ -1,7 +1,7 @@
 (function() {
   function halt(e) {
     e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
   }
 
 

@@ -9,20 +9,21 @@
   left: 0;
   z-index: 120;
   line-height: 0;
-  margin: 6px;
   border-radius: 2px;
   -webkit-transform-origin: top left;
   -webkit-transform: scale(1, 0.4);
-  -webkit-transition: opacity 80ms, height 80ms;
+  -webkit-transition: all 80ms;
   opacity: 0;
   height: 0;
+  width: 0;
   overflow: hidden;
   white-space: normal;
 }
 .c-picker.active {
   -webkit-transform: scale(1);
   opacity: 1;
-  height: 150px;
+  height: 180px;
+  width: 300px;
 }
 .c-preview {
   position: relative;
@@ -45,7 +46,7 @@
 .c-format {
   background: #fff;
   display: inline-block;
-  height: 150px;
+  height: 180px;
   vertical-align: middle;
   padding: 1em;
   font-family: Consolas;
@@ -68,7 +69,7 @@
 }
 .c-slider,
 .c-wheel {
-  height: 150px;
+  height: 180px;
   width: 20px;
   display: inline-block;
   background: #00f;
@@ -102,8 +103,8 @@
   left: 0;
 }
 .c-grid {
-  height: 150px;
-  width: 300px;
+  height: 180px;
+  width: 180px;
   display: inline-block;
   background: #008000;
   position: relative;

@@ -238,20 +238,24 @@ function Picker(el, color, line, marker) {
     var x = pos.left - scrPos.left;
     var y = pos.top + $(scr).scrollTop() - 3;// + 15;
 
-    var pickerEl = document.querySelector("#templates .c-picker").cloneNode(true);
+    var pickerEl;
 
+    if (swatchEl.getAttribute("data-colorpicker-active")) {
 
+      $(swatchEl).children().removeClass("active");
+      setTimeout(function(){
+        $(swatchEl).children().remove();
+      }, 500);
+      
+      $(swatchEl).css("border", "");
+      swatchEl.removeAttribute("data-colorpicker-active");
+      return;
+    }
+
+    swatchEl.setAttribute("data-colorpicker-active", true);
     $(swatchEl).css("border", "2px solid red");
-    $(swatchEl).after(pickerEl);
-
-    // nav.current.cm.addLineWidget(
-    //   line,
-    //   el,
-    //   {
-    //     coverGutter: false,
-    //     noHScroll: true
-    //   }
-    // );
+    pickerEl = document.querySelector("#templates .c-picker").cloneNode(true);
+    $(swatchEl).append(pickerEl);
 
     var colorPicker = new ColorPicker(pickerEl);
 
@@ -273,7 +277,8 @@ function Picker(el, color, line, marker) {
       nav.current.cm.markText(replaceStart, replaceEnd, {
         replacedWith: $el,
       });
-      // [D] cache the new color to measure later
+      // [D] Set the new color and cache the string to measure later
+      swatchEl.style.backgroundColor = newColor;
       currColor = newColor;
     });
 

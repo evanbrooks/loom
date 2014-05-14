@@ -1,4 +1,4 @@
-$size = 150px
+$size = 180px
 $thumb = 10px
 $bg = white
 
@@ -23,15 +23,16 @@ $transparencygrid =
   // margin -7px 0 0 -7px
   z-index 120
   line-height 0
-  margin 6px
+  // margin 6px
   border-radius 2px
   // border 2px solid #444
   // box-shadow 0 1px 1px 1px rgba(0,0,0,0.1), 0 8px 30px rgba(0,0,0,0.05)
   -webkit-transform-origin: top left //15px 15px
   -webkit-transform: scale(1, 0.4)
-  -webkit-transition opacity 80ms, height 80ms; //-webkit-transform 180ms;// cubic-bezier(0.530, 1.450, 0.000, 1.000); 
+  -webkit-transition all 80ms;// cubic-bezier(0.530, 1.450, 0.000, 1.000); 
   opacity 0
   height 0
+  width: 0
   overflow hidden
   // margin-left 100px
   white-space: normal;
@@ -40,6 +41,7 @@ $transparencygrid =
   -webkit-transform: scale(1)
   opacity 1
   height $size
+  width: 300px;
 
 .c-preview
   //height 30px
@@ -131,7 +133,7 @@ $transparencygrid =
 
 .c-grid
   height $size
-  width $size * 2
+  width $size
   display inline-block
   background green
   position relative
