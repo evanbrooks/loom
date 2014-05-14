@@ -244,16 +244,14 @@ function Picker(el, color, line, marker) {
 
       $(swatchEl).children().removeClass("active");
       setTimeout(function(){
-        $(swatchEl).children().remove();
+        // $(swatchEl).children().remove();
       }, 500);
       
-      $(swatchEl).css("border", "");
       swatchEl.removeAttribute("data-colorpicker-active");
       return;
     }
 
     swatchEl.setAttribute("data-colorpicker-active", true);
-    $(swatchEl).css("border", "2px solid red");
     pickerEl = document.querySelector("#templates .c-picker").cloneNode(true);
     $(swatchEl).append(pickerEl);
 

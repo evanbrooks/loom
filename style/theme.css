@@ -456,6 +456,8 @@
   background: transparent;
   position: relative;
   vertical-align: top;
+  margin-top: 7px;
+  line-height: 0;
 }
 .colorpicker-swatch {
   cursor: pointer;
