@@ -107,7 +107,8 @@ function Tab(nav) {
 
 
     editor.on("change", function(cm, change) {
-      widgetize(cm, change.from.line, change.to.line);
+      var fromWidget = (change.origin && change.origin == "*fromWidget");
+      if (!fromWidget) widgetize(cm, change.from.line, change.to.line);
     });
 
     editor.setValue(content);
@@ -119,12 +120,12 @@ function Tab(nav) {
   };
 
   var modeFromExtension = function(ext) {
-    if (ext == "html") return "text/html";
-    else if (ext == "css") return ext;
+    if (ext == "html")      return "text/html";
+    else if (ext == "css")  return ext;
     else if (ext == "scss") return "text/x-scss";
     else if (ext == "styl") return "text/x-scss";
-    else if (ext == "md") return "text/x-markdown";
-    else if (ext == "js") return "javascript";
+    else if (ext == "md")   return "text/x-markdown";
+    else if (ext == "js")   return "javascript";
   };
 
 
@@ -132,68 +133,6 @@ function Tab(nav) {
     nav.setTab(self);
   };
 
-
-  // var timeout;
-  // var hinter = "";
-
-  // if (ext == "js") hinter = "javascript";
-  // // else if (ext == "html") hinter = "html";
-  // else if (ext == "css" || ext=="scss") hinter = "css";
-
-  // editor.on("inputRead", function(cm) {
-  //     if(timeout) clearTimeout(timeout);
-
-  //     var cursor = cm.getCursor();
-  //     var ltr = cm.getRange({line: cursor.line, ch: cursor.ch - 1}, cursor);
-
-  //     if (hinter && /^[A-Za-z]/.test(ltr)) {
-  //       timeout = setTimeout(function() {
-  //           CodeMirror.showHint(cm, CodeMirror.hint[hinter], {completeSingle: false});
-  //       }, 150);
-  //     }
-  // });
-
-  // editor.on("renderLine", function(cm, line, el) {
-  //   // var nums = el.querySelectorAll(".cm-number");
-  // });
-  // editor.on("focus", function(cm) {
-  //   var tabname = cm.display.wrapper.parentNode.getAttribute("data-tabpanel");
-  //   if (curr_tab && cm !== curr_tab.cm) {
-  //     set_tab_by_name(tabname);
-  //   }
-  // });
-  // editor.on("change", function(cm, change) {
-
-  //   widgetize(cm, change.from.line, change.to.line);
-  // });
-
-  // // open(filename, function(cm, data){
-  // //   editor.setValue(data);
-  // //   setTimeout(function(cm){widgetize(cm, 0, 25);}, 300);
-  // // });
-
-  // editor.setValue(content);
-  // setTimeout(function(){
-  //   widgetize(editor, 0, editor.lineCount()-1);
-  // }, 100);
-
-
-  // // var left = index * 700;
-  // // tab_panel.style.webkitTransform = "translate3d(" + left + "px,0,0)";
-
-  // nav[filename] = {
-  //   cm: editor,
-  //   // left: left,
-  //   flap: tab_flap, 
-  //   panel: tab_panel,
-  //   title: title,
-  //   filename: filename,
-  //   save_state: "Just opened"
-  // }
-
-
-
-  // // ========================
 
   // // L I V E  R E L O A D
 
@@ -222,9 +161,5 @@ function Tab(nav) {
   //     send_script(cm.getValue(), "http://localhost:3000/sketch/script.js");
   //   });
   // }
-
-
-  // return editor;
 }
 
-// module.exports = Tab;

@@ -18,7 +18,7 @@ function widgetize(cm, start, end) {
       {line: line_num, ch: line.text.length }
     );
     for (var i = 0; i < marks.length; i++) {
-      marks[i].clear();
+      // marks[i].clear();
     }
 
     // Scan through this line and insert widget marks
@@ -45,7 +45,7 @@ function widgetize(cm, start, end) {
         }
         else if (curr == "color") {
           w = get_colorpicker(token.string, line, insert_pos);
-          var end_pos = {line: line_num, ch: ch + token.string.length};
+          var end_pos = {line: line_num, ch: ch - 1 + token.string.length};
           widg = cm.markText(insert_pos, end_pos, {
             replacedWith: w.el,
           });
@@ -196,9 +196,9 @@ function Picker(el, color, line, marker) {
     , $el = el;
 
   $($el).html('<div class="colorpicker-swatch"></div>');
-  var $sw = $($el).find(".colorpicker-swatch")[0];
+  var swatchEl = $($el).find(".colorpicker-swatch")[0];
 
-  $sw.style.backgroundColor = color;
+  swatchEl.style.backgroundColor = color;
 
   self.setWidget = function(widget){
     self.widget = widget;
@@ -209,7 +209,7 @@ function Picker(el, color, line, marker) {
 
   var currColor;
 
-  $sw.addEventListener('mousedown', function(e){
+  swatchEl.addEventListener('mousedown', function(e){
 
     var swatch = this;
     var scr = nav.current.panel.querySelector(".CodeMirror-scroll");
@@ -228,8 +228,8 @@ function Picker(el, color, line, marker) {
       return;
     }
 
-    var color = window.getComputedStyle(swatch).backgroundColor;
-    currColor = color;
+    var computedColor = window.getComputedStyle(swatch).backgroundColor;
+    currColor = strt_text;
 
 
     var pos = $(swatch).offset();
@@ -238,29 +238,47 @@ function Picker(el, color, line, marker) {
     var x = pos.left - scrPos.left;
     var y = pos.top + $(scr).scrollTop() - 3;// + 15;
 
-    var el = document.querySelector("#templates .c-picker").cloneNode(true);
-    nav.current.cm.addLineWidget(
-      line,
-      el,
-      {
-        coverGutter: false,
-        noHScroll: true
-      }
-    );
+    var pickerEl = document.querySelector("#templates .c-picker").cloneNode(true);
 
-    var colorPicker = new ColorPicker(el);
+
+    $(swatchEl).css("border", "2px solid red");
+    $(swatchEl).after(pickerEl);
+
+    // nav.current.cm.addLineWidget(
+    //   line,
+    //   el,
+    //   {
+    //     coverGutter: false,
+    //     noHScroll: true
+    //   }
+    // );
+
+    var colorPicker = new ColorPicker(pickerEl);
+
+    // On widget change
     colorPicker.onChange(function(newColor){
+      // [A] get the range
+      var replaceStart = textPos;
+      var replaceEnd = { line: textPos.line, ch: (textPos.ch + currColor.length) };
+      // [B] replace the text (removing the widget)
       nav.current.cm.replaceRange(
         newColor,
-        textPos,
-        {
-          line: textPos.line,
-          ch: (textPos.ch + currColor.length)
-        }
+        replaceStart,
+        replaceEnd,
+        "*fromWidget"
+        // ^ let codemirror know that the change came from
+        // the widget and therefore not to trigger new widgets
       );
+      // [C] restore the widget
+      nav.current.cm.markText(replaceStart, replaceEnd, {
+        replacedWith: $el,
+      });
+      // [D] cache the new color to measure later
       currColor = newColor;
     });
-    colorPicker.setColor(color);
+
+    // Set and activate widget
+    colorPicker.setColor(computedColor);
     colorPicker.el.classList.add("active");
 
   });

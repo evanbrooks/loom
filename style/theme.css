@@ -451,11 +451,11 @@
 }
 .colorpicker {
   display: inline-block;
-  width: 3ch;
-  height: 16px;
+  min-width: 3ch;
+  min-height: 16px;
   background: transparent;
   position: relative;
-  vertical-align: middle;
+  vertical-align: top;
 }
 .colorpicker-swatch {
   cursor: pointer;
