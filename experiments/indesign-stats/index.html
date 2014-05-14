@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<head>
+  <title>InDesign Log Processor</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <style>
+  * {
+  	font: 400 16px/1.7 "Apercu-Mono";
+  }
+  body {
+  	max-width: 800px;
+  	margin: 0 auto;
+  }
+  span {
+  	display: inline-block;
+  }
+
+  #log {
+    opacity: 0;
+    -webkit-transition: all 0.7s;
+    max-height: 0;
+  }
+
+  #log.loaded {
+    opacity: 1;
+    max-height: 1000px;
+  }
+
+  #log div {
+  	border-bottom: 1px solid #eee
+  }
+
+  #status {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 1em 2em;
+    color: blue;
+  }
+
+  .name {
+  	width: 15em;
+  }
+  .time {
+  	text-align: right;
+  	width: 8em;
+  }
+  .count {
+  	text-align: right;
+  	width: 6em;
+  	margin-right: 4em;
+  }
+  #holder {
+    border: 1px dashed #ccc;
+    height: 100px;
+    margin: 20px auto;
+    color: #ccc;
+    text-align: center;
+    line-height: 100px;
+  }
+  #holder.hover {
+    border: 1px dashed #333;
+  }
+
+  #toolbox {
+    background: url(img/back.png) no-repeat;
+    background: url(img/back2.png) no-repeat;
+    width: 90px;
+    height: 400px;
+    position: relative;
+    margin: auto;
+  }
+
+  .box {
+    position: relative;
+    // opacity: 0.6;
+    width: 52px;
+    left: 19px;
+    padding-top: 7px;
+    // outline: 1px solid red;
+  }
+
+  .box::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .box img {
+    float: left;
+    display: block;
+    padding: 2px 3px 2px 2px;
+    -webkit-transform: scale(0);
+    -webkit-transition: all 0.2s;
+  }
+
+  .box-extra {
+    position: absolute;
+    opacity: 0.7;
+    background: #eee;
+    border: 1px solid #aaa;
+    width: auto;
+    padding: 2px 4px;
+    // box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    line-height: 0;
+  }
+
+  .box-extra img {
+    float: none;
+    display: inline-block;
+  }
+
+  .box1 {
+    padding-top: 42px;
+  }
+
+  .box-type {
+    top: 110px;
+    left: -24px;
+  }
+
+  .box-eyedrop {
+    top: 228px;
+    left: 76px;
+  }
+
+  .box-tform {
+    top: 180px;
+    left: 76px;
+  }
+
+  .box-shape {
+    top: 152px;
+    left: 76px;
+  }
+
+  .box-frame {
+    top: 152px;
+    left: -49px;
+  }
+
+  .box-pencil {
+    top: 122px;
+    left: 76px;
+  }
+
+
+  </style>
+</head>
+
+<body>
+
+	<div id="toolbox">
+	</div>
+
+  <div id="holder">
+    Drag log file here
+  </div>
+
+
+  <div id="status">
+    FileReader not supported
+  </div>
+
+
+	<div id="log">
+	</div>
+
+	<div id="data" style="display: none">
+	</div>
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="script.js"></script>
+</body>

@@ -27,10 +27,10 @@ function widgetize(cm, start, end) {
       pos = {line: line_num, ch: ch};
       token = cm.getTokenAt(pos);
       type = token.type;
-      if      (type && type.contains("number")) curr = "number";
-      else if (type && type.contains("color"))  curr = "color";
-      // else if (type && type.contains("string")) curr = "string";
+      if      (type && type.contains("number"))       curr = "number";
+      else if (type && type.contains("color"))        curr = "color";
       else if (type && type.contains("attrval-src"))  curr = "src";
+      else if (/spring\([\d\,]*\)/.test(token.string)) curr = "spring";
       else    curr = false;
 
       if (curr && (curr !== prev)) {
@@ -45,11 +45,7 @@ function widgetize(cm, start, end) {
         }
         else if (curr == "color") {
           w = get_colorpicker(token.string, line, insert_pos);
-          // widg = cm.setBookmark(insert_pos, {
-          //   widget: w.el,
-          //   insertLeft: true
-          // });
-          var end_pos = {line: line_num, ch: ch - 1 + token.string.length};
+          var end_pos = {line: line_num, ch: ch + token.string.length};
           widg = cm.markText(insert_pos, end_pos, {
             replacedWith: w.el,
           });
@@ -57,6 +53,14 @@ function widgetize(cm, start, end) {
         else if (curr == "src") {
           var src = token.string.replace(/["']/g,"");
           w = get_img(src);
+          var end_pos = {line: line_num, ch: ch - 1 + token.string.length};
+          widg = cm.markText(insert_pos, end_pos, {
+            replacedWith: w.el,
+            //atomic: true,
+          });
+        }
+        else if (curr == "spring") {
+          w = get_spring(token.string);
           var end_pos = {line: line_num, ch: ch - 1 + token.string.length};
           widg = cm.markText(insert_pos, end_pos, {
             replacedWith: w.el,
@@ -203,6 +207,7 @@ function Picker(el, color, line, marker) {
   var strt_text = color;
 
 
+  var currColor;
 
   $sw.addEventListener('mousedown', function(e){
 
@@ -224,7 +229,7 @@ function Picker(el, color, line, marker) {
     }
 
     var color = window.getComputedStyle(swatch).backgroundColor;
-    var currColor = color;
+    currColor = color;
 
 
     var pos = $(swatch).offset();
@@ -250,7 +255,7 @@ function Picker(el, color, line, marker) {
         textPos,
         {
           line: textPos.line,
-          ch: (textPos.ch + currColor.length + 1)
+          ch: (textPos.ch + currColor.length)
         }
       );
       currColor = newColor;
@@ -284,6 +289,16 @@ function get_colorpicker(color, line, marker) {
   var picker = new Picker(el, color, line, marker);
   return {obj: picker, el: el};
 }
+
+function get_spring(text) {
+  var el = document.createElement('span');
+  el.className = 'springer';
+  el.innerText = "SPROINGGGG";
+  var picker = {};
+  // var picker = new Picker(el, color, line, marker);
+  return {obj: picker, el: el};
+}
+
 
 function get_img(path) {
   var el = document.createElement('span');

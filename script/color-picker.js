@@ -439,7 +439,7 @@
       var rgb = d3.rgb(str);
       var hsv = rgb2hsv(rgb.r, rgb.g, rgb.b);
 
-      hue   = parseInt(hsv[0]);
+      hue   = 360 - parseInt(hsv[0]);
       sat   = hsv[1];
       black = 1 - hsv[2];
 
@@ -466,6 +466,7 @@
       previewel.style.background  = rgba;
       gridThumb.style.background  = "rgb(" + c.r + "," + c.g + "," + c.b + ")";
 
+      previewel.innerText = rgba;
       self.change(rgba);
       // hueThumb.style.background   = "hsl(" + parseInt(hue) + ", 100%, 50%)";
       // opacThumb.style.borderColor = "rgba(" + c.r + "," + c.g + "," + c.b + "," + (alpha+0.4) +")";

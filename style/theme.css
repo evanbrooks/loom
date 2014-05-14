@@ -22,7 +22,7 @@
 }
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
-  font: 400 16px/24px "Consolas", "Source Code Pro", "Ubuntu Mono";
+  font: 400 16px/24px "Source Code Pro", "Ubuntu Mono";
 }
 .cm-s-loop-light .cm-literate,
 .cm-s-loop-dark .cm-literate {
@@ -234,8 +234,7 @@
 .cm-mode-styl .cm-s-loop-light .cm-builtin,
 .cm-mode-scss .cm-s-loop-light .cm-builtin,
 .cm-mode-sass .cm-s-loop-light .cm-builtin {
-  font-weight: 600;
-  border-bottom: 1px solid;
+  font-weight: 800;
 }
 .cm-mode-styl .cm-s-loop-light .cm-qualifier,
 .cm-mode-scss .cm-s-loop-light .cm-qualifier,
