@@ -70,6 +70,7 @@ $cssStrLight   = #8A0048;
   &.CodeMirror 
     //font   400 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono"
     font   400 16px/24px "Source Code Pro", "Ubuntu Mono"
+    font-family "fndrs_mono"
 
   .cm-keyword,
   .cm-kw-special
@@ -466,11 +467,11 @@ $cssStrLight   = #8A0048;
 .slider
   display: inline-block
   height: 12px
-  width: 2ch
+  width: 1ch
   position: relative
   cursor: ns-resize
   -webkit-user-select: none
-  opacity 0.8
+  opacity 0.7
   &:focus
     opacity: 1
     outline: none
@@ -486,10 +487,10 @@ $cssStrLight   = #8A0048;
 
 .slider-thumb
   height: 10px
-  width:  10px
-  border: 1px solid #ccc //$redcolor
-  border-radius: 50%
-  background: #ddd // $bg
+  width:  5px
+  border: 1px solid #adadad //$redcolor
+  border-radius: 3px
+  background: #cacaca // $bg
   display: inline-block
   position: absolute
   top: 0
@@ -527,9 +528,6 @@ $cssStrLight   = #8A0048;
       opacity: 1
 
 
-.CodeMirror-widget
-  cursor: ns-resize
-
 .CodeMirror-widget:hover,
 .CodeMirror-widget:hover + .cm-number
   // background: rgba($activetext, 0.1)
@@ -554,7 +552,7 @@ $cssStrLight   = #8A0048;
 
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-light .CodeMirror-lint-message-warning {
-  color: red
+  color: #aaa
   font-family: Nitti Grotesk Medium
   font-weight: normal
   font-size: 16px

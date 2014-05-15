@@ -266,7 +266,6 @@ h2 {
 }
 .dragging {
   cursor: ns-resize;
-  opacity: 0.3;
 }
 .dragging * {
   -webkit-user-select: none !important;

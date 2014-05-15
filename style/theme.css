@@ -23,6 +23,7 @@
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
   font: 400 16px/24px "Source Code Pro", "Ubuntu Mono";
+  font-family: "fndrs_mono";
 }
 .cm-s-loop-light .cm-literate,
 .cm-s-loop-dark .cm-literate {
@@ -365,11 +366,11 @@
 .slider {
   display: inline-block;
   height: 12px;
-  width: 2ch;
+  width: 1ch;
   position: relative;
   cursor: ns-resize;
   -webkit-user-select: none;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 .slider:focus {
   opacity: 1;
@@ -389,10 +390,10 @@
 }
 .slider-thumb {
   height: 10px;
-  width: 10px;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  background: #ddd;
+  width: 5px;
+  border: 1px solid #adadad;
+  border-radius: 3px;
+  background: #cacaca;
   display: inline-block;
   position: absolute;
   top: 0;
@@ -426,9 +427,6 @@
 .cm-s-loop-dark .slider:hover {
   opacity: 1;
 }
-.CodeMirror-widget {
-  cursor: ns-resize;
-}
 .CodeMirror-widget:hover,
 .CodeMirror-widget:hover + .cm-number {
   color: #00a3ff;
@@ -442,7 +440,7 @@
 }
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-light .CodeMirror-lint-message-warning {
-  color: #f00;
+  color: #aaa;
   font-family: Nitti Grotesk Medium;
   font-weight: normal;
   font-size: 16px;
