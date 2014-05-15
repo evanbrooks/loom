@@ -41,6 +41,7 @@ function Nav() {
     // If nothing is focused, focus this.
     if (!self.current) self.setTab(newTab);
 
+    self.saveState();
     return newTab;
   };
 
@@ -63,6 +64,7 @@ function Nav() {
     }
     self.list.splice(index, 1);
     delete self.tabs[tab.path];
+    self.saveState();
   };
 
   self.setTab = function(tab) {
@@ -77,6 +79,7 @@ function Nav() {
       self.current.cm.refresh();
       self.current.cm.focus();
     }
+    self.saveState();
   };
 
   self.setTheme = function(newtheme) {
@@ -88,6 +91,33 @@ function Nav() {
   self.saveCurrent = function() {
     if (self.current.save) self.current.save();
   };
+
+  // ___________________
+  // Restore Nav state between opens
+
+  self.saveState = function() {
+    var pathList = self.list.map(function(val){
+      return val.path;
+    });
+    localStorage.navState = JSON.stringify({
+      list: pathList
+    });
+  }
+  self.restoreState = function() {
+    var oldStateStr = localStorage.navState;
+    if (oldStateStr) {
+      var oldState = JSON.parse(oldStateStr);
+      console.log(oldState);
+      // REOPEN FILES
+      async.map(oldState.list, filer.open, function(err, files) {
+        files.forEach(function(f) {
+          if (f.error) return;
+          self.addTab(f.path, f.content);
+        });
+      });
+      // RESET CURRENT FILE
+    }
+  }
 
 
 }

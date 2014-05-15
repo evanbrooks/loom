@@ -34,13 +34,7 @@ nav.setDocument(document);
 //   makeTab(path);
 // }
 
-async.map(file_arr, filer.open, function(err, files) {
-  files.forEach(function(f) {
-    if (f.error) return;
-    nav.addTab(f.path, f.content);
-  });
-});
-
+nav.restoreState();
 
 // ______________________________________
 
