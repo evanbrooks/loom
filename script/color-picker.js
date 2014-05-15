@@ -166,7 +166,6 @@
 
 
     self.drag = function(x, y) {
-      console.log(ppos.x + " " + x);
       self.pos(
         ppos.x + x - mdown.x, 
         ppos.y + y - mdown.y
@@ -228,7 +227,6 @@
 
     var signal = function() {
     	 if (opts.cb) {
-        console.log(xlimit);
     	 	opts.cb({
     	 		x: pos.x / xlimit,
     	 		y: pos.y / ylimit
@@ -257,7 +255,6 @@
 
     self.setHue = function(hue){
     	var amount = (hue / 360);
-      console.log(amount);
     	looper.setPos(amount);
     }
 

@@ -5,14 +5,11 @@
 .c-picker {
   -webkit-app-region: no-drag;
   display: inline-block;
-  top: 0;
-  left: 0;
   z-index: 120;
   line-height: 0;
   border-radius: 2px;
   -webkit-transform-origin: top left;
-  -webkit-transform: scale(1, 0.4);
-  -webkit-transition: all 80ms cubic-bezier(0.53, 1.45, 0, 1);
+  -webkit-transition: height 80ms, width 80ms, padding 80ms, opacity 400ms;
   opacity: 0;
   height: 1px;
   width: 1px;
@@ -22,8 +19,9 @@
 .c-picker.active {
   -webkit-transform: scale(1);
   opacity: 1;
-  height: 180px;
-  width: 300px;
+  height: 200px;
+  width: 280px;
+  padding: 10px;
 }
 .c-preview {
   position: relative;

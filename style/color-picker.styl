@@ -10,26 +10,18 @@ $transparencygrid =
 
 
 .c-picker *
-  // outline red 1px solid
   box-sizing border-box
   -webkit-box-sizing border-box
 
 .c-picker
   -webkit-app-region: no-drag
   display inline-block
-  //position absolute
-  top  0
-  left 0
-  // margin -7px 0 0 -7px
   z-index 120
   line-height 0
-  // margin 6px
   border-radius 2px
-  // border 2px solid #444
-  // box-shadow 0 1px 1px 1px rgba(0,0,0,0.1), 0 8px 30px rgba(0,0,0,0.05)
   -webkit-transform-origin: top left //15px 15px
-  -webkit-transform: scale(1, 0.4)
-  -webkit-transition all 80ms cubic-bezier(0.530, 1.450, 0.000, 1.000); 
+  //-webkit-transform: scale(0.2)
+  -webkit-transition height 80ms, width 80ms, padding 80ms, opacity 400ms;
   opacity 0
   height 1px
   width: 1px
@@ -39,15 +31,12 @@ $transparencygrid =
 .c-picker.active
   -webkit-transform: scale(1)
   opacity 1
-  height $size
-  width: 300px;
+  height $size + 20px
+  width: 280px;
+  padding 10px
 
 .c-preview
-  //height 30px
-  //width 30px
-  //margin-bottom 10px
   position relative
-  // border-bottom: 1px solid white
   &:before
     content ""
     position absolute

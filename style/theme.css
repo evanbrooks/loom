@@ -119,6 +119,9 @@
 .cm-s-loop-light.CodeMirror {
   color: #666;
 }
+.cm-s-loop-light div.CodeMirror-cursor {
+  border-left: 1px solid #00c8ff !important;
+}
 .cm-s-loop-light .cm-property {
   color: #666 !important;
   box-shadow: none !important;
@@ -463,7 +466,7 @@
   cursor: pointer;
   min-width: 24px;
   min-height: 13px;
-  border-radius: 10px;
+  border-radius: 7px;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
 }
 .colorpicker-swatch:hover {
