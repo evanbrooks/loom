@@ -13,12 +13,12 @@ function widgetize(cm, start, end) {
     if (!line) return;
 
     // Find all widget marks on this line and clear them
-    var marks = cm.findMarks(
+    var marksCache = cm.findMarks(
       {line: line_num, ch: 0 },
       {line: line_num, ch: line.text.length }
     );
-    for (var i = 0; i < marks.length; i++) {
-      // marks[i].clear();
+    for (var i = 0; i < marksCache.length; i++) {
+      marksCache[i].clear();
     }
 
     // Scan through this line and insert widget marks
@@ -30,6 +30,7 @@ function widgetize(cm, start, end) {
       if      (type && type.contains("number"))       curr = "number";
       else if (type && type.contains("color"))        curr = "color";
       else if (type && type.contains("attrval-src"))  curr = "src";
+      else if (token.string.contains("curveOptions"))   curr = "curve";
       else if (/spring\([\d\,]*\)/.test(token.string)) curr = "spring";
       else    curr = false;
 
@@ -59,6 +60,22 @@ function widgetize(cm, start, end) {
             //atomic: true,
           });
         }
+        else if (curr == "curve") {
+          console.log("FOUND CURVE");
+
+          function isFolded() {
+            for (var i = 0; i < marksCache.length; ++i)
+              if (marksCache[i].__isFold) return true;
+            return false;
+          }
+
+          console.log(isFolded());
+
+          cm.foldCode(pos.line, {
+            rangeFinder: CodeMirror.fold.brace,
+            widget: "~~~ Sparkline ~~~",
+          }, "fold");
+        }
         else if (curr == "spring") {
           w = get_spring(token.string);
           var end_pos = {line: line_num, ch: ch - 1 + token.string.length};
@@ -67,7 +84,7 @@ function widgetize(cm, start, end) {
             //atomic: true,
           });
         }
-        if (w.obj.setWidget) w.obj.setWidget(widg);
+        if (w && w.obj.setWidget) w.obj.setWidget(widg);
       }
       prev = curr;
     }
@@ -244,7 +261,7 @@ function Picker(el, color, line, marker) {
 
       $(swatchEl).children().removeClass("active");
       setTimeout(function(){
-        // $(swatchEl).children().remove();
+        $(swatchEl).children().remove();
       }, 500);
       
       swatchEl.removeAttribute("data-colorpicker-active");
@@ -262,20 +279,23 @@ function Picker(el, color, line, marker) {
       // [A] get the range
       var replaceStart = textPos;
       var replaceEnd = { line: textPos.line, ch: (textPos.ch + currColor.length) };
-      // [B] replace the text (removing the widget)
-      nav.current.cm.replaceRange(
-        newColor,
-        replaceStart,
-        replaceEnd,
-        "*fromWidget"
-        // ^ let codemirror know that the change came from
-        // the widget and therefore not to trigger new widgets
-      );
-      // [C] restore the widget
-      nav.current.cm.markText(replaceStart, replaceEnd, {
-        replacedWith: $el,
-      });
-      // [D] Set the new color and cache the string to measure later
+      // [B] buffer these changes
+      nav.current.cm.operation(function(){
+        // [B1] replace the text (removing the widget)
+        nav.current.cm.replaceRange(
+          newColor,
+          replaceStart,
+          replaceEnd,
+          "*fromWidget"
+          // ^ let codemirror know that the change came from
+          // the widget and therefore not to trigger new widgets
+        );
+        // [B2] restore the widget
+        nav.current.cm.markText(replaceStart, replaceEnd, {
+          replacedWith: $el,
+        });
+      })
+      // [C] Set the new color and cache the string to measure later
       swatchEl.style.backgroundColor = newColor;
       currColor = newColor;
     });

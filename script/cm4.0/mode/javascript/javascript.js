@@ -262,8 +262,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
           cc.pop()();
 
         // EB - Add color classes
-
-        if (content == "function" || content == "vaaaaar" || content == "return") return "kw-special";
+        // if (content == "function" || content == "vaaaaar" || content == "return") return "kw-special";
 
 
         if (type == "variable" || type == "def") {

@@ -108,7 +108,11 @@ function Tab(nav) {
 
     editor.on("change", function(cm, change) {
       var fromWidget = (change.origin && change.origin == "*fromWidget");
-      if (!fromWidget) widgetize(cm, change.from.line, change.to.line);
+      if (!fromWidget) {
+        //cm.operation(function(){
+          widgetize(cm, change.from.line, change.to.line);
+          //});
+      }
     });
 
     editor.setValue(content);

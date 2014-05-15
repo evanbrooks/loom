@@ -39,7 +39,7 @@
     CodeMirror.on(myWidget, "mousedown", function() { myRange.clear(); });
     var myRange = cm.markText(range.from, range.to, {
       replacedWith: myWidget,
-      clearOnEnter: true,
+      // clearOnEnter: true, - EB we aren't using text folding that way.
       __isFold: true
     });
     myRange.on("clear", function(from, to) {
@@ -66,6 +66,7 @@
 
   // New-style interface
   CodeMirror.defineExtension("foldCode", function(pos, options, force) {
+    console.log(force);
     doFold(this, pos, options, force);
   });
 
