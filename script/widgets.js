@@ -178,7 +178,7 @@ function Slider(el) {
     if (e.keyCode == 38) {
       e.preventDefault();
       val = Math.round((val + step) * 100) / 100;
-      curr_tab.cm.replaceRange(
+      nav.current.cm.replaceRange(
         (val + ext),
         pos,
         {
@@ -191,7 +191,7 @@ function Slider(el) {
     else if (e.keyCode == 40) {
       e.preventDefault();
       val = Math.round((val - step) * 100) / 100;
-      curr_tab.cm.replaceRange(
+      nav.current.cm.replaceRange(
         (val + ext),
         pos,
         {
