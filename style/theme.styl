@@ -18,12 +18,12 @@ $bg         = white
 
 .cm-mode-html .cm-s-loop-light.CodeMirror
   .cm-string
-    font-weight 500
+    //font-weight 400
 
 
 .cm-string
   //font-family: "CentSchbook Mono BT"
-  font-weight: normal !important
+  // font-weight: normal !important
 
 
 
@@ -48,7 +48,7 @@ $cssStrLight   = #8A0048;
 // "CentSchbook Mono BT"
 
 
-.cm-mode-js
+.cm-mode-js, .cm-mode-html
   // variables (these will be recolored)
   .cm-def,
   .cm-variable,
@@ -56,13 +56,16 @@ $cssStrLight   = #8A0048;
   .cm-variable-3
     color        brown
     font-weight  700
-
   // Content/values
   .cm-atom,
   .cm-number, 
   .cm-string
     color black // $redcolor
     font-weight 500
+  .cm-attrval
+    font-weight 400
+    &.cm-attrval-id, &.cm-attrval-class
+      font-weight 600
 
 
 
@@ -82,19 +85,17 @@ $cssStrLight   = #8A0048;
     // border-bottom 1px solid
 
   .cm-literate
-    font-family: Nitti Grotesk Medium;
-    font-weight: normal;
+    font-family: Founders Grotesk Text;
+    font-weight: 500;
     font-size: 16px;
     line-height: 14px;
-    letter-spacing: 0.02em;
-    color: rgb(86, 199, 122)
 
   .cm-codement
     font: inherit
 
 
   .cm-tag
-    font-weight bold
+    font-weight 600
 
   .CodeMirror-lint-message-error,
   .CodeMirror-lint-message-warning,
@@ -196,7 +197,8 @@ $cssStrLight   = #8A0048;
   // gray
   $secondcolor = #8EB5CF
   $comment     = #aaa
-  $litcomment  = black
+  $litcomment  = #21BD53
+  // black
   //#56c77a
 
   // Main
@@ -228,7 +230,8 @@ $cssStrLight   = #8A0048;
     color #D17373
     &.cm-head
       // color #A4B8C5
-      color #888
+      color #82ADDB
+      // #888
 
   .cm-comment, .cm-comment-marker
     color $comment
@@ -269,7 +272,7 @@ $cssStrLight   = #8A0048;
 
 .cm-mode-html
   .cm-null
-    font-family: Nitti Grotesk Medium;
+    font-family: Founders Grotesk Text;
     font-weight: normal;
     font-size: 17px;
     line-height: 14px;
@@ -285,13 +288,13 @@ $cssStrLight   = #8A0048;
       color #88b171 // #CAB85A
 
 
-.cm-attrval-id, .cm-attrval-class
-  font-weight bold !important
 
 // L I G H T
 .cm-s-loop-light
   .cm-attrval
     color: $cssStrLight
+  .cm-attrval.cm-head
+    color: #0B57B9
   .cm-attrval-class, .cm-attrkey-class, .cm-eq-class
     color: $cssClassLight
   .cm-attrval-id, .cm-attrkey-id, .cm-eq-id
@@ -323,17 +326,18 @@ $cssStrLight   = #8A0048;
     .cm-tag, .cm-qualifier, .cm-builtin
       font-weight 800
       // border-bottom: 1px solid
-    .cm-qualifier
-      color $cssClassLight
-    .cm-builtin
-      color $cssIDLight
     .cm-variable-3
       font-weight 400
       color $cssStrLight
     .cm-atom, .cm-number
       color black
 
-
+.cm-qualifier, .cm-builtin
+  font-weight 800
+.cm-qualifier
+  color $cssClassLight
+.cm-builtin
+  color $cssIDLight
 
 // ------------------------
 
@@ -352,14 +356,14 @@ $cssStrLight   = #8A0048;
 .cm-s-loop-light .cm-meta {
   color: #555;
 }
-.cm-s-loop-light .cm-qualifier {
-  color: rgb(73, 173, 221);
-  color: rgb(0, 124, 184);
-}
-.cm-s-loop-light .cm-builtin {
-  color: rgb(0, 122, 255);
-  color: rgb(156, 0, 206);
-}
+// .cm-s-loop-light .cm-qualifier {
+//   color: rgb(73, 173, 221);
+//   color: rgb(0, 124, 184);
+// }
+// .cm-s-loop-light .cm-builtin {
+//   color: rgb(0, 122, 255);
+//   color: rgb(156, 0, 206);
+// }
 .cm-s-loop-light .cm-bracket {
   color: red;
 }
@@ -500,6 +504,11 @@ $cssStrLight   = #8A0048;
   margin: auto
   margin-top 3px
   // -webkit-transition: all 0.1s
+  &:focus
+    opacity: 1
+    outline: none
+    border-color: $activetext
+    background: $activetext
   &:before
     // content: ""
     display  block

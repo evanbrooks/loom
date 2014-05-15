@@ -2,6 +2,8 @@
 
 // Tab object
 
+var stylus     = require('stylus');
+
 function Tab(nav) {
 
   var self = this;
@@ -120,6 +122,8 @@ function Tab(nav) {
       widgetize(editor, 0, editor.lineCount()-1);
     }, 100);
 
+    ansibleize(editor);
+
     return editor;
   };
 
@@ -137,33 +141,45 @@ function Tab(nav) {
     nav.setTab(self);
   };
 
+  var ansibleize = function(cm, mode) {
+    if (self.ext == "css") {
+      cm.on("inputRead", function(cm) {
+      });
+      cm.on("change", function(cm) {
+        ansible.send({
+          css: cm.getValue(),
+        });
+      });
+    }
+    else if (self.ext == "scss") {
+      // cm.on("change", function(cm) {
+      //   ansible.send({
+      //     css: self.cm.getValue().
+      //   });
+      // });
+    }
+    else if (self.ext == "styl") {
+      cm.on("change", function(cm) {
+        var val = cm.getValue();
+        stylus(val).set('filename', '.css').render(function(err, css){
+          // if (err) throw err;
+          if (err) {
+            console.log(err);
+            return;
+          }
+          ansible.send({
+            css: css,
+          });
+        });
+      });     
+    }
+  }
 
-  // // L I V E  R E L O A D
+  var ansible = {};
 
-  // if (mode == "css") {
-  //   editor.on("inputRead", function(cm) {
-  //     send_css(cm.getValue());
-  //   });
-  //   editor.on("change", function(cm) {
-  //     send_css(cm.getValue());
-  //   });
-  // }
-  // else if (mode == "text/x-scss") {
-  //   if (ext == "scss") {
-  //     editor.on("change", function(cm) {
-  //       send_scss(cm.getValue());
-  //     });
-  //   }
-  //   else if (ext == "styl") {
-  //     editor.on("change", function(cm) {
-  //       send_styl(cm.getValue());
-  //     });
-  //   }
-  // }
-  // else if (mode == "javascript") {
-  //   editor.on("change", function(cm) {
-  //     send_script(cm.getValue(), "http://localhost:3000/sketch/script.js");
-  //   });
-  // }
+  ansible.send = function(msg) {
+    io.sockets.volatile.emit('message', msg);
+  }
+
 }
 

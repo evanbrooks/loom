@@ -162,7 +162,10 @@ function Slider(el) {
         {
           line: pos.line,
           ch: (pos.ch + curr_text.length)
-        }
+        },
+        "*fromWidget"
+        // ^ let codemirror know that the change came from
+        // the widget and therefore not to trigger new widgets
       );
       curr_text = val + ext;
 
@@ -184,7 +187,10 @@ function Slider(el) {
         {
           line: pos.line,
           ch: (pos.ch + curr_text.length)
-        }
+        },
+        "*fromWidget"
+        // ^ let codemirror know that the change came from
+        // the widget and therefore not to trigger new widgets
       );
     }
     // DOWN KEY
@@ -197,7 +203,10 @@ function Slider(el) {
         {
           line: pos.line,
           ch: (pos.ch + curr_text.length)
-        }
+        },
+        "*fromWidget"
+        // ^ let codemirror know that the change came from
+        // the widget and therefore not to trigger new widgets
       );
     }
 

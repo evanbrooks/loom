@@ -23,11 +23,15 @@
       , io           = require('socket.io').listen(socketServer)
       ;
 
+    window.io = io;
 
-    var PUBLIC = '/Users/evan/Developer/loom/';
+    var PUBLIC = '/Users/evan/Developer/loom/experiments/rk4-spring';
     
+    var socketScript  = "<script>" + fs.readFileSync('/Users/evan/Developer/loom/script/socketio-client.min.js') + "</script>";
+    var ansibleScript = "<script>" + fs.readFileSync('/Users/evan/Developer/loom/script/ansible-client.js') + "</script>";
+
     app.use(require('connect-inject')({
-      snippet: "<script>alert('hello world');</script>",
+      snippet: (socketScript + ansibleScript),
       ignore: ['.js', '.svg']
     }));
     app.use(express.static(PUBLIC));

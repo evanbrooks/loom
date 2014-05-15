@@ -312,7 +312,9 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
     return attrState(type, stream, state);
   }
   function attrValueState(type, stream, state) {
-    if (type == "string") { setStyle = "string attrval attrval-" + last_attr_key; return attrContinuedState; };
+    var inH = state.inHead ? " head" : "";
+
+    if (type == "string") { setStyle = "string attrval attrval-" + last_attr_key + inH; return attrContinuedState; };
     if (type == "word" && Kludges.allowUnquoted) {setStyle = "string"; return attrState;}
     setStyle = "error";
     return attrState(type, stream, state);

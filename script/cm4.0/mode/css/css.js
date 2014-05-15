@@ -683,8 +683,9 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
           var cmnt = stream.current();
           var hasCurly = /[\{\}]/.test(cmnt);
           var hasSemi = /\w*;/.test(cmnt);
+          var hasColon = /\w*:/.test(cmnt);
 
-          if (hasCurly || hasSemi){
+          if (hasCurly || hasSemi || hasColon){
             return ["comment", "comment"];
           }
           return ["comment literate", "comment literate"];
