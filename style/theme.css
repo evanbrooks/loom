@@ -206,60 +206,73 @@
 .cm-mode-styl .cm-s-loop-light .cm-colon,
 .cm-mode-scss .cm-s-loop-light .cm-colon,
 .cm-mode-sass .cm-s-loop-light .cm-colon,
+.cm-mode-css .cm-s-loop-light .cm-colon,
 .cm-mode-styl .cm-s-loop-light .cm-brack,
 .cm-mode-scss .cm-s-loop-light .cm-brack,
-.cm-mode-sass .cm-s-loop-light .cm-brack {
+.cm-mode-sass .cm-s-loop-light .cm-brack,
+.cm-mode-css .cm-s-loop-light .cm-brack {
   color: #808080;
 }
 .cm-mode-styl .cm-s-loop-light .cm-property,
 .cm-mode-scss .cm-s-loop-light .cm-property,
-.cm-mode-sass .cm-s-loop-light .cm-property {
+.cm-mode-sass .cm-s-loop-light .cm-property,
+.cm-mode-css .cm-s-loop-light .cm-property {
   color: #69899e !important;
   font-weight: 400;
 }
 .cm-mode-styl .cm-s-loop-light .cm-variable,
 .cm-mode-scss .cm-s-loop-light .cm-variable,
 .cm-mode-sass .cm-s-loop-light .cm-variable,
+.cm-mode-css .cm-s-loop-light .cm-variable,
 .cm-mode-styl .cm-s-loop-light .cm-variable-2,
 .cm-mode-scss .cm-s-loop-light .cm-variable-2,
-.cm-mode-sass .cm-s-loop-light .cm-variable-2 {
+.cm-mode-sass .cm-s-loop-light .cm-variable-2,
+.cm-mode-css .cm-s-loop-light .cm-variable-2 {
   color: #000;
   font-weight: normal;
 }
 .cm-mode-styl .cm-s-loop-light .cm-string,
 .cm-mode-scss .cm-s-loop-light .cm-string,
-.cm-mode-sass .cm-s-loop-light .cm-string {
+.cm-mode-sass .cm-s-loop-light .cm-string,
+.cm-mode-css .cm-s-loop-light .cm-string {
   color: #000080;
   font-weight: 600;
 }
 .cm-mode-styl .cm-s-loop-light .cm-def,
 .cm-mode-scss .cm-s-loop-light .cm-def,
-.cm-mode-sass .cm-s-loop-light .cm-def {
+.cm-mode-sass .cm-s-loop-light .cm-def,
+.cm-mode-css .cm-s-loop-light .cm-def {
   color: #000;
 }
 .cm-mode-styl .cm-s-loop-light .cm-tag,
 .cm-mode-scss .cm-s-loop-light .cm-tag,
 .cm-mode-sass .cm-s-loop-light .cm-tag,
+.cm-mode-css .cm-s-loop-light .cm-tag,
 .cm-mode-styl .cm-s-loop-light .cm-qualifier,
 .cm-mode-scss .cm-s-loop-light .cm-qualifier,
 .cm-mode-sass .cm-s-loop-light .cm-qualifier,
+.cm-mode-css .cm-s-loop-light .cm-qualifier,
 .cm-mode-styl .cm-s-loop-light .cm-builtin,
 .cm-mode-scss .cm-s-loop-light .cm-builtin,
-.cm-mode-sass .cm-s-loop-light .cm-builtin {
+.cm-mode-sass .cm-s-loop-light .cm-builtin,
+.cm-mode-css .cm-s-loop-light .cm-builtin {
   font-weight: 800;
 }
 .cm-mode-styl .cm-s-loop-light .cm-variable-3,
 .cm-mode-scss .cm-s-loop-light .cm-variable-3,
-.cm-mode-sass .cm-s-loop-light .cm-variable-3 {
+.cm-mode-sass .cm-s-loop-light .cm-variable-3,
+.cm-mode-css .cm-s-loop-light .cm-variable-3 {
   font-weight: 400;
   color: #8a0048;
 }
 .cm-mode-styl .cm-s-loop-light .cm-atom,
 .cm-mode-scss .cm-s-loop-light .cm-atom,
 .cm-mode-sass .cm-s-loop-light .cm-atom,
+.cm-mode-css .cm-s-loop-light .cm-atom,
 .cm-mode-styl .cm-s-loop-light .cm-number,
 .cm-mode-scss .cm-s-loop-light .cm-number,
-.cm-mode-sass .cm-s-loop-light .cm-number {
+.cm-mode-sass .cm-s-loop-light .cm-number,
+.cm-mode-css .cm-s-loop-light .cm-number {
   color: #000;
 }
 .cm-qualifier,

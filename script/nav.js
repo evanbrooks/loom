@@ -99,23 +99,29 @@ function Nav() {
     var pathList = self.list.map(function(val){
       return val.path;
     });
+    var activeIndex = self.current ? self.list.indexOf(self.current) : 0;
     localStorage.navState = JSON.stringify({
-      list: pathList
+      list: pathList,
+      active: activeIndex
     });
   }
+
   self.restoreState = function() {
     var oldStateStr = localStorage.navState;
     if (oldStateStr) {
       var oldState = JSON.parse(oldStateStr);
       console.log(oldState);
-      // REOPEN FILES
+      // Reopen files
       async.map(oldState.list, filer.open, function(err, files) {
         files.forEach(function(f) {
           if (f.error) return;
           self.addTab(f.path, f.content);
         });
       });
-      // RESET CURRENT FILE
+      // Reset current tab
+      var index = parseInt(oldState.active);
+      console.log("setting current tab: " + index);
+      self.setTab(self.list[index]);
     }
   }
 

@@ -1,12 +1,21 @@
 var socket = io.connect('/');
 var socket_id = parseInt(Math.random() * 10000);
 
+socket.on('connect', function(){
+  console.log("LOOM — Ansible online");
+});
+socket.on('disconnect', function(){
+  console.log("LOOM — Ansible disconnected");
+  setTimeout(function(){
+    socket = io.connect('/');
+  }, 200);
+});
 
 socket.on('message', function(msg) {
-  console.log(msg);
+  // console.log(msg);
   if (msg.ID !== socket_id) {
     if (msg.css) {
-      console.log("replacing file:" + msg.cssFile)
+      // console.log("replacing file:" + msg.cssFile)
       insert_css(msg.css);
     }
     else if (msg.script) {

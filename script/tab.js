@@ -37,6 +37,7 @@ function Tab(nav) {
 
   self.save = function() {
     filer.save(self.path, self.cm.getValue());
+    ansible.reload();
   };
 
   self.close = function(e) {
@@ -173,6 +174,16 @@ function Tab(nav) {
         });
       });     
     }
+    else if (self.ext == "js") {
+      cm.on("change", function(cm) {
+        console.log("try to swap script");
+        ansible.send({
+          swapscript: true,
+          script: cm.getValue(),
+          url: "http://localhost:3000/script.js",
+        });
+      });
+    }
   }
 
   var ansible = {};
@@ -180,6 +191,11 @@ function Tab(nav) {
   ansible.send = function(msg) {
     io.sockets.volatile.emit('message', msg);
   }
+
+  ansible.reload = function() {
+    io.sockets.volatile.emit('message', {reload: true,});
+  }
+
 
 }
 

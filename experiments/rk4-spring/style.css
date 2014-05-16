@@ -1,0 +1,30 @@
+body {
+  margin:0;
+  padding: 0;
+  font-family: Calibre;
+}
+
+.spring-graph {
+  height: 50px;
+}
+
+thing#id.class > wow:hover {
+  okay: dokey;
+}
+
+path {
+  fill: transparent;
+  stroke: rgba(0,7,230,1);
+  stroke-width: 1px;
+}
+
+line {
+  stroke: rgba(128,128,128,1);
+  stroke-width: 0.2px;
+}
+label {
+  display: block;
+}
+input[type=range] {
+  width: 600px;
+}
