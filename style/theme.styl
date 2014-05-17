@@ -32,7 +32,8 @@ $bg         = white
 // Vars
 
 $cssClassLight = #BB5DC7;
-$cssIDLight    = #355BAD;
+$cssIDLight    = #522EC4;
+//#355BAD;
 $cssStrLight   = #8A0048;
 
 // ------------------------
@@ -54,14 +55,17 @@ $cssStrLight   = #8A0048;
   .cm-variable,
   .cm-variable-2,
   .cm-variable-3
-    color        brown
-    font-weight  700
+    //color        brown
+    //font-weight  800
+    //color: black !important;
+    font-weight: 700;
   // Content/values
   .cm-atom,
   .cm-number, 
-  .cm-string
-    color black // $redcolor
-    font-weight 500
+  .cm-string,
+  .cm-string-2
+    color #A80000 // $redcolor
+    //font-weight 600
   .cm-attrval
     font-weight 400
     &.cm-attrval-id, &.cm-attrval-class
@@ -72,8 +76,9 @@ $cssStrLight   = #8A0048;
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
     //font   400 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono"
-    font   400 16px/24px "Source Code Pro", "Ubuntu Mono"
-    font-family "fndrs_mono"
+    //font   400 16px/24px "Source Code Pro", "Ubuntu Mono"
+    font   400 15px/22px "Source Code Pro", "Ubuntu Mono"
+    //font-family "fndrs_mono"
 
   .cm-keyword,
   .cm-kw-special
@@ -85,17 +90,17 @@ $cssStrLight   = #8A0048;
     // border-bottom 1px solid
 
   .cm-literate
-    font-family: Founders Grotesk Text;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 14px;
+    //font-family: Nitti Grotesk;
+    //font-weight: 400;
+    //font-size: 19px;
+    //line-height: 14px;
 
   .cm-codement
     font: inherit
 
 
   .cm-tag
-    font-weight 600
+    font-weight 700
 
   .CodeMirror-lint-message-error,
   .CodeMirror-lint-message-warning,
@@ -143,7 +148,7 @@ $cssStrLight   = #8A0048;
     background: rgba(255,255,255,0.05)
 
   .cm-property
-    color  $maincolordark !important
+    color inherit !important
     box-shadow none !important
     background transparent !important
 
@@ -156,7 +161,7 @@ $cssStrLight   = #8A0048;
     // color #C97B62
     // orange
     //color $greencolor
-    color white
+    color #FF9A7B
     font-weight 500
 
   .cm-comment 
@@ -196,10 +201,11 @@ $cssStrLight   = #8A0048;
   $maincolor   = #666
   // gray
   $secondcolor = #8EB5CF
-  $comment     = #aaa
-  $litcomment  = #21BD53
+  $comment     = #8AC7AA
+  // #aaa
+  $litcomment  = #8AC7AA
   // black
-  //#56c77a
+  // #21BD53
 
   // Main
   &.CodeMirror 
@@ -210,7 +216,7 @@ $cssStrLight   = #8A0048;
 
 
   .cm-property
-    color  $maincolor !important
+    color  inherit !important
     box-shadow none !important
     background transparent !important
 
@@ -221,7 +227,13 @@ $cssStrLight   = #8A0048;
   // function and var definitions
   .cm-keyword,
   .cm-kw-special
-    color       #C24888
+    color       inherit
+    color #3D8BD1
+    //font-weight 600
+    //font-family: Consolas;
+    //font-style: italic;
+    //line-height: 1;
+    // #C24888
 
   .cm-tag,
   .cm-attribute,
@@ -346,12 +358,12 @@ $cssStrLight   = #8A0048;
 // ------------------------
 
 .cm-s-loop-light .cm-operator {
-  color: #535353;
+  // color: #535353;
 }
 /* REGEX */
-.cm-s-loop-light .cm-string-2 {
-  color: #894BCC;
-}
+// .cm-s-loop-light .cm-string-2 {
+//   color: #894BCC;
+// }
 
 .cm-s-loop-light .cm-meta {
   color: #555;

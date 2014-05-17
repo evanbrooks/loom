@@ -9,7 +9,6 @@
 .cm-mode-html .cm-variable-2,
 .cm-mode-js .cm-variable-3,
 .cm-mode-html .cm-variable-3 {
-  color: #a52a2a;
   font-weight: 700;
 }
 .cm-mode-js .cm-atom,
@@ -17,9 +16,10 @@
 .cm-mode-js .cm-number,
 .cm-mode-html .cm-number,
 .cm-mode-js .cm-string,
-.cm-mode-html .cm-string {
-  color: #000;
-  font-weight: 500;
+.cm-mode-html .cm-string,
+.cm-mode-js .cm-string-2,
+.cm-mode-html .cm-string-2 {
+  color: #a80000;
 }
 .cm-mode-js .cm-attrval,
 .cm-mode-html .cm-attrval {
@@ -33,15 +33,7 @@
 }
 .cm-s-loop-light.CodeMirror,
 .cm-s-loop-dark.CodeMirror {
-  font: 400 16px/24px "Source Code Pro", "Ubuntu Mono";
-  font-family: "fndrs_mono";
-}
-.cm-s-loop-light .cm-literate,
-.cm-s-loop-dark .cm-literate {
-  font-family: Founders Grotesk Text;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 14px;
+  font: 400 15px/22px "Source Code Pro", "Ubuntu Mono";
 }
 .cm-s-loop-light .cm-codement,
 .cm-s-loop-dark .cm-codement {
@@ -49,7 +41,7 @@
 }
 .cm-s-loop-light .cm-tag,
 .cm-s-loop-dark .cm-tag {
-  font-weight: 600;
+  font-weight: 700;
 }
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-dark .CodeMirror-lint-message-error,
@@ -91,7 +83,7 @@
   background: rgba(255,255,255,0.05);
 }
 .cm-s-loop-dark .cm-property {
-  color: #bbb !important;
+  color: inherit !important;
   box-shadow: none !important;
   background: transparent !important;
 }
@@ -101,7 +93,7 @@
 .cm-s-loop-dark .cm-atom,
 .cm-s-loop-dark .cm-number,
 .cm-s-loop-dark .cm-string {
-  color: #fff;
+  color: #ff9a7b;
   font-weight: 500;
 }
 .cm-s-loop-dark .cm-comment {
@@ -133,7 +125,7 @@
   border-left: 1px solid #00c8ff !important;
 }
 .cm-s-loop-light .cm-property {
-  color: #666 !important;
+  color: inherit !important;
   box-shadow: none !important;
   background: transparent !important;
 }
@@ -142,7 +134,8 @@
 }
 .cm-s-loop-light .cm-keyword,
 .cm-s-loop-light .cm-kw-special {
-  color: #c24888;
+  color: inherit;
+  color: #3d8bd1;
 }
 .cm-s-loop-light .cm-tag,
 .cm-s-loop-light .cm-attribute,
@@ -157,14 +150,14 @@
 }
 .cm-s-loop-light .cm-comment,
 .cm-s-loop-light .cm-comment-marker {
-  color: #aaa;
+  color: #8ac7aa;
 }
 .cm-s-loop-light .cm-literate {
-  color: #21bd53;
+  color: #8ac7aa;
 }
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-light .CodeMirror-lint-message-warning {
-  color: #aaa;
+  color: #8ac7aa;
 }
 .cm-s-loop-light .console-log-marker {
   color: #00a3ff;
@@ -201,7 +194,7 @@
 .cm-s-loop-light .cm-attrval-id,
 .cm-s-loop-light .cm-attrkey-id,
 .cm-s-loop-light .cm-eq-id {
-  color: #355bad;
+  color: #522ec4;
 }
 .cm-mode-styl .cm-s-loop-light .cm-colon,
 .cm-mode-scss .cm-s-loop-light .cm-colon,
@@ -283,15 +276,9 @@
   color: #bb5dc7;
 }
 .cm-builtin {
-  color: #355bad;
-}
-.cm-s-loop-light .cm-operator {
-  color: #535353;
+  color: #522ec4;
 }
 /* REGEX */
-.cm-s-loop-light .cm-string-2 {
-  color: #894bcc;
-}
 .cm-s-loop-light .cm-meta {
   color: #555;
 }

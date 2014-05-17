@@ -9,14 +9,16 @@
 
   for (var i = 0; i < variations; i++) {
 
-    var dark = 58;
-    if (i % 2 == 0) dark = 48;
+    if (i % 3 === 0) dark = 37;
+    else if (i % 3 === 1) dark = 46;
+    else dark = 55;
 
-    var col = $.husl.p.toHex(((i / variations) * 210 + 90), 50, dark);
-    // var bcol = $.husl.p.toHex(((i / variations) * 360), 50, 99);
+    var col = $.husl.p.toHex( ((i / variations) * 200 + 80), 70, dark);
+    var bcol = $.husl.p.toHex(((i / variations) * 200 + 80), 50, 60);
     // var bordcol = $.husl.p.toHex(((i / variations) * 360), 50, 92);
     var className = ".cm-s-loop-light .cm-semantic-" + i;
     css += className + " { color: " + col + ";}\n"; 
+    // css += className + ".cm-def { color: white; background: " + bcol + "; }\n"; 
   }
 
   for (var i = 0; i < variations; i++) {
@@ -24,7 +26,7 @@
     var dark = 62;
     if (i % 2 == 0) dark = 72;
 
-    var col = $.husl.p.toHex(((i / variations) * 210 + 90), 75, dark);
+    var col = $.husl.p.toHex(((i / variations) * 200 + 80), 60, dark);
     // var bcol = $.husl.p.toHex(((i / variations) * 360), 10, 23);
     // var bordcol = $.husl.p.toHex(((i / variations) * 360), 50, 30);
     var className = ".cm-s-loop-dark .cm-semantic-" + i;

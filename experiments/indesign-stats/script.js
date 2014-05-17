@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 	// modified from http://html5demos.com/file-api
 	var holder = document.getElementById('holder'),
-	     state = document.getElementById('status');
+      state = document.getElementById('status');
 
 	if (typeof window.FileReader === 'undefined') {
 	    state.className = 'fail';

@@ -301,6 +301,7 @@ h2 {
     bottom: 0;
     right: auto;
     border: 0;
+    background: #f9f9f9;
     padding-top: 30px;
   }
   .dragbar {

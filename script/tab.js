@@ -95,7 +95,7 @@ function Tab(nav) {
       mode: self.mode,
       tabSize: 2,
       lineNumbers: false,
-      lineWrapping: true,
+      //lineWrapping: true,
       gutters: ["CodeMirror-lint-markers"],
       lint: (self.mode == "javascript"),
       keyMap: "sublime",

@@ -27,13 +27,18 @@ function widgetize(cm, start, end) {
       pos = {line: line_num, ch: ch};
       token = cm.getTokenAt(pos);
       type = token.type;
+
+      // [1] Detect a condition that triggers a widget
+      // --------------
       if      (type && type.contains("number"))       curr = "number";
       else if (type && type.contains("color"))        curr = "color";
-      else if (type && type.contains("attrval-src"))  curr = "src";
+      //else if (type && type.contains("attrval-src"))  curr = "src";
       else if (token.string.contains("curveOptions"))   curr = "curve";
-      else if (/spring\([\d\,]*\)/.test(token.string)) curr = "spring";
+      //else if (/spring\([\d\,]*\)/.test(token.string)) curr = "spring";
       else    curr = false;
 
+      // [2] If this is the start of the condition, insert the widget
+      // -----------------
       if (curr && (curr !== prev)) {
         var insert_pos = {line: line_num, ch: ch - 1};
         var w, widg;
@@ -86,6 +91,8 @@ function widgetize(cm, start, end) {
         }
         if (w && w.obj.setWidget) w.obj.setWidget(widg);
       }
+
+      // So that we don't insert a widget for each character of the token
       prev = curr;
     }
   }
