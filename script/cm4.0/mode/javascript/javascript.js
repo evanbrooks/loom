@@ -124,7 +124,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
           , hasSemi = /\w*;/.test(cmnt)
           , hasCurl = /[\{\}]/.test(cmnt)
           , hasPlus = /[\+]/.test(cmnt)
-          , looksLikeCode = hasDots || hasSemi || hasCurl || hasPlus;
+          , looksLikeCode = hasSemi || hasCurl || hasPlus;
           ;
 
         // If doesn't look like code, and it on its own line,
@@ -183,6 +183,10 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
+
+    // Maybe literate?
+    if (state.freshLine) return ret("comment literate line-lit", "comment literate line-lit");
+
     return ret("comment", "comment");
   }
 

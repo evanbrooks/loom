@@ -13,12 +13,10 @@
     else if (i % 3 === 1) dark = 60;
     else dark = 55;
 
-    var col = $.husl.p.toHex( ((i / variations) * 200 + 80), 50, dark);
-    var bcol = $.husl.p.toHex(((i / variations) * 200 + 80), 50, 60);
-    // var bordcol = $.husl.p.toHex(((i / variations) * 360), 50, 92);
+    // var col = $.husl.p.toHex( ((i / variations) * 200 + 80), 50, dark);
+    var col = $.husl.p.toHex( ((i / variations) * 360), 100, dark);
     var className = ".cm-s-loop-light .cm-semantic-" + i;
     css += className + " { color: " + col + ";}\n"; 
-    // css += className + ".cm-def { color: white; background: " + bcol + "; }\n"; 
   }
 
   for (var i = 0; i < variations; i++) {

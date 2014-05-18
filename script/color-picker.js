@@ -6,7 +6,7 @@
 
 
   // ___________________________________________________________
-
+  //
   // C O L O R   P I C K E R
 
   function hsvToRgb(h, s, v){
@@ -328,23 +328,23 @@
     };
 
     var looper = new Thumb(el, {
-  		scrollx: false,
-  		scrolly: true,
-  		cb: update,
+      scrollx: false,
+      scrolly: true,
+      cb: update,
       picker: picker
-  	});
+    });
   }
 
 
   function Grid(picker, el) {
-  	var self = this;
-  	
-  	var thumb = new Thumb(el.querySelector(".c-thumb"), {
-  		scrollx: true,
-  		scrolly: true,
-  		cb: update,
+    var self = this;
+  
+    var thumb = new Thumb(el.querySelector(".c-thumb"), {
+      scrollx: true,
+      scrolly: true,
+      cb: update,
       picker: picker
-  	});
+    });
 
     self.change = function(){console.log("hi")};
     self.onChange = function(cb) {

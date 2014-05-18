@@ -64,8 +64,9 @@ $cssStrLight   = #8A0048;
   .cm-number, 
   .cm-string,
   .cm-string-2
-    color #A80000 // $redcolor
-    //font-weight 600
+    color: #B30202;
+    font-weight: 300;
+    //font-family: CentSchbook Mono BT;
   .cm-attrval
     font-weight 400
     &.cm-attrval-id, &.cm-attrval-class
@@ -86,8 +87,9 @@ $cssStrLight   = #8A0048;
   .cm-literate
     font-family: Nitti Grotesk;
     font-weight: 400;
-    font-size: 19px;
+    font-size: 18px;
     line-height: 14px;
+    letter-spacing: 0.015em;
 
   .cm-codement
     font: inherit
@@ -218,7 +220,8 @@ $cssStrLight   = #8A0048;
   .cm-keyword,
   .cm-kw-special
     color       inherit
-    color #436BBE
+    font-weight: 600
+    -webkit-font-smoothing: subpixel-antialiased
 
   .cm-tag,
   .cm-attribute,
@@ -233,11 +236,14 @@ $cssStrLight   = #8A0048;
     // text-decoration: line-through;
 
   .lit
-    //background: #ffffec;
+    background: rgba(yellow, 0.05);
 
   .cm-literate
-    color: #00A3FF
-    text-decoration: none;
+    // color: #00A3FF
+    //color #00B100
+    //text-decoration: none;
+    color gray
+    //background: rgba(yellow, 0.07);
 
   .CodeMirror-lint-message-error,
   .CodeMirror-lint-message-warning

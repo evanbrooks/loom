@@ -19,7 +19,8 @@
 .cm-mode-html .cm-string,
 .cm-mode-js .cm-string-2,
 .cm-mode-html .cm-string-2 {
-  color: #a80000;
+  color: #b30202;
+  font-weight: 300;
 }
 .cm-mode-js .cm-attrval,
 .cm-mode-html .cm-attrval {
@@ -39,8 +40,9 @@
 .cm-s-loop-dark .cm-literate {
   font-family: Nitti Grotesk;
   font-weight: 400;
-  font-size: 19px;
+  font-size: 18px;
   line-height: 14px;
+  letter-spacing: 0.015em;
 }
 .cm-s-loop-light .cm-codement,
 .cm-s-loop-dark .cm-codement {
@@ -142,7 +144,8 @@
 .cm-s-loop-light .cm-keyword,
 .cm-s-loop-light .cm-kw-special {
   color: inherit;
-  color: #436bbe;
+  font-weight: 600;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 .cm-s-loop-light .cm-tag,
 .cm-s-loop-light .cm-attribute,
@@ -159,9 +162,11 @@
 .cm-s-loop-light .cm-comment-marker {
   color: #aaa;
 }
+.cm-s-loop-light .lit {
+  background: rgba(255,255,0,0.05);
+}
 .cm-s-loop-light .cm-literate {
-  color: #00a3ff;
-  text-decoration: none;
+  color: #808080;
 }
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-light .CodeMirror-lint-message-warning {

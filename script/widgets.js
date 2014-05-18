@@ -1,5 +1,6 @@
 /*jshint laxcomma: true */
 
+
 function widgetize(cm, start, end) {
   var start_line = start;
   var end_line = end;
@@ -308,9 +309,9 @@ function Picker(el, color, line, marker) {
         );
         // [B2] restore the widget
         nav.current.cm.markText(replaceStart, replaceEnd, {
-          replacedWith: $el,
+          replacedWith: $el
         });
-      })
+      });
       // [C] Set the new color and cache the string to measure later
       swatchEl.style.backgroundColor = newColor;
       currColor = newColor;
@@ -322,10 +323,6 @@ function Picker(el, color, line, marker) {
 
   });
 }
-
-
-
-
 
 
 // ==========
@@ -369,7 +366,7 @@ function get_img(path) {
     el.style.backgroundSize = "cover";
     el.style.backgroundPosition = "center center";
     el.className = 'imgwidget';
-  }
+  };
   img.src = path;
   console.log(img);
 
