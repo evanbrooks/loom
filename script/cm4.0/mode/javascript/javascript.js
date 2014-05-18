@@ -120,7 +120,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         // Check if this comment is code-like
         // (has 'text.text' or 'text;' or some kind of bracket)
         var cmnt = stream.current()
-          , hasDots = /\w\.\w/.test(cmnt)
+          , endsWithDot = /\w\.\s*$/.test(cmnt)
           , hasSemi = /\w*;/.test(cmnt)
           , hasCurl = /[\{\}]/.test(cmnt)
           , hasPlus = /[\+]/.test(cmnt)
@@ -129,6 +129,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
         // If doesn't look like code, and it on its own line,
         // treat it as a comment heading.
+        if (endsWithDot) return ret("comment literate line-lit", "comment literate line-lit");
         if (state.freshLine && !looksLikeCode) return ret("comment literate line-lit", "comment literate line-lit");
         return ret("comment", "comment");
 
