@@ -1,3 +1,5 @@
+/*jshint laxcomma: true */
+
 // "toolbar": false,
 // "frame": false,
 
@@ -7,33 +9,16 @@
 
 var gui   = require('nw.gui')
   , filer = require('file.js')
-  , nav   = new Nav
+  , nav   = new Nav()
   , async = require('async')
-  , win   = gui.Window.get();
+  , win   = gui.Window.get()
   ;
-
-
-
-var file_arr = [
-  "/Users/evan/Developer/htmloutput/public/sketch/style.styl",
-  "/Users/evan/Developer/htmloutput/public/sketch/index.html",
-  "/Users/evan/Developer/htmloutput/public/sketch/script.js",
-  "/Users/evan/Developer/htmloutput/public/sketch/style.scss",
-  "/Users/evan/Developer/_sharedaccount/htmloutput/README.md",
-];
-
 
 // ______________________________________
 
 // Open previously stored files
 
 nav.setDocument(document);
-
-// for (var i = 0; i < file_arr.length; i++) {
-//   var path = file_arr[i];
-//   makeTab(path);
-// }
-
 nav.restoreState();
 
 // ______________________________________
@@ -41,7 +26,7 @@ nav.restoreState();
 
 var saveCurrent = function() {
   nav.saveCurrent();
-}
+};
 
 
 // ______________________________________

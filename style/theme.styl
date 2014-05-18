@@ -75,8 +75,6 @@ $cssStrLight   = #8A0048;
 
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
-    //font   400 14px/19px "Consolas", "Source Code Pro", "Ubuntu Mono"
-    //font   400 16px/24px "Source Code Pro", "Ubuntu Mono"
     font   400 15px/22px "Source Code Pro", "Ubuntu Mono"
     //font-family "fndrs_mono"
 
@@ -84,16 +82,12 @@ $cssStrLight   = #8A0048;
   .cm-kw-special
     // font-weight 600
 
-  .cm-kw-special
-    // font-style italic
-    // font-weight 800
-    // border-bottom 1px solid
 
   .cm-literate
-    //font-family: Nitti Grotesk;
-    //font-weight: 400;
-    //font-size: 19px;
-    //line-height: 14px;
+    font-family: Nitti Grotesk;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 14px;
 
   .cm-codement
     font: inherit
@@ -198,21 +192,17 @@ $cssStrLight   = #8A0048;
 
 .cm-s-loop-light
   
-  $maincolor   = #666
-  // gray
   $secondcolor = #8EB5CF
-  $comment     = #8AC7AA
-  // #aaa
-  $litcomment  = #8AC7AA
-  // black
-  // #21BD53
+  $comment     = #aaa
+  //#8AC7AA
+  $litcomment  = black
 
   // Main
   &.CodeMirror 
-    color  $maincolor
+    color  #222
 
   div.CodeMirror-cursor 
-    border-left: 1px solid rgba(0,200,255,1) !important
+    border-left: 2px solid black !important
 
 
   .cm-property
@@ -228,28 +218,26 @@ $cssStrLight   = #8A0048;
   .cm-keyword,
   .cm-kw-special
     color       inherit
-    color #3D8BD1
-    //font-weight 600
-    //font-family: Consolas;
-    //font-style: italic;
-    //line-height: 1;
-    // #C24888
+    color #436BBE
 
   .cm-tag,
   .cm-attribute,
   .cm-equals
-    color #54A6FF // #659DDA
+    color #54A6FF
     color #D17373
     &.cm-head
-      // color #A4B8C5
       color #82ADDB
-      // #888
 
   .cm-comment, .cm-comment-marker
     color $comment
+    // text-decoration: line-through;
+
+  .lit
+    //background: #ffffec;
 
   .cm-literate
-    color $litcomment
+    color: #00A3FF
+    text-decoration: none;
 
   .CodeMirror-lint-message-error,
   .CodeMirror-lint-message-warning
@@ -284,9 +272,9 @@ $cssStrLight   = #8A0048;
 
 .cm-mode-html
   .cm-null
-    font-family: Founders Grotesk Text;
+    font-family: Nitti Grotesk;
     font-weight: normal;
-    font-size: 17px;
+    font-size: 19px;
     line-height: 14px;
     letter-spacing: 0.02em;
     color black
@@ -327,6 +315,13 @@ $cssStrLight   = #8A0048;
     .cm-property
       color: #69899E !important
       font-weight 400
+      display: inline-block;
+      min-width: 100px;
+      padding-right: 8px;
+      font-family: Nitti Grotesk;
+      line-height: 12px;
+      font-size: 18px;
+      text-align: right;
     .cm-variable, .cm-variable-2
       color: black
       font-weight normal
@@ -336,7 +331,7 @@ $cssStrLight   = #8A0048;
     .cm-def
       color black
     .cm-tag, .cm-qualifier, .cm-builtin
-      font-weight 800
+      font-weight 700
       // border-bottom: 1px solid
     .cm-variable-3
       font-weight 400
@@ -446,33 +441,51 @@ $cssStrLight   = #8A0048;
 
 
 .CodeMirror
+  
+  $space = 16px
+
   pre.ind-0, pre.ind-1
-    background transparent
+    background-image none
 
   pre.ind-2, pre.ind-3
-    background url(indents/ind1.png) repeat-y
+    background-image url(indents/ind1.png)
     background-position top left 4px
+    background-repeat repeat-y
 
   pre.ind-4, pre.ind-5
     background-image url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left 18px
+    background-position top left 4px, top left $space + 4px
     background-repeat repeat-y
 
   pre.ind-6, pre.ind-7
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left 18px, top left 32px
+    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px
     background-repeat repeat-y
 
   pre.ind-8, pre.ind-9
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left 18px, top left 32px, top left 46px
+    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px
     background-repeat repeat-y
 
   pre.ind-10, pre.ind-11
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left 18px, top left 32px, top left 46px, top left 60px
+    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px, top left $space * 4 + 4px
     background-repeat repeat-y
 
+  pre.ind-11, pre.ind-12
+    background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
+    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px, top left $space * 4 + 4px, top left $space * 5 + 4px
+    background-repeat repeat-y
+
+  pre.ind-13, pre.ind-14
+    background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
+    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px, top left $space * 4 + 4px, top left $space * 5 + 4px, top left $space * 6 + 4px
+    background-repeat repeat-y
+
+  pre.ind-15, pre.ind-16
+    background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
+    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px, top left $space * 4 + 4px, top left $space * 5 + 4px, top left $space * 6 + 4px, top left $space * 7 + 4px
+    background-repeat repeat-y
 
 // ------------------------
 

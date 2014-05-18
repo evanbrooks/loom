@@ -35,6 +35,13 @@
 .cm-s-loop-dark.CodeMirror {
   font: 400 15px/22px "Source Code Pro", "Ubuntu Mono";
 }
+.cm-s-loop-light .cm-literate,
+.cm-s-loop-dark .cm-literate {
+  font-family: Nitti Grotesk;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 14px;
+}
 .cm-s-loop-light .cm-codement,
 .cm-s-loop-dark .cm-codement {
   font: inherit;
@@ -119,10 +126,10 @@
   color: #e4cd72;
 }
 .cm-s-loop-light.CodeMirror {
-  color: #666;
+  color: #222;
 }
 .cm-s-loop-light div.CodeMirror-cursor {
-  border-left: 1px solid #00c8ff !important;
+  border-left: 2px solid #000 !important;
 }
 .cm-s-loop-light .cm-property {
   color: inherit !important;
@@ -135,7 +142,7 @@
 .cm-s-loop-light .cm-keyword,
 .cm-s-loop-light .cm-kw-special {
   color: inherit;
-  color: #3d8bd1;
+  color: #436bbe;
 }
 .cm-s-loop-light .cm-tag,
 .cm-s-loop-light .cm-attribute,
@@ -150,23 +157,24 @@
 }
 .cm-s-loop-light .cm-comment,
 .cm-s-loop-light .cm-comment-marker {
-  color: #8ac7aa;
+  color: #aaa;
 }
 .cm-s-loop-light .cm-literate {
-  color: #8ac7aa;
+  color: #00a3ff;
+  text-decoration: none;
 }
 .cm-s-loop-light .CodeMirror-lint-message-error,
 .cm-s-loop-light .CodeMirror-lint-message-warning {
-  color: #8ac7aa;
+  color: #aaa;
 }
 .cm-s-loop-light .console-log-marker {
   color: #00a3ff;
   -webkit-animation: decaylight 0.2s;
 }
 .cm-mode-html .cm-null {
-  font-family: Founders Grotesk Text;
+  font-family: Nitti Grotesk;
   font-weight: normal;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 14px;
   letter-spacing: 0.02em;
   color: #000;
@@ -212,6 +220,13 @@
 .cm-mode-css .cm-s-loop-light .cm-property {
   color: #69899e !important;
   font-weight: 400;
+  display: inline-block;
+  min-width: 100px;
+  padding-right: 8px;
+  font-family: Nitti Grotesk;
+  line-height: 12px;
+  font-size: 18px;
+  text-align: right;
 }
 .cm-mode-styl .cm-s-loop-light .cm-variable,
 .cm-mode-scss .cm-s-loop-light .cm-variable,
@@ -249,7 +264,7 @@
 .cm-mode-scss .cm-s-loop-light .cm-builtin,
 .cm-mode-sass .cm-s-loop-light .cm-builtin,
 .cm-mode-css .cm-s-loop-light .cm-builtin {
-  font-weight: 800;
+  font-weight: 700;
 }
 .cm-mode-styl .cm-s-loop-light .cm-variable-3,
 .cm-mode-scss .cm-s-loop-light .cm-variable-3,
@@ -332,35 +347,54 @@
 }
 .CodeMirror pre.ind-0,
 .CodeMirror pre.ind-1 {
-  background: transparent;
+  background-image: none;
 }
 .CodeMirror pre.ind-2,
 .CodeMirror pre.ind-3 {
-  background: url("indents/ind1.png") repeat-y;
+  background-image: url("indents/ind1.png");
   background-position: top left 4px;
+  background-repeat: repeat-y;
 }
 .CodeMirror pre.ind-4,
 .CodeMirror pre.ind-5 {
   background-image: url("indents/ind1.png"), url("indents/ind1.png");
-  background-position: top left 4px, top left 18px;
+  background-position: top left 4px, top left 20px;
   background-repeat: repeat-y;
 }
 .CodeMirror pre.ind-6,
 .CodeMirror pre.ind-7 {
   background-image: url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png");
-  background-position: top left 4px, top left 18px, top left 32px;
+  background-position: top left 4px, top left 20px, top left 36px;
   background-repeat: repeat-y;
 }
 .CodeMirror pre.ind-8,
 .CodeMirror pre.ind-9 {
   background-image: url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png");
-  background-position: top left 4px, top left 18px, top left 32px, top left 46px;
+  background-position: top left 4px, top left 20px, top left 36px, top left 52px;
   background-repeat: repeat-y;
 }
 .CodeMirror pre.ind-10,
 .CodeMirror pre.ind-11 {
   background-image: url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png");
-  background-position: top left 4px, top left 18px, top left 32px, top left 46px, top left 60px;
+  background-position: top left 4px, top left 20px, top left 36px, top left 52px, top left 68px;
+  background-repeat: repeat-y;
+}
+.CodeMirror pre.ind-11,
+.CodeMirror pre.ind-12 {
+  background-image: url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png");
+  background-position: top left 4px, top left 20px, top left 36px, top left 52px, top left 68px, top left 84px;
+  background-repeat: repeat-y;
+}
+.CodeMirror pre.ind-13,
+.CodeMirror pre.ind-14 {
+  background-image: url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png");
+  background-position: top left 4px, top left 20px, top left 36px, top left 52px, top left 68px, top left 84px, top left 100px;
+  background-repeat: repeat-y;
+}
+.CodeMirror pre.ind-15,
+.CodeMirror pre.ind-16 {
+  background-image: url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png"), url("indents/ind1.png");
+  background-position: top left 4px, top left 20px, top left 36px, top left 52px, top left 68px, top left 84px, top left 100px, top left 116px;
   background-repeat: repeat-y;
 }
 .slider {

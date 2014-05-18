@@ -29,9 +29,9 @@
 
     // return [r * 255, g * 255, b * 255];
     return {
-      r: parseInt(r * 255),
-      g: parseInt(g * 255),
-      b: parseInt(b * 255)
+      r: parseInt(r * 255, 10),
+      g: parseInt(g * 255, 10),
+      b: parseInt(b * 255, 10)
     };
   }
 
@@ -66,7 +66,7 @@
      var g = parseInt( (''+g).replace(/\s/g,''),10 ); 
      var b = parseInt( (''+b).replace(/\s/g,''),10 ); 
 
-     if ( r==null || g==null || b==null ||
+     if ( r===null || g===null || b===null ||
          isNaN(r) || isNaN(g)|| isNaN(b) ) {
        alert ('Please enter numeric RGB values!');
        return;
@@ -281,34 +281,34 @@
 
     container.appendChild(el);
 
-    self.change = function(){console.log("hi")};
+    self.change = function(){console.log("hi");};
     self.onChange = function(cb) {
-    	self.change = cb;
-    }
+      self.change = cb;
+    };
 
     var last = 0;
     function update(data) {
-    	var delta = data.y - last; // from center
-    	self.change(delta);
-    	last = data.y;
+      var delta = data.y - last; // from center
+      self.change(delta);
+      last = data.y;
     }
 
     self.setHue = function(h) {
-    	last = 0;
-    	container.style.background = detailGradient(h, diff);
-    }
+      last = 0;
+      container.style.background = detailGradient(h, diff);
+    };
 
     var looper = new Thumb(el, {
-  		scrollx: false,
-  		scrolly: true,
-  		overflow: true,
-  		cb: update,
+      scrollx: false,
+      scrolly: true,
+      overflow: true,
+      cb: update,
       picker: picker
-  	});
+    });
   }
 
   function OpacSlider(picker, container) {
-  	var self = this;
+    var self = this;
     var el = document.createElement("div");
     el.className = "c-thumb";
 
@@ -316,16 +316,16 @@
 
     self.change = function(){console.log("hi")};
     self.onChange = function(cb) {
-    	self.change = cb;
-    }
+      self.change = cb;
+    };
 
     function update(opac) {
-    	self.change(opac);
+      self.change(opac);
     }
 
     self.setColor = function(rgb) {
-    	container.style.background = opacGradV(rgb);
-    }
+      container.style.background = opacGradV(rgb);
+    };
 
     var looper = new Thumb(el, {
   		scrollx: false,

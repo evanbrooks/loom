@@ -117,15 +117,21 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       } else if (stream.eat("/")) {
         stream.skipToEnd();
 
-        var cmnt = stream.current();
-        var hasDots = /\w\.\w/.test(cmnt);
-        var hasSemi = /\w*;/.test(cmnt);
-        var hasCurl = /[\{\}]/.test(cmnt);
+        // Check if this comment is code-like
+        // (has 'text.text' or 'text;' or some kind of bracket)
+        var cmnt = stream.current()
+          , hasDots = /\w\.\w/.test(cmnt)
+          , hasSemi = /\w*;/.test(cmnt)
+          , hasCurl = /[\{\}]/.test(cmnt)
+          , hasPlus = /[\+]/.test(cmnt)
+          , looksLikeCode = hasDots || hasSemi || hasCurl || hasPlus;
+          ;
 
-        if (hasDots || hasSemi || hasCurl){
-          return ret("comment", "comment");
-        }
-        return ret("comment literate", "comment literate");
+        // If doesn't look like code, and it on its own line,
+        // treat it as a comment heading.
+        if (state.freshLine && !looksLikeCode) return ret("comment literate line-lit", "comment literate line-lit");
+        return ret("comment", "comment");
+
       } else if (state.lastType == "operator" || state.lastType == "keyword c" ||
                state.lastType == "sof" || /^[\[{}\(,;:]$/.test(state.lastType)) {
         readRegexp(stream);
@@ -641,6 +647,8 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
       if (stream.sol()) {
 
+        state.freshLine = true;
+
         if (!state.lexical.hasOwnProperty("align"))
           state.lexical.align = false;
         state.indented = stream.indentation();
@@ -654,6 +662,9 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       var style = state.tokenize(stream, state);
       if (type == "comment") return ind + style;
       state.lastType = type == "operator" && (content == "++" || content == "--") ? "incdec" : type;
+
+      state.freshLine = false;
+
       return ind + parseJS(state, style, type, content, stream);
     },
 
