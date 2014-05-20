@@ -70,13 +70,8 @@
     // ________________________________
 
     self.setStatic = function(path) {
-
-      // Remove previous STATIC middleware
-      server.close();
       // Set new middleware to this path
       window.staticRoot = path;
-      var newStaticHandler = express.static(window.staticRoot);
-      app.use(newStaticHandler);
     }
 
 
