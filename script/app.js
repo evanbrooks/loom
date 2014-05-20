@@ -4,7 +4,7 @@
 // "frame": false,
 
 // ______________________________________
-
+//
 // Declarations
 
 var gui   = require('nw.gui')
@@ -15,7 +15,7 @@ var gui   = require('nw.gui')
   ;
 
 // ______________________________________
-
+//
 // Open previously stored files
 
 nav.setDocument(document);
@@ -30,7 +30,7 @@ var saveCurrent = function() {
 
 
 // ______________________________________
-
+//
 // Keyboard shortcuts
 
 var commandKey = false;
@@ -56,7 +56,7 @@ document.addEventListener('keyup', function (e) {
 
 
 // ______________________________________
-
+//
 // T H E M E
 
 
@@ -76,7 +76,7 @@ function toggleTheme(e) {
 
 
 // ______________________________________
-
+//
 // Bind to actions
 
 
@@ -131,7 +131,7 @@ for (var i = 0; i < actions.length; i++ ) {
 
 
 // ______________________________________
-
+//
 // Workarounds for file I/O restrictions
 
 function clickInput(id) {
@@ -157,7 +157,7 @@ document.getElementById('save').addEventListener('change', function (e) {
 
 
 // ______________________________________
-
+//
 // Top Menu - TODO
 
 // var menu = new gui.Menu({ type: 'menubar' });

@@ -1,7 +1,9 @@
 body {
   margin:0;
   padding: 0;
-  font-family: Calibre, "Helvetica", sans-serif;
+  font-family: "Sectra", "Times", sans-serif;
+  font-family: "Nitti Grotesk", "Verdana", serif;
+  font-size: 20px;
 }
 
 .spring-graph {
@@ -9,7 +11,9 @@ body {
 }
 
 thing#id.class > wow:hover {
-  okay: dokey;
+  font-family: "Times", sans-serif;
+  line-height: 20px;
+  background: url(http://placekitten.com/200/300);
 }
 
 path {
