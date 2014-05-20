@@ -7,9 +7,10 @@
 (function(){
 
   var express   = require('express')
+    , swappy    = require('loom-swappablestatic')
+    , fs        = require('fs')
     , http      = require('http')
     , ngrok     = require('ngrok')
-    , fs        = require('fs')
     ;
 
 
@@ -25,16 +26,18 @@
 
     window.io = io;
 
-    var PUBLIC = '/Users/evan/Developer/loom/experiments/rk4-spring';
+    window.staticRoot = '/Users/evan/Developer/loom/experiments/rk4-spring';
     
-    var socketScript  = "<script>" + fs.readFileSync('/Users/evan/Developer/loom/script/socketio-client.min.js') + "</script>";
-    var ansibleScript = "<script>" + fs.readFileSync('/Users/evan/Developer/loom/script/ansible-client.js') + "</script>";
+    var socketScript  = fs.readFileSync('/Users/evan/Developer/loom/script/socketio-client.min.js')
+    var ansibleScript = fs.readFileSync('/Users/evan/Developer/loom/script/ansible-client.js');
 
     app.use(require('connect-inject')({
-      snippet: (socketScript + ansibleScript),
+      snippet: ("<script type='text/javascript'>" + socketScript + ansibleScript + "</script>"),
       ignore: ['.js', '.svg']
     }));
-    app.use(express.static(PUBLIC));
+
+    var staticHandler = swappy(window.staticRoot)
+    app.use(staticHandler);
 
 
     var server = socketServer.listen(process.env.PORT || 3000, function() {
@@ -63,6 +66,20 @@
     self.unPublish = function() {
       ngrok.disconnect();
     }
+
+    // ________________________________
+
+    self.setStatic = function(path) {
+
+      // Remove previous STATIC middleware
+      server.close();
+      // Set new middleware to this path
+      window.staticRoot = path;
+      var newStaticHandler = express.static(window.staticRoot);
+      app.use(newStaticHandler);
+    }
+
+
   }
 
   window.quickServer = new Server();
