@@ -1,6 +1,9 @@
 .cm-s-loop-light .CodeMirror-activeline-background {
   background-color: rgba(0,0,255,0.03);
 }
+.CodeMirror-selected {
+  background: #e0edff !important;
+}
 .cm-mode-js .cm-def,
 .cm-mode-html .cm-def,
 .cm-mode-js .cm-variable,
@@ -516,6 +519,16 @@
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
   z-index: 999;
 }
+.imgwidget {
+  display: inline-block;
+  width: 4ch;
+  height: 20px;
+  vertical-align: middle;
+  -webkit-transform: scale(1);
+  -webkit-transition: all 0.1s;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+}
 .cm-str-Arial {
   font-family: Arial;
   line-height: 80%;
@@ -523,12 +536,20 @@
 .cm-str-Times {
   font-family: Times;
   line-height: 80%;
+  font-size: 110%;
 }
 .cm-str-Verdana {
   font-family: Verdana;
   line-height: 80%;
+  font-size: 90%;
 }
 .cm-str-Nitti {
   font-family: "Nitti Grotesk";
   line-height: 80%;
+  font-size: 110%;
+}
+.cm-str-Sectra {
+  font-family: "GT Sectra Trial";
+  line-height: 80%;
+  font-size: 110%;
 }

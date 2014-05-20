@@ -33,7 +33,8 @@ function widgetize(cm, start, end) {
       // --------------
       if      (type && type.contains("number"))       curr = "number";
       else if (type && type.contains("color"))        curr = "color";
-      //else if (type && type.contains("attrval-src"))  curr = "src";
+      //else if (type && type.contains("attrval-src"))  curr = "src";cm-str-img
+      else if (type && type.contains("url-str"))  curr = "src";
       else if (token.string.contains("curveOptions"))   curr = "curve";
       //else if (/spring\([\d\,]*\)/.test(token.string)) curr = "spring";
       else    curr = false;
@@ -58,11 +59,12 @@ function widgetize(cm, start, end) {
           });
         }
         else if (curr == "src") {
+          console.log(token.string);
           var src = token.string.replace(/["']/g,"");
           w = get_img(src);
           var end_pos = {line: line_num, ch: ch - 1 + token.string.length};
           widg = cm.markText(insert_pos, end_pos, {
-            replacedWith: w.el,
+            replacedWith: w.el
             //atomic: true,
           });
         }
@@ -79,14 +81,14 @@ function widgetize(cm, start, end) {
 
           cm.foldCode(pos.line, {
             rangeFinder: CodeMirror.fold.brace,
-            widget: "~~~ Sparkline ~~~",
+            widget: "~~~ Sparkline ~~~"
           }, "fold");
         }
         else if (curr == "spring") {
           w = get_spring(token.string);
           var end_pos = {line: line_num, ch: ch - 1 + token.string.length};
           widg = cm.markText(insert_pos, end_pos, {
-            replacedWith: w.el,
+            replacedWith: w.el
             //atomic: true,
           });
         }
@@ -356,7 +358,7 @@ function get_spring(text) {
 
 function get_img(path) {
   var el = document.createElement('span');
-
+  el.className = 'imgwidget';
 
   var img = new Image();
   img.onerror = function() {
@@ -365,10 +367,8 @@ function get_img(path) {
     el.style.backgroundImage = "url(" + path + ")";
     el.style.backgroundSize = "cover";
     el.style.backgroundPosition = "center center";
-    el.className = 'imgwidget';
   };
   img.src = path;
-  console.log(img);
 
   return {obj: {}, el: el};
 }

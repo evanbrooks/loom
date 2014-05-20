@@ -116,16 +116,23 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
 
       var stringval = stream.current().replace(/[\"\']/g,'');
 
+      if (state.context.prev.isURL) {
+        return ret("string url-str", "string url-str");
+      }
+
       return ret("string str-" + stringval, "string str-" + stringval);
     };
   }
 
   function tokenParenthesized(stream, state) {
     stream.next(); // Must be '('
-    if (!stream.match(/\s*[\"\']/, false))
+    state.context.isURL = true;
+    if (!stream.match(/\s*[\"\']/, false)) {
       state.tokenize = tokenString(")");
-    else
+    }
+    else {
       state.tokenize = null;
+    }
     return ret(null, "(");
   }
 

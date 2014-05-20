@@ -15,17 +15,9 @@ $bg         = white
   background-color: rgba(0, 0, 255, 0.03);
 }
 
-
-.cm-mode-html .cm-s-loop-light.CodeMirror
-  .cm-string
-    //font-weight 400
-
-
-.cm-string
-  //font-family: "CentSchbook Mono BT"
-  // font-weight: normal !important
-
-
+.CodeMirror-selected {
+  background: rgb(224, 237, 255) !important;
+}
 
 // ------------------------
 
@@ -637,6 +629,26 @@ $cssStrLight   = #8A0048;
 
 // ------------------------
 
+// I M A G E
+
+// ------------------------
+
+
+.imgwidget
+  display    inline-block
+  width      4ch
+  height     20px
+  vertical-align middle
+  -webkit-transform scale(1)
+  -webkit-transition all 0.1s
+  border-radius: 10px
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1)
+  &:hover
+    //-webkit-transform scale(4)
+
+
+// ------------------------
+
 // T Y P E
 
 // ------------------------
@@ -648,14 +660,22 @@ $cssStrLight   = #8A0048;
 .cm-str-Times
   font-family Times
   line-height 80%
+  font-size 110%
 
 .cm-str-Verdana
   font-family Verdana
   line-height 80%
+  font-size: 90%
 
 .cm-str-Nitti
   font-family "Nitti Grotesk"
   line-height 80%
+  font-size 110%
+
+.cm-str-Sectra
+  font-family "GT Sectra Trial"
+  line-height 80%
+  font-size 110%
 
 
 
