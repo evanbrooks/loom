@@ -296,17 +296,17 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
   var hashCode = function(str){
 
-    return str.charCodeAt(0)*100 + (str.charCodeAt(1) || 0)*10 + (str.charCodeAt(2) || 0);
+    // return str.charCodeAt(0)*100 + (str.charCodeAt(1) || 0)*10 + (str.charCodeAt(2) || 0);
 
-    // var hash = 0, len = str.length, char;
-    // if (str.length == 0) return hash;
+    var hash = 0, len = str.length, char;
+    if (str.length == 0) return hash;
 
-    // for (i = 0; i < len; i++) {
-    //     char = str.charCodeAt(i);
-    //     hash = hash * 31 + str.charCodeAt(i);
-    //     hash = hash & hash; // Convert to 32bit integer
-    // }
-    // return hash;
+    for (i = 0; i < len; i++) {
+        char = str.charCodeAt(i);
+        hash = hash * 31 + str.charCodeAt(i);
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
   }
 
 
