@@ -13,7 +13,8 @@ socket.on('disconnect', function(){
 
 socket.on('message', function(msg) {
   // console.log(msg);
-  if (msg.ID !== socket_id) {
+
+  if (!window.LOOM_PART) {
     if (msg.css) {
       // console.log("replacing file:" + msg.cssFile)
       insert_css(msg.css);
@@ -25,23 +26,6 @@ socket.on('message', function(msg) {
     }
   }
 });
-
-
-// function highlight(s) {
-//   var els = document.querySelectorAll(s);
-//   console.log(els);
-//   for (var i = 0; i < els.length; i++) {
-//     els[i].classList.add("_editor-highlight");
-//   }
-// }
-
-// function unhighlight(s) {
-//   var els = document.querySelectorAll(s);
-//   console.log(els);
-//   for (var i = 0; i < els.length; i++) {
-//     els[i].classList.remove("_editor-highlight");
-//   }
-// }
 
 var stylenode = document.createElement('style');
 stylenode.type = 'text/css';

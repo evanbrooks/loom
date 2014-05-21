@@ -38,11 +38,13 @@
 
     var staticHandler = swappy(window.staticRoot)
     app.use(staticHandler);
+    app.use('/clr', express.static('/Users/evan/Developer/loom/experiments/remote-color'));
 
 
     var server = socketServer.listen(process.env.PORT || 3000, function() {
       var port = server.address().port;
-      console.log('Listening on port ' + port );
+      console.info('Local servet running at ' + port );
+      self.publish();
     });
 
     io.sockets.on('connection', function (socket) {
@@ -88,9 +90,13 @@
 
     self.publish = function() {
       var port = server.address().port;
-      ngrok.connect(port, function (err, url) {
+      ngrok.connect({
+        authtoken: 'JohZPmCzR0QKuvzDiUoc',
+        port: port,
+        subdomain: 'ev'
+      }, function (err, url) {
         if (err) console.log(err);
-        console.log('Ngrok running online at ' + url);
+        console.info('Ngrok running online at ' + url);
       });
     };
 
