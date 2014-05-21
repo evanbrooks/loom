@@ -152,6 +152,11 @@ function Tab(nav) {
         });
       });
     }
+    else if (self.ext == "html") {
+      cm.on("change", function(cm) {
+        self.save();
+      });
+    }
     else if (self.ext == "scss") {
       // cm.on("change", function(cm) {
       //   ansible.send({

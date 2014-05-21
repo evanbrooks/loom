@@ -130,12 +130,12 @@ footer.actions {
   bottom: 0;
 }
 footer.actions span {
-  opacity: 1;
-  font-size: 2em;
+  opacity: 0.1;
+  font-size: 1.2em;
   color: #808080;
 }
 footer.actions span:hover {
-  opacity: 0.2;
+  opacity: 1;
 }
 h1 {
   font-size: 3rem;
@@ -270,17 +270,18 @@ h2 {
   -webkit-user-select: none !important;
   cursor: ns-resize !important;
 }
-@media (max-width: 700px) {
+@media (max-width: 500px) {
   .nav {
     padding-left: 70px;
     right: 0;
-    top: 30px;
+    top: 0px;
+z-index
   }
   .dragbar {
     -webkit-app-region: drag;
   }
 }
-@media (min-width: 700px) {
+@media (min-width: 500px) {
   body {
     padding-top: 1em;
   }

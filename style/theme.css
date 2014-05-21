@@ -166,7 +166,7 @@
   color: #aaa;
 }
 .cm-s-loop-light .lit {
-  background: rgba(255,255,0,0.05);
+  background: rgba(255,255,0,0.08);
 }
 .cm-s-loop-light .cm-literate {
   color: #808080;
@@ -550,6 +550,11 @@
 }
 .cm-str-Sectra {
   font-family: "GT Sectra Trial";
+  line-height: 80%;
+  font-size: 110%;
+}
+.cm-str-Founders {
+  font-family: "Founders Grotesk";
   line-height: 80%;
   font-size: 110%;
 }

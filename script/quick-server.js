@@ -26,13 +26,13 @@
 
     window.io = io;
 
-    window.staticRoot = '/Users/evan/Developer/loom/experiments/rk4-spring';
+    window.staticRoot = '/Users/evan/Developer/loom/experiments/sample';
     
-    var socketScript  = fs.readFileSync('/Users/evan/Developer/loom/script/socketio-client.min.js')
+    var socketScript  = fs.readFileSync('/Users/evan/Developer/loom/script/socketio-client.min.js');
     var ansibleScript = fs.readFileSync('/Users/evan/Developer/loom/script/ansible-client.js');
 
     app.use(require('connect-inject')({
-      snippet: ("<script type='text/javascript'>" + socketScript + ansibleScript + "</script>"),
+      snippet: ("<script type='text/javascript'>" + socketScript + "</script><script type='text/javascript'>" + ansibleScript + "</script>"),
       ignore: ['.js', '.svg']
     }));
 
@@ -48,6 +48,39 @@
     io.sockets.on('connection', function (socket) {
       socket.on('message', function(msg) {
         console.log(msg);
+
+        // ====================
+        // CONSOLE LOGGER
+        if (msg.console) {
+          var parsed = JSON.parse(msg.msg)
+          var text = parsed.text;
+          var cm = nav.current.cm;
+          console.log("received message!");
+
+          if (parsed.level == "error") {
+            text = text.split(":")[1];
+            cm.markText(
+              {ch: parsed.column - 1, line: parsed.line-1},
+              {ch: parsed.column + 2, line: parsed.line-1},
+              {className: "logged-error"}
+            );
+
+          }
+
+          var el = document.createElement("div");
+          el.className = "console-log-marker console-" + parsed.level;
+          el.innerText = text;
+
+          cm.setGutterMarker(
+            parsed.line - 1, // zero-indexed
+            "CodeMirror-lint-markers",
+            el
+          );
+        }
+        // ==================
+
+
+
       });
     });
 

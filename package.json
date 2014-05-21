@@ -7,10 +7,10 @@
     "show": false,
     "position": "center",
     "frame": false,
-    "width": 800,
-    "height": 800,
-    "min_width": 220,
-    "min_height": 220
+    "width": 500,
+    "height": 600,
+    "min_width": 100,
+    "min_height": 20
   },
   "devDependencies": {
     "connect-inject": "~0.3.2"
