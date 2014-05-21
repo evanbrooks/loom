@@ -26,13 +26,20 @@ $(document).ready(function() {
 	
 	window.colorThief = new ColorThief();
 
+	var pickerEl = document.querySelector(".c-picker");
+	window.picker = new ColorPicker(pickerEl); 
+
 });
 
 function getSwatches(){
 	var colorArr = colorThief.getPalette($("#yourimage")[0], 5);
+
 	for (var i = 0; i < Math.min(5, colorArr.length); i++) {
 		$("#swatch"+i).css("background-color","rgb("+colorArr[i][0]+","+colorArr[i][1]+","+colorArr[i][2]+")");
-		console.log($("#swatch"+i).css("background-color"));
+		if (i == 0) {
+			var clrStr = $("#swatch"+i).css("background-color");
+			window.picker.setColor(clrStr);
+		}
 	}
 }	
 

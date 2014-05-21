@@ -1,14 +1,70 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<meta name="viewport" content="width=320; user-scalable=no" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui" />
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>ColorThief Demo</title>
+	<title>Color Remote</title>
 	
-	<script type="text/javascript" charset="utf-8" src="jquery.2.1.1.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="colorthief.js"></script>
         
+    <link href="/staticstyle/color-picker.css" rel="stylesheet" >
 	<style>
+
+	* {
+		margin: 0;
+		padding: 0;
+		font: inherit;
+		-webkit-box-sizing: border-box;
+	}
+
+	html {
+		font-family: sans-serif;
+	}
+
+	#takePictureField {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		display: block;
+		-webkit-appearance: none;
+		border: none;
+		border-radius: 0;
+		width: 100%;
+		background: gray;
+		padding: 20px;
+	}
+
+	#takePictureField:focus {
+		outline: none;
+	}
+
+	#takePictureField::-webkit-file-upload-button {
+	  /*visibility: hidden;*/
+	}
+	#takePictureField::before {
+	  content: 'Photo...';
+	  display: block;
+	  outline: none;
+	  white-space: nowrap;
+	  -webkit-user-select: none;
+	  cursor: pointer;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	  background: #eee;
+	  text-align: center;
+	  line-height: 3;
+	}
+	#takePictureField:hover::before {
+	  color: blue;
+	}
+	#takePictureField:active::before {
+	  background: blue;
+	  color: white;
+	}
+
 	#yourimage {
 		width:100%;	
 	}
@@ -19,12 +75,9 @@
 	}
  
 	.swatch {
-		width:18%;
+		width:20%;
 		height: 50px;
-		border-style:solid;
-		border-width:thin;	
 		float: left;
-		margin-right: 3px;	
 	}
 	</style>
 	</head>
@@ -33,7 +86,6 @@
  
 		<input type="file" capture="camera" accept="image/*" id="takePictureField">
         
-		<img id="yourimage">
  
 		<div id="swatches">
 			<div id="swatch0" class="swatch"></div>
@@ -43,6 +95,37 @@
 			<div id="swatch4" class="swatch"></div>
 		</div>
 		
+
+      <div class="c-picker staticpicker">
+        <div class="c-preview">
+        </div>
+        <div class="c-bg">
+          <div class="c-value">
+            <div class="c-grid">
+              <div class="c-thumb">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="c-hue">
+          <div class="c-slider c-spectrum">
+          </div
+          ><div class="c-wheel c-precise">
+          </div>
+        </div
+        ><div class="c-opacity">
+          <div class="c-slider c-alpha">
+          </div>
+        </div>
+      </div>
+
+		<img id="yourimage">
+
+
+	<script src="jquery.2.1.1.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8" src="colorthief.js"></script>
+    <script src="/staticscript/color-picker.js"></script>
     <script src="clr.js"></script>    
 	</body>
  

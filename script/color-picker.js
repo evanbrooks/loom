@@ -8,7 +8,14 @@
   // ___________________________________________________________
   //
   // C O L O R   P I C K E R
+  //
+  // This is a mess right now.
+  // Should be using some kind of ui framework
+  // for sliders but isntead it's a hacked together
+  // free-for-all!
 
+
+  // U T I L I T I E S
   function hsvToRgb(h, s, v){
     var r, g, b;
 
@@ -96,11 +103,14 @@
 
 
   // ___________________________________________________________
-
-
-
-
-
+  // 
+  // T H U M B
+  //
+  // Supposed to be a generic slider element for x,y, or grid slides,
+  // but really doesn't work that great yet. Has some
+  // dead code in it to support things like wrap-around (a la Asteroids)
+  // and looping wheels instead of sliders, but those don't 
+  // really work yet.
 
 
   function Thumb(el, opts) {
@@ -123,9 +133,17 @@
     self.init = function() {
       self.dragging = false;
       el.addEventListener("mousedown", down);
+      el.addEventListener("touchstart", down);
+
       dad.addEventListener("mousedown", snapdown);
+      dad.addEventListener("touchstart", snapdown);
+
       document.addEventListener("mousemove", move);
+      document.addEventListener("touchmove", move);
+
       document.addEventListener("mouseup", end);
+      document.addEventListener("touchend", end);
+
 
       if (opts.wraparound) {
       	self.pos = wrappos;
@@ -191,11 +209,15 @@
       halt(e);
 
       var off = $(opts.picker.el).offset();
+      var scrTop = $(window).scrollTop();
 
+      // Hacky touch integration
+      eventX = e.clientX || e.changedTouches[0].pageX;
+      eventY = e.clientY || e.changedTouches[0].pageY;
 
       self.pos(
-        e.clientX - dad.offsetLeft - off.left,
-        e.clientY - dad.offsetTop - off.top
+        eventX - /*dad.offsetLeft -*/ off.left,
+        eventY - /*dad.offsetTop -*/ off.top + scrTop
       );
 
       down(e);
@@ -205,7 +227,11 @@
     var down = function(e) {
       halt(e);
       self.dragging = true;
-      mdown = {x: e.clientX, y: e.clientY};
+
+      eventX = e.clientX || e.changedTouches[0].pageX;
+      eventY = e.clientY || e.changedTouches[0].pageY;
+
+      mdown = {x: eventX, y: eventY};
 
       ppos.x = pos.x;
       ppos.y = pos.y;
@@ -214,7 +240,9 @@
     var move = function(e) {
       if (self.dragging) {
         halt(e);
-        self.drag(e.clientX, e.clientY);
+        eventX = e.clientX || e.changedTouches[0].pageX;
+        eventY = e.clientY || e.changedTouches[0].pageY;
+        self.drag(eventX, eventY);
       }
     }
 
@@ -498,6 +526,8 @@
       sat   = 1-val.sat;
       update();
     });
+
+    self.setColor("gray");
   }
 
   window.ColorPicker = Picker;

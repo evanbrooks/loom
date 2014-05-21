@@ -39,6 +39,8 @@
     var staticHandler = swappy(window.staticRoot)
     app.use(staticHandler);
     app.use('/clr', express.static('/Users/evan/Developer/loom/experiments/remote-color'));
+    app.use('/staticstyle', express.static('/Users/evan/Developer/loom/style'));
+    app.use('/staticscript', express.static('/Users/evan/Developer/loom/script'));
 
 
     var server = socketServer.listen(process.env.PORT || 3000, function() {
