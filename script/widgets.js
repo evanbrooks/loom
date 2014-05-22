@@ -312,8 +312,8 @@ function Picker(el, color, line, marker) {
           replaceEnd,
           "*fromWidget" // let codemirror know that the change came from the widget and therefore not to trigger new widgets
         );
-        // [2] restore the widget
-        nav.current.cm.markText(replaceStart, replaceEnd, {
+        // [2] restore the widget, reassign
+        self.widget = nav.current.cm.markText(replaceStart, replaceEnd, {
           replacedWith: $el
         });
       });
