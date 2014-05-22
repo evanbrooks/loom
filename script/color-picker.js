@@ -494,16 +494,11 @@
     // 
     self.setColor = function(str) {
 
-      console.log("received: " + str);
 
       var rgb = d3.rgb(str);
       var hsv = rgb2hsv(rgb.r, rgb.g, rgb.b);
 
-      console.log(hsv);
-
       hue   = parseInt(hsv[0]);
-      console.log("hue shoudl be in 240s: " + hue);
-
       sat   = hsv[1];
       black = 1 - hsv[2];
 
@@ -532,10 +527,7 @@
       if (BUSY_RIGHT_NOW) return;
       BUSY_RIGHT_NOW = true;
 
-      console.log("hue shoudl be in 240s: " + hue);
       var c = hsvToRgb(hue/360, sat, black);
-      console.log(c);
-      console.log("------------------");
 
       var rgba = "rgba(" + c.r + "," + c.g + "," + c.b + "," + alpha +")";
       var rgb = "rgb(" + c.r + "," + c.g + "," + c.b + ")";
@@ -543,7 +535,6 @@
       previewel.style.background  = rgba;
       gridThumb.style.background  = rgb;
 
-      console.log("firing onChange: " + rgb);
       self.change(rgb);
 
       BUSY_RIGHT_NOW = false;
@@ -553,10 +544,7 @@
 
     spectrumSlider.onChange(function(h){
       hue = 360 - h;
-      console.log("hue shoudl be in 240s: " + hue);
       valGrid.setHue(hue);
-      //detailWheel.setHue(hue);
-
       update();
     });
 
@@ -575,7 +563,6 @@
     // });
 
     valGrid.onChange(function(val){
-      console.log(val);
       black = 1 - val.y;
       sat   = val.x;
       update();
@@ -592,9 +579,9 @@
       lastPicker = picker;
     }
     self.setColor = function(incoming) {
-      console.log("controller: " + incoming);
       if (lastPicker) {
-        lastPicker.receiveRemote(incoming);
+        //lastPicker.receiveRemote(incoming);
+        lastPicker.setColor(incoming);
       }
     }
   }
