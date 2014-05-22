@@ -292,12 +292,12 @@
     }
 
     self.setHue = function(hue){
-    	var amount = (hue / 360);
+    	var amount = (1 - hue / 360);
     	looper.setPos(amount, dir);
     }
 
     function update(data) {
-    	var hue = (1 - data[dir]) * 360; // from center
+    	var hue = (data[dir]) * 360; // from center
     	self.change(hue);
     }
 
@@ -501,7 +501,9 @@
 
       console.log(hsv);
 
-      hue   = 360 - parseInt(hsv[0]);
+      hue   = parseInt(hsv[0]);
+      console.log("hue shoudl be in 240s: " + hue);
+
       sat   = hsv[1];
       black = 1 - hsv[2];
 
@@ -530,7 +532,10 @@
       if (BUSY_RIGHT_NOW) return;
       BUSY_RIGHT_NOW = true;
 
-      var c = hsvToRgb((1-hue)/360, sat, black);
+      console.log("hue shoudl be in 240s: " + hue);
+      var c = hsvToRgb(hue/360, sat, black);
+      console.log(c);
+      console.log("------------------");
 
       var rgba = "rgba(" + c.r + "," + c.g + "," + c.b + "," + alpha +")";
       var rgb = "rgb(" + c.r + "," + c.g + "," + c.b + ")";
@@ -547,8 +552,8 @@
 
 
     spectrumSlider.onChange(function(h){
-      hue = h;
-      
+      hue = 360 - h;
+      console.log("hue shoudl be in 240s: " + hue);
       valGrid.setHue(hue);
       //detailWheel.setHue(hue);
 
