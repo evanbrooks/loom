@@ -6,9 +6,9 @@ socket.on('connect', function(){
 });
 socket.on('disconnect', function(){
   console.log("LOOM — Ansible disconnected");
-  setTimeout(function(){
-    socket = io.connect('/');
-  }, 200);
+  // setTimeout(function(){
+  //   socket = io.connect('/');
+  // }, 200);
 });
 
 socket.on('message', function(msg) {
@@ -17,6 +17,7 @@ socket.on('message', function(msg) {
   if (!window.LOOM_PART) {
     if (msg.css) {
       // console.log("replacing file:" + msg.cssFile)
+      console.log("replacing css!");
       insert_css(msg.css);
     }
     else if (msg.script) {

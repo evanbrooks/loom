@@ -153,9 +153,9 @@ function Tab(nav) {
       });
     }
     else if (self.ext == "html") {
-      cm.on("change", function(cm) {
-        self.save();
-      });
+      //cm.on("change", function(cm) {
+      //  self.save();
+      //});
     }
     else if (self.ext == "scss") {
       // cm.on("change", function(cm) {
@@ -193,8 +193,28 @@ function Tab(nav) {
 
   var ansible = {};
 
+
+  ansible.isBusy = false;
   ansible.send = function(msg) {
-    io.sockets.volatile.emit('message', msg);
+
+    if (ansible.isBusy) {
+      ansible.queued = msg;
+      return;
+    }
+    else {
+      ansible.isBusy = true;
+      ansible.queued = null;
+      console.info("SEND!")
+      io.sockets.volatile.emit('message', msg);
+
+      clearTimeout(ansible.timer);
+      ansible.timer = setTimeout(function(){
+        ansible.isBusy = false;
+        if (ansible.queued) ansible.send(ansible.queued);
+      }, 100);
+
+    }
+
   }
 
   ansible.reload = function() {

@@ -190,11 +190,12 @@
       );
     }
 
-    self.setPos = function(percent) {
-    	self.pos(
-    		pos.x,
-    		percent * ylimit
-    	)
+    self.setPos = function(percent, dir) {
+    	if (dir=="y"){
+        self.pos(pos.x, percent * ylimit)
+      } else {
+        self.pos(percent * xlimit, pos.y)
+      }
     }
 
     self.setAllPos = function(percentX, percentY) {
@@ -247,8 +248,8 @@
     }
 
     var end = function(e) {
-      halt(e);
       if (self.dragging) {
+        halt(e);
         self.dragging = false;
       }
     }
@@ -269,9 +270,18 @@
   	var self = this;
     var el = document.createElement("div");
     el.className = "c-thumb";
-    //el.style.width      = container.offsetWidth  + "px";
-    //el.style.height     = container.offsetHeight + "px";
-    container.style.background = rainbowGradV;
+
+    var w = container.offsetWidth;
+    var h = container.offsetHeight;
+    var dir;
+    if (w > h) {
+      dir = "x";
+      container.style.background = rainbowGradH;
+    }
+    else {
+      dir = "y";
+      container.style.background = rainbowGradV;
+    }
 
     container.appendChild(el);
 
@@ -283,17 +293,17 @@
 
     self.setHue = function(hue){
     	var amount = (hue / 360);
-    	looper.setPos(amount);
+    	looper.setPos(amount, dir);
     }
 
     function update(data) {
-    	var hue = (1 - data.y) * 360; // from center
+    	var hue = (1 - data[dir]) * 360; // from center
     	self.change(hue);
     }
 
     var looper = new Thumb(el, {
-      scrollx: false,
-      scrolly: true,
+      scrollx: (w > h),
+      scrolly: (w < h),
       cb: update,
       picker: picker
   	});
@@ -304,8 +314,12 @@
   	var self = this;
     var el = document.createElement("div");
     el.className = "c-looper";
-    el.style.width      = container.offsetWidth  + "px";
-    el.style.height     = container.offsetHeight + "px";
+
+
+    var w = container.offsetWidth;
+    var h = container.offsetHeight;
+    el.style.width      = w  + "px";
+    el.style.height     = h + "px";
 
     container.appendChild(el);
 
@@ -327,8 +341,8 @@
     };
 
     var looper = new Thumb(el, {
-      scrollx: false,
-      scrolly: true,
+      scrollx: (w > h),
+      scrolly: (w < h),
       overflow: true,
       cb: update,
       picker: picker
@@ -342,6 +356,17 @@
 
     container.appendChild(el);
 
+    var w = container.offsetWidth;
+    var h = container.offsetHeight;
+    var dir;
+    if (w > h) {
+      dir = "x";
+    }
+    else {
+      dir = "y";
+    }
+
+
     self.change = function(){console.log("hi")};
     self.onChange = function(cb) {
       self.change = cb;
@@ -352,12 +377,12 @@
     }
 
     self.setColor = function(rgb) {
-      container.style.background = opacGradV(rgb);
+      container.style.background = opacGrad(rgb, dir);
     };
 
     var looper = new Thumb(el, {
-      scrollx: false,
-      scrolly: true,
+      scrollx: (w > h),
+      scrolly: (w < h),
       cb: update,
       picker: picker
     });
@@ -381,10 +406,7 @@
 
     // http://stackoverflow.com/questions/3423214/convert-hsb-color-to-hsl
     function update(data) {
-    	self.change({
-    		light: data.x,
-    		sat: data.y
-    	});
+    	self.change(data);
     }
 
     self.setPos = function(x, y){
@@ -400,21 +422,24 @@
 
   var blackGradV = "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)";
   var rainbowGradV = "linear-gradient(to top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)";
+  var rainbowGradH = "linear-gradient(to left, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)";
 
   function gridGradient(hue) {
-  	return blackGradV + ", " + hueGradH(hue) + ", white";
+  	return blackGradV + ", " + hueGrad(hue, "x") + ", white";
   }
 
-  function hueGradH(hue) {
+  function hueGrad(hue, XorY) {
+    var dir = XorY == "x" ? "right" : "top";
   	var start = "hsla(" + hue + ", 100%, 50%, 0)";
   	var end = "hsla(" + hue + ", 100%, 50%, 1)";
-  	return "linear-gradient(to right, " + start + " 0%, " + end + " 100%)";
+  	return "linear-gradient(to " + dir + ", " + start + " 0%, " + end + " 100%)";
   }
 
-  function opacGradV(rgb) {
+  function opacGrad(rgb, XorY) {
+    var dir = XorY == "x" ? "right" : "top";
   	var start = "rgba(" + rgb.r + ", " + rgb.g +", " + rgb.b + ", 0)";
   	var end =   "rgba(" + rgb.r + ", " + rgb.g +", " + rgb.b + ", 1)";
-  	return "linear-gradient(to top, " + start + " 0%, " + end + " 100%)";
+  	return "linear-gradient(to " + dir + ", " + start + " 0%, " + end + " 100%)";
   }
 
   function detailGradient(hue, diff) {
@@ -445,7 +470,7 @@
 
     var valGrid       = new Grid(self, el.querySelector(".c-grid"));
     var spectrumSlider= new Slider(self, el.querySelector(".c-spectrum"));
-    var detailWheel   = new DetailWheel(self, el.querySelector(".c-precise"), diff);
+    //var detailWheel   = new DetailWheel(self, el.querySelector(".c-precise"), diff);
     var opacSlider    = new OpacSlider(self, el.querySelector(".c-alpha"));
 
 
@@ -460,9 +485,21 @@
       el.style.top  = y + "px";
     }
 
+    // _______________
+    //
+    // Str must be parseable by d3's rgb() method,
+    // therefore rgba values are not valid
+    //
+    // (for demo purposes we now never return rgba values)
+    // 
     self.setColor = function(str) {
+
+      console.log("received: " + str);
+
       var rgb = d3.rgb(str);
       var hsv = rgb2hsv(rgb.r, rgb.g, rgb.b);
+
+      console.log(hsv);
 
       hue   = 360 - parseInt(hsv[0]);
       sat   = hsv[1];
@@ -472,8 +509,12 @@
       valGrid.setHue(hue);
       valGrid.setPos(sat, black);
       spectrumSlider.setHue(hue);
-      detailWheel.setHue(hue);
+      // detailWheel.setHue(hue);
       update();
+    }
+
+    self.receiveRemote = function(str) {
+      //
     }
 
     self.change = function(){};
@@ -481,20 +522,27 @@
       self.change = cb;
     }
 
-
-
+    // Trying to organize my poorly
+    // structured code
+    var BUSY_RIGHT_NOW = false;
     function update() {
 
-      var c = hsvToRgb(hue/360, black, sat);
+      if (BUSY_RIGHT_NOW) return;
+      BUSY_RIGHT_NOW = true;
+
+      var c = hsvToRgb((1-hue)/360, sat, black);
+
       var rgba = "rgba(" + c.r + "," + c.g + "," + c.b + "," + alpha +")";
+      var rgb = "rgb(" + c.r + "," + c.g + "," + c.b + ")";
       opacSlider.setColor(c);
       previewel.style.background  = rgba;
-      gridThumb.style.background  = "rgb(" + c.r + "," + c.g + "," + c.b + ")";
+      gridThumb.style.background  = rgb;
 
-      // previewel.innerText = rgba;
-      self.change(rgba);
-      // hueThumb.style.background   = "hsl(" + parseInt(hue) + ", 100%, 50%)";
-      // opacThumb.style.borderColor = "rgba(" + c.r + "," + c.g + "," + c.b + "," + (alpha+0.4) +")";
+      console.log("firing onChange: " + rgb);
+      self.change(rgb);
+
+      BUSY_RIGHT_NOW = false;
+
     }
 
 
@@ -502,7 +550,7 @@
       hue = h;
       
       valGrid.setHue(hue);
-      detailWheel.setHue(hue);
+      //detailWheel.setHue(hue);
 
       update();
     });
@@ -512,24 +560,42 @@
       update();
     });
 
-    detailWheel.onChange(function(delta){
-      hue += delta * diff;
+    // detailWheel.onChange(function(delta){
+    //   hue += delta * diff;
 
-      valGrid.setHue(hue);
-      spectrumSlider.setHue(hue);
+    //   valGrid.setHue(hue);
+    //   spectrumSlider.setHue(hue);
 
-      update();
-    });
+    //   update();
+    // });
 
     valGrid.onChange(function(val){
-      black = val.light;
-      sat   = 1-val.sat;
+      console.log(val);
+      black = 1 - val.y;
+      sat   = val.x;
       update();
     });
 
-    self.setColor("gray");
+    //self.setColor("blue");
   }
 
+  function ColorController() {
+    var self = this;
+    var lastPicker;
+
+    self.setPicker = function(picker) {
+      lastPicker = picker;
+    }
+    self.setColor = function(incoming) {
+      console.log("controller: " + incoming);
+      if (lastPicker) {
+        lastPicker.receiveRemote(incoming);
+      }
+    }
+  }
+
+  window.ColorController = new ColorController();
   window.ColorPicker = Picker;
+
 
 })();

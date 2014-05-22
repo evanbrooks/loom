@@ -27,7 +27,14 @@ $(document).ready(function() {
 	window.colorThief = new ColorThief();
 
 	var pickerEl = document.querySelector(".c-picker");
-	window.picker = new ColorPicker(pickerEl); 
+	window.picker = new ColorPicker(pickerEl);
+
+	picker.onChange(function(newColor){
+		console.log(newColor);
+	  socket.emit('message', {
+	    remoteColor: newColor
+	  });
+	});
 
 });
 
@@ -36,6 +43,10 @@ function getSwatches(){
 
 	for (var i = 0; i < Math.min(5, colorArr.length); i++) {
 		$("#swatch"+i).css("background-color","rgb("+colorArr[i][0]+","+colorArr[i][1]+","+colorArr[i][2]+")");
+		$("#swatch"+i).on("touchstart", function(e){
+			var clrStr = $(this).css("background-color");
+			window.picker.setColor(clrStr);
+		});
 		if (i == 0) {
 			var clrStr = $("#swatch"+i).css("background-color");
 			window.picker.setColor(clrStr);

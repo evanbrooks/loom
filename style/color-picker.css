@@ -28,6 +28,10 @@
   width: auto;
   overflow: visible;
   opacity: 1;
+  white-space: normal;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 .c-preview {
   position: relative;
@@ -80,8 +84,9 @@
   position: relative;
 }
 .staticpicker .c-slider {
-  width: 40px;
-  height: 300px;
+  display: block;
+  height: 40px;
+  width: 320px;
 }
 .c-wheel {
   cursor: ns-resize;
@@ -121,8 +126,8 @@
   position: relative;
 }
 .staticpicker .c-grid {
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
 }
 .c-wheel {
   overflow: hidden;
@@ -164,6 +169,18 @@
 .c-alpha .c-thumb {
   margin-left: 3px;
   margin-top: -5px;
+}
+.staticpicker .c-thumb {
+  width: 34px;
+  height: 34px;
+}
+.staticpicker .c-grid .c-thumb {
+  margin: -17px;
+}
+.staticpicker .c-alpha .c-thumb,
+.staticpicker .c-hue .c-thumb {
+  margin-left: -17px;
+  margin-top: 3px;
 }
 .c-opacity {
   background-size: 12px 12px;

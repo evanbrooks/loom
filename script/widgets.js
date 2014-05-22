@@ -254,15 +254,6 @@ function Picker(el, color, line, marker) {
     // var textPos = self.widget.find();
     var textPos = marker;
 
-    //var widgs = nav.current.cm.lineInfo(textPos.line).widgets;
-    var widgs = nav.current.cm.lineInfo(line).widgets;
-    if (widgs && widgs.length) {
-      widgs.forEach(function(widg){
-        widg.node.classList.remove("active");
-        setTimeout(function(){widg.clear();}, 500);
-      });
-      return;
-    }
 
     var computedColor = window.getComputedStyle(swatch).backgroundColor;
     currColor = strt_text;
@@ -293,37 +284,57 @@ function Picker(el, color, line, marker) {
 
     var colorPicker = new ColorPicker(pickerEl);
 
+
+
+    // ________________________________
+    // 
     // On widget change
+    //
     colorPicker.onChange(function(newColor){
+
+      // Register this picker with the global controller
+      ColorController.setPicker(colorPicker);
+
+      var cm = nav.current.cm;
+
       // [A] get the range
       var replaceStart = textPos;
       var replaceEnd = { line: textPos.line, ch: (textPos.ch + currColor.length) };
+      
       // [B] buffer these changes
-      nav.current.cm.operation(function(){
-        // [B1] replace the text (removing the widget)
+      cm.operation(function(){
+        // [0] remove the widget (this is very important!)
+        self.widget.clear();
+        // [1] replace the text (removing the widget)
         nav.current.cm.replaceRange(
           newColor,
           replaceStart,
           replaceEnd,
-          "*fromWidget"
-          // ^ let codemirror know that the change came from
-          // the widget and therefore not to trigger new widgets
+          "*fromWidget" // let codemirror know that the change came from the widget and therefore not to trigger new widgets
         );
-        // [B2] restore the widget
+        // [2] restore the widget
         nav.current.cm.markText(replaceStart, replaceEnd, {
           replacedWith: $el
         });
       });
+
+
       // [C] Set the new color and cache the string to measure later
       swatchEl.style.backgroundColor = newColor;
       currColor = newColor;
     });
+    //
+    // End widget change
+    // 
+    // ________________________________
+
 
     // Set and activate widget
     colorPicker.setColor(computedColor);
     colorPicker.el.classList.add("active");
 
   });
+
 }
 
 

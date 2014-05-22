@@ -50,8 +50,11 @@
     });
 
     io.sockets.on('connection', function (socket) {
+
+      console.log("SOCKET CONNECTION EVENT!")
+
+
       socket.on('message', function(msg) {
-        console.log(msg);
 
         // ====================
         // CONSOLE LOGGER
@@ -81,9 +84,14 @@
             el
           );
         }
-        // ==================
 
+        // ====================
+        // COLOR CONTROLLER
+        if (msg.remoteColor) {
+          console.log("socket :" + msg.remoteColor);
+          ColorController.setColor(msg.remoteColor);
 
+        }
 
       });
     });
@@ -95,7 +103,7 @@
       ngrok.connect({
         authtoken: 'JohZPmCzR0QKuvzDiUoc',
         port: port,
-        subdomain: 'ev'
+        subdomain: 'evnb'
       }, function (err, url) {
         if (err) console.log(err);
         console.info('Ngrok running online at ' + url);
