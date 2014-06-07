@@ -92,7 +92,41 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   function tokenBase(stream, state) {
 
 
+
+
+
     var ch = stream.next();
+
+
+    // EB After slash, process rest of comment
+    if (state.justSlashed) {
+
+      var startsWithSlash = state.justSlashedFresh;
+
+      state.justSlashed = false;
+      state.justSlashedFresh = false;
+
+      stream.skipToEnd();
+
+      // Check if this comment is code-like
+      // (has 'text.text' or 'text;' or some kind of bracket)
+      var cmnt = stream.current()
+        , endsWithDot = /\w\.\s*$/.test(cmnt)
+        , hasSemi = /\w*;/.test(cmnt)
+        , hasCurl = /[\{\}]/.test(cmnt)
+        , hasPlus = /[\+]/.test(cmnt)
+        , looksLikeCode = hasSemi || hasCurl || hasPlus;
+        ;
+
+      // If doesn't look like code, and it on its own line,
+      // treat it as a comment heading.
+      if (endsWithDot) return ret("comment literate line-lit", "comment literate line-lit");
+      if (startsWithSlash && !looksLikeCode) return ret("comment literate line-lit", "comment literate line-lit");
+      return ret("comment", "comment");
+    }
+    // END EB
+
+
     if (ch == '"' || ch == "'") {
       state.tokenize = tokenString(ch);
       return state.tokenize(stream, state);
@@ -115,23 +149,16 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         state.tokenize = tokenComment;
         return tokenComment(stream, state);
       } else if (stream.eat("/")) {
-        stream.skipToEnd();
 
-        // Check if this comment is code-like
-        // (has 'text.text' or 'text;' or some kind of bracket)
-        var cmnt = stream.current()
-          , endsWithDot = /\w\.\s*$/.test(cmnt)
-          , hasSemi = /\w*;/.test(cmnt)
-          , hasCurl = /[\{\}]/.test(cmnt)
-          , hasPlus = /[\+]/.test(cmnt)
-          , looksLikeCode = hasSemi || hasCurl || hasPlus;
-          ;
+        // EB return early to wrap slashes in own class
+        state.justSlashed = true;
+        if (state.freshLine) state.justSlashedFresh = true;
 
-        // If doesn't look like code, and it on its own line,
-        // treat it as a comment heading.
-        if (endsWithDot) return ret("comment literate line-lit", "comment literate line-lit");
-        if (state.freshLine && !looksLikeCode) return ret("comment literate line-lit", "comment literate line-lit");
-        return ret("comment", "comment");
+        if (stream.eol()) {
+          return ret("comment slashes line-lit", "comment slashes line-lit");
+        }
+        return ret("comment slashes", "comment slashes");
+
 
       } else if (state.lastType == "operator" || state.lastType == "keyword c" ||
                state.lastType == "sof" || /^[\[{}\(,;:]$/.test(state.lastType)) {
@@ -652,6 +679,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
       if (stream.sol()) {
 
+        state.justSlashed = false;
         state.freshLine = true;
 
         if (!state.lexical.hasOwnProperty("align"))
@@ -661,7 +689,6 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
         ind = "line-ind-" + state.indented + " ";
       }
-
 
       if (state.tokenize != tokenComment && stream.eatSpace()) return ind;
       var style = state.tokenize(stream, state);
