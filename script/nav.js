@@ -74,6 +74,20 @@ function Nav() {
     }
     self.current = tab;
     if (tab) { // We might be setting no tab for some reason
+
+      // Reset before/after
+      var after = false;
+      for (var i = 0; i < self.list.length; i++) {
+        var t = self.list[i];
+        if (t === tab) after = true;
+        if (after) {
+          t.panel.classList.add("aftertab")
+        }
+        else {
+          t.panel.classList.remove("aftertab")
+        }
+      }
+
       tab.flap.classList.add("activetab");
       tab.panel.classList.add("active");
       self.current.cm.refresh();
@@ -81,6 +95,24 @@ function Nav() {
     }
     self.saveState();
   };
+
+  self.fanTabs = function() {
+    var eachWidth = 100/self.list.length;
+    document.body.classList.add("fanned");
+    for (var i = 0; i < self.list.length; i++) {
+      var t = self.list[i];
+      t.panel.style.webkitTransform = "translate3d(" + eachWidth*i + "%,0,0)";
+    }
+  }
+  self.unFanTabs = function() {
+    // To whatever position has been
+    // defined by the 'active' class, etc.
+    document.body.classList.remove("fanned");
+    for (var i = 0; i < self.list.length; i++) {
+      var t = self.list[i];
+      t.panel.style.webkitTransform = "";
+    }
+  }
 
   self.setTheme = function(newtheme) {
     for (var filepath in self.tabs) {
