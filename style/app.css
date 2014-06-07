@@ -1,35 +1,40 @@
 .dragbar {
   position: fixed;
-  background: -webkit-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
+  background: #fff;
+  background: -webkit-linear-gradient(top, #fff 0%, #fafafa 100%);
   z-index: 10;
   top: 0;
   left: 0;
-  right: 0;
-  height: 30px;
+  right: 5px;
+  -webkit-app-region: drag;
+  border-bottom: 1px solid #eee;
+  height: 2.6em;
+  opacity: 0.95;
+  -webkit-transition: all 0.2s;
 }
 .win-btn {
   position: fixed;
   z-index: 12;
-  top: 11px;
+  top: 16px;
   display: block;
   height: 11px;
   width: 11px;
   text-decoration: none;
   color: transparent;
   border-radius: 50%;
-  border: 1px solid #ebebeb;
+  border: 1px solid #cfcfcf;
   margin-right: 4px;
   cursor: default;
   -webkit-app-region: no-drag;
 }
 .win-close {
-  left: 11px;
+  left: 14px;
 }
 .win-minim {
-  left: 33px;
+  left: 36px;
 }
 .win-maxim {
-  left: 55px;
+  left: 58px;
 }
 .win-close:hover {
   background: rgba(255,0,0,0.2);
@@ -43,18 +48,24 @@
   background: rgba(0,128,0,0.2);
   border-color: #008000;
 }
+.fan-btn {
+  position: fixed;
+  top: 11px;
+  right: 11px;
+}
 .theme-btn {
   position: fixed;
-  bottom: 6px;
+  bottom: 11px;
   right: 11px;
 }
 .theme-icon {
   display: inline-block;
   height: 14px;
   width: 14px;
-  background: #ddd;
+  background: #808080;
   border-radius: 50%;
   position: relative;
+  overflow: hidden;
 }
 .theme-icon:hover {
   background: #bbb;
@@ -64,25 +75,11 @@
   background: #fff;
   position: absolute;
   border-radius: 50%;
-  left: 35%;
+  left: 25%;
   top: 0;
   z-index: 2;
   height: 100%;
   width: 100%;
-}
-.dark-theme .theme-icon {
-  background: transparent;
-}
-.dark-theme .theme-icon:hover:after {
-  color: rgba(255,255,255,0.3);
-}
-.dark-theme .theme-icon:after {
-  content: '☀';
-  left: -4px;
-  top: -8px;
-  font-size: 130%;
-  color: rgba(255,255,255,0.1);
-  background: transparent;
 }
 .dark-theme {
   background: #2d323a;
@@ -90,9 +87,6 @@
 }
 .dark-theme .dragbar {
   background: -webkit-linear-gradient(top, #2d323a 0%, rgba(255,255,255,0) 100%);
-}
-.dark-theme .nav {
-  background: #2d323a;
   border-color: rgba(255,255,255,0.08);
 }
 .dark-theme .nav li {
@@ -100,6 +94,9 @@
 }
 .dark-theme .nav .activetab {
   color: #fff;
+}
+.dark-theme .tab {
+  background: #2d323a;
 }
 .dark-theme .win-btn {
   border: 1px solid rgba(255,255,255,0.05);
@@ -145,12 +142,16 @@ h2 {
 }
 .nav {
   position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
+  z-index: 15;
+  top: 0.4em;
+  left: 5em;
+  right: 1em;
   border: 0;
-  border-bottom: 1px solid #eee;
-  -webkit-transition: padding 0.12s;
+  -webkit-transition: all 0.2s;
+}
+.fanned .nav,
+.fanned .dragbar {
+  opacity: 0;
 }
 .tab-bar {
   display: inline-block;
@@ -160,7 +161,7 @@ h2 {
 .tab-bar li {
   -webkit-app-region: no-drag;
   display: inline-block;
-  padding: 0 11px;
+  padding: 0 10px;
   text-decoration: none;
   color: #bbb;
 }
@@ -172,10 +173,10 @@ h2 {
   color: #000;
 }
 .CodeMirror-sizer {
-  padding-top: 30px;
+  padding-top: 60px;
 }
 .tab-btn-x {
-  display: inline-block;
+  display: none;
   height: 10px;
   width: 10px;
   position: relative;
@@ -217,27 +218,38 @@ h2 {
 }
 .tabs {
   position: absolute;
-  top: 2.8em;
-  right: 0;
+  top: 0;
   left: 0;
   bottom: 0;
+  right: 0;
   white-space: nowrap;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 .tab {
-  -webkit-transition: all 0.1s;
-  position: absolute;
+  -webkit-transition: -webkit-transform 0.15s;
+  position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
-  display: none;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: block;
   vertical-align: top;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.tab.aftertab {
+  -webkit-transform: translate3d(100%, 0, 0);
 }
 .tab.active {
   display: block;
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
+}
+.fanned .tab {
+  -webkit-transition: -webkit-transform 0.15s cubic-bezier(0.22, 1.1, 0.365, 1);
+  box-shadow: 0 0 50px rgba(0,0,0,0.07), 0 0 5px rgba(0,0,0,0.2);
 }
 .CodeMirror {
 /* Set height, width, borders, and global font properties here */
@@ -245,10 +257,14 @@ h2 {
   top: 0;
   left: 0;
   bottom: 0;
-  padding-left: 1em;
-  padding-right: 1em;
   height: calc(100vh - 2.8em);
-  height: 98vh;
+  height: 100vh;
+}
+.CodeMirror pre {
+  padding: 0 4ch;
+}
+.CodeMirror-cursors {
+  z-index: 5 !important;
 }
 .CodeMirror .CodeMirror-code > div > pre {
   display: inline-block;
@@ -270,30 +286,28 @@ h2 {
   -webkit-user-select: none !important;
   cursor: ns-resize !important;
 }
-@media (max-width: 500px) {
-  .nav {
-    padding-left: 70px;
-    right: 0;
-    top: 0px;
-z-index
-  }
-  .dragbar {
-    -webkit-app-region: drag;
-  }
-}
-@media (min-width: 500px) {
+@media (min-width: 1000px) {
   body {
     padding-top: 1em;
+  }
+  .CodeMirror-sizer {
+    padding-top: 30px;
   }
   .nav {
     width: 150px;
     bottom: 0;
+    left: 0;
     right: auto;
     border: 0;
+    top: 0;
+    z-index: 10;
     padding-top: 30px;
   }
   .dragbar {
     -webkit-app-region: drag;
+    background: -webkit-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
+    border: 0;
+    height: 2em;
   }
   .bottom {
     width: 150px;

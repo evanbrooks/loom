@@ -16,7 +16,7 @@ $bg         = white
 }
 
 .CodeMirror-selected {
-  background: rgb(224, 237, 255) !important;
+  background: rgba(blue, 0.1) !important;
 }
 
 // ------------------------
@@ -50,21 +50,23 @@ $cssStrLight   = #8A0048;
     //color        brown
     //font-weight  800
     //color: black !important;
-    font-weight: 700;
+    font-weight: 600;
   // Content/values
   .cm-atom,
   .cm-number, 
   .cm-string,
   .cm-string-2
-    color: #B30202;
-    font-weight: 300;
-    //font-family: CentSchbook Mono BT;
+    color: #D10000;
+    //font-weight: 300;
   .cm-attrval
     font-weight 400
     &.cm-attrval-id, &.cm-attrval-class
       font-weight 600
 
-
+.cm-mode-js
+  .cm-string,
+  .cm-string-2
+    //color: red;
 
 .cm-s-loop-light, .cm-s-loop-dark
   &.CodeMirror 
@@ -78,8 +80,8 @@ $cssStrLight   = #8A0048;
 
   .cm-literate
     font-family: Nitti Grotesk;
-    font-weight: 400;
-    font-size: 18px;
+    font-weight: 300;
+    font-size: 20px;
     line-height: 14px;
     letter-spacing: 0.015em;
 
@@ -227,15 +229,10 @@ $cssStrLight   = #8A0048;
     color $comment
     // text-decoration: line-through;
 
-  .lit
-    background: rgba(yellow, 0.08);
 
-  .cm-literate
-    // color: #00A3FF
-    //color #00B100
-    //text-decoration: none;
-    color gray
-    //background: rgba(yellow, 0.07);
+
+
+
 
   .CodeMirror-lint-message-error,
   .CodeMirror-lint-message-warning
@@ -254,6 +251,69 @@ $cssStrLight   = #8A0048;
   .cm-attrval-href,
   .cm-attrval-src
     // border-bottom 1px solid rgba(0,0,0,0.2)
+
+
+  // ---------
+  // LITERATE COMMENTS
+  // are super hacky.
+  //
+  // **: literate comments that do not follow other literate
+  //        comments to have a higher z-index ....
+  //
+  // ***: so that the 2nd (but not 3rd or more)
+  //      literate comment can sneak a box-shadow
+  //      behind it, making it seem like it has its own background
+  
+.CodeMirror
+  .lit
+    padding 0 1ch
+    z-index 3 // **
+  .lit + .lit
+    //box-shadow: 0 -1.5em $litbg// ***
+    //box-shadow: 0 -1.5em $litbg, 0 -2em $litbg, 0 -2.07em #EEDE6C;
+    z-index 2 // **
+    &:before
+      content ""
+      position absolute
+      height 150%
+      width 100%
+      left 0
+      top -150%
+  .lit + .lit + .lit
+    //box-shadow: 0 0.7em $litbg, 0 0.77em #EEDE6C;
+    &:before
+      content none
+
+
+  // ---------
+.cm-s-loop-light
+  $litbg = rgb(255, 255, 220);
+  .lit
+    .cm-slashes
+      color rgba(black,0.1)
+  .lit + .lit
+    background: $litbg;
+    &:before
+      background $litbg
+      border-top 1px solid #EEDE6C
+  .cm-literate
+    color black
+    background: $litbg;
+
+.cm-s-loop-dark
+  $litbgdark = #303944;
+  .lit
+    .cm-slashes
+      color rgba(white,0.1)
+  .lit + .lit
+    background: $litbgdark;
+    &:before
+      background $litbgdark
+      border-top 1px solid #3A3A3A
+  .cm-literate
+    color #ECECEC
+    background: $litbgdark;
+
 
 
 // _____________________________________________________________
@@ -440,6 +500,7 @@ $cssStrLight   = #8A0048;
 
 .CodeMirror
   
+  $strt = 26px
   $space = 16px
 
   pre.ind-0, pre.ind-1
@@ -447,42 +508,42 @@ $cssStrLight   = #8A0048;
 
   pre.ind-2, pre.ind-3
     background-image url(indents/ind1.png)
-    background-position top left 4px
+    background-position top left $strt
     background-repeat repeat-y
 
   pre.ind-4, pre.ind-5
     background-image url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left $space + 4px
+    background-position top left $strt, top left $space + $strt
     background-repeat repeat-y
 
   pre.ind-6, pre.ind-7
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px
+    background-position top left $strt, top left $space + $strt, top left $space * 2 + $strt
     background-repeat repeat-y
 
   pre.ind-8, pre.ind-9
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px
+    background-position top left $strt, top left $space + $strt, top left $space * 2 + $strt, top left $space * 3 + $strt
     background-repeat repeat-y
 
   pre.ind-10, pre.ind-11
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px, top left $space * 4 + 4px
+    background-position top left $strt, top left $space + $strt, top left $space * 2 + $strt, top left $space * 3 + $strt, top left $space * 4 + $strt
     background-repeat repeat-y
 
   pre.ind-11, pre.ind-12
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px, top left $space * 4 + 4px, top left $space * 5 + 4px
+    background-position top left $strt, top left $space + $strt, top left $space * 2 + $strt, top left $space * 3 + $strt, top left $space * 4 + $strt, top left $space * 5 + $strt
     background-repeat repeat-y
 
   pre.ind-13, pre.ind-14
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px, top left $space * 4 + 4px, top left $space * 5 + 4px, top left $space * 6 + 4px
+    background-position top left $strt, top left $space + $strt, top left $space * 2 + $strt, top left $space * 3 + $strt, top left $space * 4 + $strt, top left $space * 5 + $strt, top left $space * 6 + $strt
     background-repeat repeat-y
 
   pre.ind-15, pre.ind-16
     background-image url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png), url(indents/ind1.png)
-    background-position top left 4px, top left $space + 4px, top left $space * 2 + 4px, top left $space * 3 + 4px, top left $space * 4 + 4px, top left $space * 5 + 4px, top left $space * 6 + 4px, top left $space * 7 + 4px
+    background-position top left $strt, top left $space + $strt, top left $space * 2 + $strt, top left $space * 3 + $strt, top left $space * 4 + $strt, top left $space * 5 + $strt, top left $space * 6 + $strt, top left $space * 7 + $strt
     background-repeat repeat-y
 
 // ------------------------

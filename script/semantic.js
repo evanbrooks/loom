@@ -13,8 +13,8 @@
     else if (i % 3 === 1) dark = 60;
     else dark = 55;
 
-    // var col = $.husl.p.toHex( ((i / variations) * 200 + 80), 50, dark);
-    var col = $.husl.p.toHex( ((i / variations) * 360), 100, dark);
+    var col = $.husl.p.toHex( ((i / variations) * 200 + 80), 80, dark);
+    //var col = $.husl.p.toHex( ((i / variations) * 360), 100, dark);
     var className = ".cm-s-loop-light .cm-semantic-" + i;
     css += className + " { color: " + col + ";}\n"; 
   }
