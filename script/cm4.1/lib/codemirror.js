@@ -145,7 +145,7 @@
     // Will contain the actual code, positioned to cover the viewport.
     d.lineDiv = elt("div", null, "CodeMirror-code");
     // Elements are added to these to represent selection and cursors.
-    d.selectionDiv = elt("div", null, null, "position: relative; z-index: 1");
+    d.selectionDiv = elt("div", null, null, "position: relative; z-index: 4"); // EB from 1 to 4
     d.cursorDiv = elt("div", null, "CodeMirror-cursors");
     // A visibility: hidden element used to find the size of things.
     d.measure = elt("div", null, "CodeMirror-measure");
