@@ -1,6 +1,5 @@
-// ______________________________________
-
 // Tab object
+//
 
 var stylus     = require('stylus');
 
@@ -69,10 +68,10 @@ function Tab(nav) {
 
     var tabname = document.createElement("span");
     tabname.classList.add("tab-title");
-    tabname.innerText = self.title;
+    tabname.innerText = self.title;//.split(".")[0];
 
-    f.appendChild(self.ex);
     f.appendChild(tabname);
+    f.appendChild(self.ex);
 
     return f;
   };
@@ -95,9 +94,9 @@ function Tab(nav) {
       mode: self.mode,
       tabSize: 2,
       lineNumbers: false,
-      //lineWrapping: true,
+      lineWrapping: true,
       gutters: ["CodeMirror-lint-markers"],
-      lint: (self.mode == "javascript"),
+//       lint: (self.mode == "javascript"),
       keyMap: "sublime",
       theme: "loop-light",
       extraKeys: {
@@ -116,6 +115,12 @@ function Tab(nav) {
           widgetize(cm, change.from.line, change.to.line);
           //});
       }
+    });
+
+    // Rough
+    editor.on("focus", function(cm) {
+      nav.setTab(self);
+      nav.unFanTabs();
     });
 
     editor.setValue(content);
