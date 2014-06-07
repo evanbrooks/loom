@@ -29,16 +29,15 @@
     <link href="http://cloud.webtype.com/css/3d80e686-ff86-4159-a72b-4de293ee204f.css" rel="stylesheet" type="text/css" />
     <link href="style/fndrs.css" rel="stylesheet" >
 
-    <!-- Design -->
-    <link href="style/app.css"   rel="stylesheet" >
-    <link href="style/color-picker.css" rel="stylesheet" >
-    <link href="style/theme.css" rel="stylesheet" >
-
     <!-- CodeMirror CSS -->
     <link rel="stylesheet" href="script/cm4.0/lib/codemirror.css">
     <link rel="stylesheet" href="script/cm4.0/addon/lint/lint.css">
     <link rel="stylesheet" href="script/cm4.0/addon/hint/show-hint.css">
 
+    <!-- Design -->
+    <link href="style/app.css"   rel="stylesheet" >
+    <link href="style/color-picker.css" rel="stylesheet" >
+    <link href="style/theme.css" rel="stylesheet" >
 
   </head>
 
@@ -76,6 +75,9 @@
         <!--<li>— Open New</li>-->
       </ul>
 
+      <div class="fan-btn" data-action="fan">
+        <span class="fan-icon">Fan</span>
+      </div>
 
     </header>
 
@@ -91,11 +93,12 @@
 
       <span data-action="refresh">↻</span>
       <span data-action="devtools">⚛</span>
-      <!--<div class="theme-btn" data-action="theme">
+
+      <div class="theme-btn" data-action="theme">
         <span class="theme-icon"></span>
       </div>
 
-      <div class="server">
+      <!--<div class="server">
         <a href="#">/testsite</a> <br>
         <a href="#">> localhost:4000</a><br>
         <a href="#">> loom.ngrok.com</a>
@@ -224,6 +227,7 @@
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="script/underscore-min.js"></script>
+    <script src="script/mousewheel.js"></script>
     <script src="script/jshint.js"></script>
     <script src='script/husl.js'></script>
 

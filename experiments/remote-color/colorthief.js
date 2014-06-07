@@ -145,8 +145,9 @@ ColorThief.prototype.getPalette = function(sourceImage, colorCount, quality) {
  * quantize.js Copyright 2008 Nick Rabinowitz.
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
-
+ 
 // fill out a couple protovis dependencies
+
 /*!
  * Block below copied from Protovis: http://mbostock.github.com/protovis/
  * Copyright 2010 Stanford Visualization Group

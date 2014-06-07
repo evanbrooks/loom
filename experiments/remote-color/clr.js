@@ -5,10 +5,6 @@ window.LOOM_PART = true;
 
 
 
-
-
-
-
 // This part is left over from the colorthief demo
 // that this is based on. Still important though.
 

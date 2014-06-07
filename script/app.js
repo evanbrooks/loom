@@ -1,9 +1,8 @@
 /*jshint laxcomma: true */
-
+//
 // "toolbar": false,
 // "frame": false,
-
-// ______________________________________
+//
 //
 // Declarations
 
@@ -14,24 +13,22 @@ var gui   = require('nw.gui')
   , win   = gui.Window.get()
   ;
 
-// ______________________________________
 //
 // Open previously stored files
 
 nav.setDocument(document);
 nav.restoreState();
 
-// ______________________________________
-
+//
 
 var saveCurrent = function() {
   nav.saveCurrent();
 };
 
 
-// ______________________________________
 //
 // Keyboard shortcuts
+//
 
 var commandKey = false;
 
@@ -54,11 +51,9 @@ document.addEventListener('keyup', function (e) {
 });
 
 
-
-// ______________________________________
 //
 // T H E M E
-
+//
 
 function toggleTheme(e) {
 
@@ -74,11 +69,9 @@ function toggleTheme(e) {
   nav.setTheme(newtheme);
 }
 
-
-// ______________________________________
 //
 // Bind to actions
-
+//
 
 var actions = document.querySelectorAll("[data-action]");
 for (var i = 0; i < actions.length; i++ ) {
@@ -97,6 +90,9 @@ for (var i = 0; i < actions.length; i++ ) {
     // action.addEventListener("mousedown",function(e){
     //   reload_browser();
     // }, false);
+  }
+  else if (attr == "fan") {
+    action.addEventListener("mousedown", nav.fanTabs);
   }
   else if (attr == "devtools") {
     action.addEventListener("click", function(e) {
@@ -130,9 +126,9 @@ for (var i = 0; i < actions.length; i++ ) {
 }
 
 
-// ______________________________________
 //
 // Workarounds for file I/O restrictions
+//
 
 function clickInput(id) {
     var event = document.createEvent('MouseEvents');
